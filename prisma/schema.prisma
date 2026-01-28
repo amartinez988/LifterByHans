@@ -51,6 +51,8 @@ model Company {
   emergencyCallStatuses EmergencyCallStatus[]
   emergencyCalls EmergencyCall[]
   emergencyCallSequence EmergencyCallSequence?
+  scheduledJobs ScheduledJob[]
+  jobSequence JobSequence?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -107,6 +109,7 @@ model ManagementCompany {
   maintenances   Maintenance[]
   inspections    Inspection[]
   emergencyCalls EmergencyCall[]
+  scheduledJobs  ScheduledJob[]
   company        Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
@@ -132,6 +135,7 @@ model Building {
   maintenances        Maintenance[]
   inspections         Inspection[]
   emergencyCalls      EmergencyCall[]
+  scheduledJobs       ScheduledJob[]
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 
@@ -227,6 +231,7 @@ model Unit {
   maintenances        Maintenance[]
   inspections         Inspection[]
   emergencyCalls      EmergencyCall[]
+  scheduledJobs       ScheduledJob[]
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 
@@ -248,6 +253,7 @@ model Mechanic {
   mechanicLevel MechanicLevel? @relation(fields: [mechanicLevelId], references: [id], onDelete: SetNull)
   maintenances Maintenance[]
   emergencyCalls EmergencyCall[]
+  scheduledJobs ScheduledJob[]
   createdAt DateTime @default(now())
 
   @@unique([companyId, email])
@@ -289,6 +295,7 @@ model Maintenance {
   building            Building           @relation(fields: [buildingId], references: [id], onDelete: Cascade)
   unit                Unit               @relation(fields: [unitId], references: [id], onDelete: Cascade)
   mechanic            Mechanic?          @relation(fields: [mechanicId], references: [id], onDelete: SetNull)
+  linkedJob           ScheduledJob?
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 
@@ -434,6 +441,77 @@ model EmergencyCall {
 }
 
 model EmergencyCallSequence {
+  id         String  @id @default(uuid())
+  companyId  String  @unique
+  nextNumber Int     @default(1)
+  company    Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+}
+
+// Phase 9: Scheduling & Dispatch
+
+enum JobStatus {
+  SCHEDULED
+  EN_ROUTE
+  ON_SITE
+  COMPLETED
+  CANCELLED
+}
+
+enum JobPriority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+}
+
+enum JobType {
+  MAINTENANCE
+  INSPECTION
+  EMERGENCY
+  CALLBACK
+  OTHER
+}
+
+model ScheduledJob {
+  id                  String      @id @default(uuid())
+  companyId           String
+  jobCode             String
+  title               String
+  description         String?
+  managementCompanyId String
+  buildingId          String
+  unitId              String?
+  mechanicId          String?
+  scheduledDate       DateTime
+  scheduledStartTime  String?
+  scheduledEndTime    String?
+  status              JobStatus   @default(SCHEDULED)
+  priority            JobPriority @default(NORMAL)
+  jobType             JobType     @default(MAINTENANCE)
+  maintenanceId       String?     @unique
+  completedAt         DateTime?
+  notes               String?
+  archivedAt          DateTime?
+  company             Company           @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  managementCompany   ManagementCompany @relation(fields: [managementCompanyId], references: [id], onDelete: Cascade)
+  building            Building          @relation(fields: [buildingId], references: [id], onDelete: Cascade)
+  unit                Unit?             @relation(fields: [unitId], references: [id], onDelete: SetNull)
+  mechanic            Mechanic?         @relation(fields: [mechanicId], references: [id], onDelete: SetNull)
+  maintenance         Maintenance?      @relation(fields: [maintenanceId], references: [id], onDelete: SetNull)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@unique([companyId, jobCode])
+  @@index([companyId])
+  @@index([managementCompanyId])
+  @@index([buildingId])
+  @@index([unitId])
+  @@index([mechanicId])
+  @@index([scheduledDate])
+  @@index([status])
+}
+
+model JobSequence {
   id         String  @id @default(uuid())
   companyId  String  @unique
   nextNumber Int     @default(1)
