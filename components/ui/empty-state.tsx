@@ -147,12 +147,12 @@ export function EmptyState({
   const actionHref = customActionHref || config.actionHref;
 
   return (
-    <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-ink/20 bg-ink/[0.02] px-6 py-12 text-center">
-      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-ink/5">
-        <Icon className="h-8 w-8 text-ink/40" />
+    <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50/50 px-6 py-12 text-center">
+      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100">
+        <Icon className="h-8 w-8 text-slate-400" />
       </div>
-      <h3 className="mb-2 text-lg font-semibold text-ink">{title}</h3>
-      <p className="mb-6 max-w-sm text-sm text-ink/60">{description}</p>
+      <h3 className="mb-2 text-lg font-semibold text-slate-900">{title}</h3>
+      <p className="mb-6 max-w-sm text-sm text-slate-500">{description}</p>
       {showAction && actionHref && !searchTerm && (
         <Button asChild size="sm">
           <Link href={actionHref}>{actionLabel}</Link>
