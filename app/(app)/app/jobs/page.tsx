@@ -5,12 +5,14 @@ import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArchiveFilter } from "@/components/ui/archive-filter";
+import { SearchInput } from "@/components/ui/search-input";
 import { getArchiveWhereClause } from "@/lib/archive";
+import { getSearchFilter } from "@/lib/search";
 import { db } from "@/lib/db";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 
 type PageProps = {
-  searchParams: Promise<{ filter?: string; status?: string; mechanic?: string }>;
+  searchParams: Promise<{ filter?: string; status?: string; mechanic?: string; q?: string }>;
 };
 
 const statusColors: Record<string, string> = {
@@ -37,10 +39,12 @@ export default async function JobsPage({ searchParams }: PageProps) {
 
   const params = await searchParams;
   const archiveFilter = getArchiveWhereClause(params.filter);
+  const searchFilter = getSearchFilter(params.q, ["jobCode", "title", "description", "notes"]);
 
   const whereClause: Record<string, unknown> = {
     companyId: membership.companyId,
-    ...archiveFilter
+    ...archiveFilter,
+    ...searchFilter
   };
 
   if (params.status) {
@@ -78,7 +82,10 @@ export default async function JobsPage({ searchParams }: PageProps) {
           <h2 className="font-display text-3xl text-ink">Scheduled work</h2>
           <p className="text-sm text-ink/70">Plan and track service assignments.</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <Suspense fallback={null}>
+            <SearchInput placeholder="Search jobs..." />
+          </Suspense>
           <Suspense fallback={null}>
             <ArchiveFilter />
           </Suspense>
@@ -103,7 +110,7 @@ export default async function JobsPage({ searchParams }: PageProps) {
         {["SCHEDULED", "EN_ROUTE", "ON_SITE", "COMPLETED", "CANCELLED"].map((status) => (
           <Link
             key={status}
-            href={`/app/jobs?status=${status}${params.mechanic ? `&mechanic=${params.mechanic}` : ""}`}
+            href={`/app/jobs?status=${status}${params.mechanic ? `&mechanic=${params.mechanic}` : ""}${params.q ? `&q=${params.q}` : ""}`}
             className={`rounded-full px-3 py-1 text-xs transition ${
               params.status === status ? "bg-ink text-white" : "bg-ink/10 text-ink hover:bg-ink/20"
             }`}
@@ -118,7 +125,7 @@ export default async function JobsPage({ searchParams }: PageProps) {
         <div className="flex flex-wrap gap-2">
           <span className="text-xs text-ink/60 self-center">Mechanic:</span>
           <Link
-            href={`/app/jobs${params.status ? `?status=${params.status}` : ""}`}
+            href={`/app/jobs${params.status ? `?status=${params.status}` : ""}${params.q ? `${params.status ? "&" : "?"}q=${params.q}` : ""}`}
             className={`rounded-full px-3 py-1 text-xs transition ${
               !params.mechanic ? "bg-ink/20 text-ink" : "bg-ink/5 text-ink/60 hover:bg-ink/10"
             }`}
@@ -128,7 +135,7 @@ export default async function JobsPage({ searchParams }: PageProps) {
           {mechanics.map((m) => (
             <Link
               key={m.id}
-              href={`/app/jobs?mechanic=${m.id}${params.status ? `&status=${params.status}` : ""}`}
+              href={`/app/jobs?mechanic=${m.id}${params.status ? `&status=${params.status}` : ""}${params.q ? `&q=${params.q}` : ""}`}
               className={`rounded-full px-3 py-1 text-xs transition ${
                 params.mechanic === m.id ? "bg-ink/20 text-ink" : "bg-ink/5 text-ink/60 hover:bg-ink/10"
               }`}
@@ -141,7 +148,9 @@ export default async function JobsPage({ searchParams }: PageProps) {
 
       <div className="grid gap-4">
         {jobs.length === 0 ? (
-          <Card className="text-sm text-ink/70">No jobs found.</Card>
+          <Card className="text-sm text-ink/70">
+            {params.q ? `No jobs matching "${params.q}"` : "No jobs found."}
+          </Card>
         ) : (
           jobs.map((job) => (
             <Link

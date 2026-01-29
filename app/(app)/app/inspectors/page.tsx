@@ -1,20 +1,33 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { SearchInput } from "@/components/ui/search-input";
+import { getSearchFilter } from "@/lib/search";
 import { db } from "@/lib/db";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 
-export default async function InspectorsPage() {
+type PageProps = {
+  searchParams: Promise<{ q?: string }>;
+};
+
+export default async function InspectorsPage({ searchParams }: PageProps) {
   const { membership } = await getCurrentMembership();
 
   if (!membership) {
     redirect("/onboarding");
   }
 
+  const params = await searchParams;
+  const searchFilter = getSearchFilter(params.q, ["firstName", "lastName", "companyName", "email", "phone"]);
+
   const inspectors = await db.inspector.findMany({
-    where: { companyId: membership.companyId },
+    where: {
+      companyId: membership.companyId,
+      ...searchFilter
+    },
     orderBy: { createdAt: "desc" }
   });
 
@@ -28,16 +41,23 @@ export default async function InspectorsPage() {
           <h2 className="font-display text-3xl text-ink">External inspectors</h2>
           <p className="text-sm text-ink/70">Track inspectors and their contact info.</p>
         </div>
-        {canEdit ? (
-          <Button asChild size="sm">
-            <Link href="/app/inspectors/new">Add inspector</Link>
-          </Button>
-        ) : null}
+        <div className="flex flex-wrap items-center gap-3">
+          <Suspense fallback={null}>
+            <SearchInput placeholder="Search inspectors..." />
+          </Suspense>
+          {canEdit ? (
+            <Button asChild size="sm">
+              <Link href="/app/inspectors/new">Add inspector</Link>
+            </Button>
+          ) : null}
+        </div>
       </div>
 
       <div className="grid gap-4">
         {inspectors.length === 0 ? (
-          <Card className="text-sm text-ink/70">No inspectors yet.</Card>
+          <Card className="text-sm text-ink/70">
+            {params.q ? `No inspectors matching "${params.q}"` : "No inspectors yet."}
+          </Card>
         ) : (
           inspectors.map((inspector) => (
             <Link

@@ -1,20 +1,33 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { SearchInput } from "@/components/ui/search-input";
+import { getSearchFilter } from "@/lib/search";
 import { db } from "@/lib/db";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 
-export default async function MechanicsPage() {
+type PageProps = {
+  searchParams: Promise<{ q?: string }>;
+};
+
+export default async function MechanicsPage({ searchParams }: PageProps) {
   const { membership } = await getCurrentMembership();
 
   if (!membership) {
     redirect("/onboarding");
   }
 
+  const params = await searchParams;
+  const searchFilter = getSearchFilter(params.q, ["firstName", "lastName", "email", "phone"]);
+
   const mechanics = await db.mechanic.findMany({
-    where: { companyId: membership.companyId },
+    where: {
+      companyId: membership.companyId,
+      ...searchFilter
+    },
     include: { mechanicLevel: true },
     orderBy: { createdAt: "desc" }
   });
@@ -29,16 +42,23 @@ export default async function MechanicsPage() {
           <h2 className="font-display text-3xl text-ink">Field technicians</h2>
           <p className="text-sm text-ink/70">Manage active service mechanics.</p>
         </div>
-        {canEdit ? (
-          <Button asChild size="sm">
-            <Link href="/app/mechanics/new">Add mechanic</Link>
-          </Button>
-        ) : null}
+        <div className="flex flex-wrap items-center gap-3">
+          <Suspense fallback={null}>
+            <SearchInput placeholder="Search mechanics..." />
+          </Suspense>
+          {canEdit ? (
+            <Button asChild size="sm">
+              <Link href="/app/mechanics/new">Add mechanic</Link>
+            </Button>
+          ) : null}
+        </div>
       </div>
 
       <div className="grid gap-4">
         {mechanics.length === 0 ? (
-          <Card className="text-sm text-ink/70">No mechanics yet.</Card>
+          <Card className="text-sm text-ink/70">
+            {params.q ? `No mechanics matching "${params.q}"` : "No mechanics yet."}
+          </Card>
         ) : (
           mechanics.map((mechanic) => (
             <Link

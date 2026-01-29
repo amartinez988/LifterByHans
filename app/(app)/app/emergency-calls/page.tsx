@@ -5,12 +5,14 @@ import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArchiveFilter } from "@/components/ui/archive-filter";
+import { SearchInput } from "@/components/ui/search-input";
 import { getArchiveWhereClause } from "@/lib/archive";
+import { getSearchFilter } from "@/lib/search";
 import { db } from "@/lib/db";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 
 type PageProps = {
-  searchParams: Promise<{ filter?: string }>;
+  searchParams: Promise<{ filter?: string; q?: string }>;
 };
 
 export default async function EmergencyCallsPage({ searchParams }: PageProps) {
@@ -22,11 +24,13 @@ export default async function EmergencyCallsPage({ searchParams }: PageProps) {
 
   const params = await searchParams;
   const archiveFilter = getArchiveWhereClause(params.filter);
+  const searchFilter = getSearchFilter(params.q, ["emergencyCode", "ticketNumber", "issueDescription", "notes"]);
 
   const calls = await db.emergencyCall.findMany({
     where: {
       companyId: membership.companyId,
-      ...archiveFilter
+      ...archiveFilter,
+      ...searchFilter
     },
     include: {
       managementCompany: true,
@@ -50,7 +54,10 @@ export default async function EmergencyCallsPage({ searchParams }: PageProps) {
           <h2 className="font-display text-3xl text-ink">Emergency events</h2>
           <p className="text-sm text-ink/70">Track urgent service calls.</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <Suspense fallback={null}>
+            <SearchInput placeholder="Search emergency calls..." />
+          </Suspense>
           <Suspense fallback={null}>
             <ArchiveFilter />
           </Suspense>
@@ -64,7 +71,9 @@ export default async function EmergencyCallsPage({ searchParams }: PageProps) {
 
       <div className="grid gap-4">
         {calls.length === 0 ? (
-          <Card className="text-sm text-ink/70">No emergency calls found.</Card>
+          <Card className="text-sm text-ink/70">
+            {params.q ? `No emergency calls matching "${params.q}"` : "No emergency calls found."}
+          </Card>
         ) : (
           calls.map((call) => (
             <Link

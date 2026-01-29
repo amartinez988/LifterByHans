@@ -5,12 +5,14 @@ import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArchiveFilter } from "@/components/ui/archive-filter";
+import { SearchInput } from "@/components/ui/search-input";
 import { getArchiveWhereClause } from "@/lib/archive";
+import { getSearchFilter } from "@/lib/search";
 import { db } from "@/lib/db";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 
 type PageProps = {
-  searchParams: Promise<{ filter?: string }>;
+  searchParams: Promise<{ filter?: string; q?: string }>;
 };
 
 export default async function MaintenancePage({ searchParams }: PageProps) {
@@ -22,11 +24,13 @@ export default async function MaintenancePage({ searchParams }: PageProps) {
 
   const params = await searchParams;
   const archiveFilter = getArchiveWhereClause(params.filter);
+  const searchFilter = getSearchFilter(params.q, ["maintenanceCode", "notes"]);
 
   const maintenances = await db.maintenance.findMany({
     where: {
       companyId: membership.companyId,
-      ...archiveFilter
+      ...archiveFilter,
+      ...searchFilter
     },
     include: {
       managementCompany: true,
@@ -47,7 +51,10 @@ export default async function MaintenancePage({ searchParams }: PageProps) {
           <h2 className="font-display text-3xl text-ink">Service events</h2>
           <p className="text-sm text-ink/70">Track maintenance work across units.</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <Suspense fallback={null}>
+            <SearchInput placeholder="Search maintenance..." />
+          </Suspense>
           <Suspense fallback={null}>
             <ArchiveFilter />
           </Suspense>
@@ -61,7 +68,9 @@ export default async function MaintenancePage({ searchParams }: PageProps) {
 
       <div className="grid gap-4">
         {maintenances.length === 0 ? (
-          <Card className="text-sm text-ink/70">No maintenance records found.</Card>
+          <Card className="text-sm text-ink/70">
+            {params.q ? `No maintenance matching "${params.q}"` : "No maintenance records found."}
+          </Card>
         ) : (
           maintenances.map((record) => (
             <Link

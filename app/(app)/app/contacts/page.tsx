@@ -5,12 +5,14 @@ import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArchiveFilter } from "@/components/ui/archive-filter";
+import { SearchInput } from "@/components/ui/search-input";
 import { getArchiveWhereClause } from "@/lib/archive";
+import { getSearchFilter } from "@/lib/search";
 import { db } from "@/lib/db";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 
 type PageProps = {
-  searchParams: Promise<{ filter?: string }>;
+  searchParams: Promise<{ filter?: string; q?: string }>;
 };
 
 export default async function ContactsPage({ searchParams }: PageProps) {
@@ -22,11 +24,13 @@ export default async function ContactsPage({ searchParams }: PageProps) {
 
   const params = await searchParams;
   const archiveFilter = getArchiveWhereClause(params.filter);
+  const searchFilter = getSearchFilter(params.q, ["firstName", "lastName", "email", "phone", "notes"]);
 
   const contacts = await db.contact.findMany({
     where: {
       companyId: membership.companyId,
-      ...archiveFilter
+      ...archiveFilter,
+      ...searchFilter
     },
     include: {
       managementCompany: true,
@@ -45,7 +49,10 @@ export default async function ContactsPage({ searchParams }: PageProps) {
           <h2 className="font-display text-3xl text-ink">People & roles</h2>
           <p className="text-sm text-ink/70">Contacts across all management firms.</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <Suspense fallback={null}>
+            <SearchInput placeholder="Search contacts..." />
+          </Suspense>
           <Suspense fallback={null}>
             <ArchiveFilter />
           </Suspense>
@@ -59,7 +66,9 @@ export default async function ContactsPage({ searchParams }: PageProps) {
 
       <div className="grid gap-4">
         {contacts.length === 0 ? (
-          <Card className="text-sm text-ink/70">No contacts found.</Card>
+          <Card className="text-sm text-ink/70">
+            {params.q ? `No contacts matching "${params.q}"` : "No contacts found."}
+          </Card>
         ) : (
           contacts.map((contact) => (
             <Link

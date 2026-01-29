@@ -5,12 +5,14 @@ import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArchiveFilter } from "@/components/ui/archive-filter";
+import { SearchInput } from "@/components/ui/search-input";
 import { getArchiveWhereClause } from "@/lib/archive";
+import { getSearchFilter } from "@/lib/search";
 import { db } from "@/lib/db";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 
 type PageProps = {
-  searchParams: Promise<{ filter?: string }>;
+  searchParams: Promise<{ filter?: string; q?: string }>;
 };
 
 export default async function ManagementCompaniesPage({ searchParams }: PageProps) {
@@ -22,11 +24,13 @@ export default async function ManagementCompaniesPage({ searchParams }: PageProp
 
   const params = await searchParams;
   const archiveFilter = getArchiveWhereClause(params.filter);
+  const searchFilter = getSearchFilter(params.q, ["name", "accountNumber", "website", "notes"]);
 
   const companies = await db.managementCompany.findMany({
     where: {
       companyId: membership.companyId,
-      ...archiveFilter
+      ...archiveFilter,
+      ...searchFilter
     },
     orderBy: { createdAt: "desc" }
   });
@@ -45,7 +49,10 @@ export default async function ManagementCompaniesPage({ searchParams }: PageProp
             Track the management firms tied to your serviced assets.
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <Suspense fallback={null}>
+            <SearchInput placeholder="Search companies..." />
+          </Suspense>
           <Suspense fallback={null}>
             <ArchiveFilter />
           </Suspense>
@@ -60,7 +67,7 @@ export default async function ManagementCompaniesPage({ searchParams }: PageProp
       <div className="grid gap-4">
         {companies.length === 0 ? (
           <Card className="text-sm text-ink/70">
-            No management companies found.
+            {params.q ? `No companies matching "${params.q}"` : "No management companies found."}
           </Card>
         ) : (
           companies.map((company) => (
