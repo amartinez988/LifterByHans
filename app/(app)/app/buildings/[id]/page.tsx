@@ -92,6 +92,27 @@ export default async function BuildingPage({ params }: BuildingPageProps) {
         ) : null}
       </div>
 
+      {/* Management Company Info */}
+      <Card>
+        <CardContent className="pt-6">
+          <h3 className="text-sm font-medium text-ink/60 mb-2">Management Company</h3>
+          <div className="flex items-center justify-between">
+            <Link
+              href={`/app/management-companies/${building.managementCompanyId}`}
+              className="text-lg font-semibold text-ink hover:text-pine hover:underline transition"
+            >
+              {building.managementCompany.name}
+            </Link>
+            <Link
+              href={`/app/management-companies/${building.managementCompanyId}`}
+              className="text-xs uppercase tracking-[0.3em] text-ink/40 hover:text-ink transition"
+            >
+              View Company
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
+
       <Card>
         <CardHeader>
           <CardTitle>Building details</CardTitle>

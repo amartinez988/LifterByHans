@@ -121,7 +121,13 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
               </p>
               {job.mechanic && (
                 <p className="text-sm text-ink/70">
-                  Assigned to: {job.mechanic.firstName} {job.mechanic.lastName}
+                  Assigned to:{" "}
+                  <Link
+                    href={`/app/mechanics/${job.mechanic.id}`}
+                    className="font-medium text-ink hover:text-pine hover:underline transition"
+                  >
+                    {job.mechanic.firstName} {job.mechanic.lastName}
+                  </Link>
                 </p>
               )}
               {job.completedAt && (
@@ -136,6 +142,44 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
                 currentStatus={job.status}
                 hasUnit={!!job.unitId}
               />
+            )}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Location Info */}
+      <Card>
+        <CardContent className="pt-6">
+          <h3 className="text-sm font-medium text-ink/60 mb-3">Location</h3>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            <div>
+              <span className="text-ink/50">Company: </span>
+              <Link
+                href={`/app/management-companies/${job.managementCompanyId}`}
+                className="font-medium text-ink hover:text-pine hover:underline transition"
+              >
+                {job.managementCompany.name}
+              </Link>
+            </div>
+            <div>
+              <span className="text-ink/50">Building: </span>
+              <Link
+                href={`/app/buildings/${job.buildingId}`}
+                className="font-medium text-ink hover:text-pine hover:underline transition"
+              >
+                {job.building.name}
+              </Link>
+            </div>
+            {job.unit && (
+              <div>
+                <span className="text-ink/50">Unit: </span>
+                <Link
+                  href={`/app/units/${job.unit.id}`}
+                  className="font-medium text-ink hover:text-pine hover:underline transition"
+                >
+                  {job.unit.identifier}
+                </Link>
+              </div>
             )}
           </div>
         </CardContent>

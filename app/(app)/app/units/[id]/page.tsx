@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
@@ -34,7 +35,11 @@ export default async function UnitPage({ params }: UnitPageProps) {
         include: {
           managementCompany: true
         }
-      }
+      },
+      unitCategory: true,
+      unitStatus: true,
+      brand: true,
+      equipmentType: true
     }
   });
 
@@ -99,8 +104,77 @@ export default async function UnitPage({ params }: UnitPageProps) {
         ]}
       />
 
+      {/* Location & Unit Info */}
       <Card>
         <CardContent className="pt-6">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <h3 className="text-sm font-medium text-ink/60 mb-2">Location</h3>
+              <div className="space-y-1 text-sm">
+                <div>
+                  <span className="text-ink/50">Company: </span>
+                  <Link
+                    href={`/app/management-companies/${unit.building.managementCompanyId}`}
+                    className="font-medium text-ink hover:text-pine hover:underline transition"
+                  >
+                    {unit.building.managementCompany.name}
+                  </Link>
+                </div>
+                <div>
+                  <span className="text-ink/50">Building: </span>
+                  <Link
+                    href={`/app/buildings/${unit.buildingId}`}
+                    className="font-medium text-ink hover:text-pine hover:underline transition"
+                  >
+                    {unit.building.name}
+                  </Link>
+                </div>
+                <div>
+                  <span className="text-ink/50">Address: </span>
+                  <span className="text-ink">{unit.building.address}</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-sm font-medium text-ink/60 mb-2">Unit Info</h3>
+              <div className="space-y-1 text-sm">
+                {unit.unitCategory && (
+                  <div>
+                    <span className="text-ink/50">Type: </span>
+                    <span className="font-medium text-ink">{unit.unitCategory.name}</span>
+                  </div>
+                )}
+                {unit.unitStatus && (
+                  <div>
+                    <span className="text-ink/50">Status: </span>
+                    <span className="font-medium text-ink">{unit.unitStatus.name}</span>
+                  </div>
+                )}
+                {unit.brand && (
+                  <div>
+                    <span className="text-ink/50">Brand: </span>
+                    <span className="text-ink">{unit.brand.name}</span>
+                  </div>
+                )}
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {unit.isActive ? (
+                    <span className="rounded-full bg-pine/10 px-2 py-0.5 text-xs font-medium text-pine">Active</span>
+                  ) : (
+                    <span className="rounded-full bg-ink/10 px-2 py-0.5 text-xs font-medium text-ink/60">Inactive</span>
+                  )}
+                  {unit.underContract && (
+                    <span className="rounded-full bg-ember/10 px-2 py-0.5 text-xs font-medium text-ember">Under Contract</span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="pt-6">
+          <h3 className="text-sm font-medium text-ink/60 mb-4">Edit Details</h3>
           <UnitForm
             unitId={unit.id}
             buildingId={unit.buildingId}

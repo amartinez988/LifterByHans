@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
@@ -30,7 +31,10 @@ export default async function InspectionDetailPage({ params }: InspectionPagePro
     include: {
       managementCompany: true,
       building: true,
-      unit: true
+      unit: true,
+      inspector: true,
+      inspectionStatus: true,
+      inspectionResult: true
     }
   });
 
@@ -101,8 +105,87 @@ export default async function InspectionDetailPage({ params }: InspectionPagePro
         ]}
       />
 
+      {/* Location & Inspection Info */}
       <Card>
         <CardContent className="pt-6">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <h3 className="text-sm font-medium text-ink/60 mb-2">Location</h3>
+              <div className="space-y-1 text-sm">
+                <div>
+                  <span className="text-ink/50">Company: </span>
+                  <Link
+                    href={`/app/management-companies/${inspection.managementCompanyId}`}
+                    className="font-medium text-ink hover:text-pine hover:underline transition"
+                  >
+                    {inspection.managementCompany.name}
+                  </Link>
+                </div>
+                <div>
+                  <span className="text-ink/50">Building: </span>
+                  <Link
+                    href={`/app/buildings/${inspection.buildingId}`}
+                    className="font-medium text-ink hover:text-pine hover:underline transition"
+                  >
+                    {inspection.building.name}
+                  </Link>
+                </div>
+                <div>
+                  <span className="text-ink/50">Unit: </span>
+                  <Link
+                    href={`/app/units/${inspection.unitId}`}
+                    className="font-medium text-ink hover:text-pine hover:underline transition"
+                  >
+                    {inspection.unit.identifier}
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-sm font-medium text-ink/60 mb-2">Inspection Details</h3>
+              <div className="space-y-1 text-sm">
+                <div>
+                  <span className="text-ink/50">Inspector: </span>
+                  {inspection.inspector ? (
+                    <Link
+                      href={`/app/inspectors/${inspection.inspector.id}`}
+                      className="font-medium text-ink hover:text-pine hover:underline transition"
+                    >
+                      {inspection.inspector.firstName} {inspection.inspector.lastName}
+                    </Link>
+                  ) : (
+                    <span className="text-ink/40">Not assigned</span>
+                  )}
+                </div>
+                <div>
+                  <span className="text-ink/50">Status: </span>
+                  <span className="font-medium text-ink">{inspection.inspectionStatus.name}</span>
+                </div>
+                {inspection.inspectionResult && (
+                  <div>
+                    <span className="text-ink/50">Result: </span>
+                    <span className="font-medium text-ink">{inspection.inspectionResult.name}</span>
+                  </div>
+                )}
+                <div>
+                  <span className="text-ink/50">Date: </span>
+                  <span className="text-ink">{new Date(inspection.inspectionDate).toLocaleDateString()}</span>
+                </div>
+                {inspection.expirationDate && (
+                  <div>
+                    <span className="text-ink/50">Expires: </span>
+                    <span className="text-ink">{new Date(inspection.expirationDate).toLocaleDateString()}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="pt-6">
+          <h3 className="text-sm font-medium text-ink/60 mb-4">Edit Details</h3>
           <InspectionForm
             inspectionId={inspection.id}
             managementCompanies={managementCompanies}
