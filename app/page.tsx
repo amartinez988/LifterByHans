@@ -9,9 +9,12 @@ import {
   FileSearch,
   Phone,
   Shield,
+  Sparkles,
   Users,
   Wrench,
-  AlertTriangle
+  AlertTriangle,
+  BarChart3,
+  Zap
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -76,81 +79,99 @@ const painPoints = [
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-haze to-white">
+    <main className="min-h-screen">
       {/* Header */}
-      <header className="px-6 py-6 md:px-16">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-6">
-          <div className="text-2xl font-display tracking-tight text-ink">
-            LIFTER
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200/50 bg-white/80 backdrop-blur-lg">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-brand">
+              <Zap className="h-4 w-4 text-white" />
+            </div>
+            <span className="text-xl font-bold text-slate-900">LIFTER</span>
           </div>
-          <nav className="flex items-center gap-4 text-sm">
-            <Link className="text-ink/70 hover:text-ink transition" href="/login">
+          <nav className="flex items-center gap-3">
+            <Link 
+              className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition" 
+              href="/login"
+            >
               Log in
             </Link>
             <Button asChild size="sm">
-              <Link href="/signup">Get started free</Link>
+              <Link href="/signup">Get Started Free</Link>
             </Button>
           </nav>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="px-6 py-16 md:px-16 md:py-24">
-        <div className="mx-auto max-w-6xl">
+      <section className="relative overflow-hidden pt-24">
+        {/* Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-50 via-white to-accent-50" />
+        <div className="absolute inset-0 bg-mesh-pattern" />
+        
+        <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-32">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div className="space-y-8">
-              <div>
-                <p className="text-sm font-medium uppercase tracking-[0.2em] text-pine">
-                  Elevator Service Management
-                </p>
-                <h1 className="mt-4 font-display text-4xl leading-[1.1] text-ink md:text-5xl lg:text-6xl">
-                  Stop chasing paperwork.<br />
-                  <span className="text-pine">Start running your business.</span>
-                </h1>
+              <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5">
+                <Sparkles className="h-4 w-4 text-brand-600" />
+                <span className="text-sm font-medium text-brand-700">Elevator Service Management</span>
               </div>
-              <p className="text-lg text-ink/70 md:text-xl">
+              
+              <h1 className="font-display text-4xl leading-[1.1] tracking-tight text-slate-900 md:text-5xl lg:text-6xl">
+                Stop chasing paperwork.{" "}
+                <span className="bg-gradient-to-r from-brand-600 to-accent-500 bg-clip-text text-transparent">
+                  Start running your business.
+                </span>
+              </h1>
+              
+              <p className="text-lg text-slate-600 md:text-xl">
                 LIFTER is the all-in-one platform for elevator and escalator service 
                 companies. Track units, manage compliance, dispatch emergencies, and 
                 keep your entire operation running smoothly.
               </p>
+              
               <div className="flex flex-wrap items-center gap-4">
-                <Button asChild size="lg" className="text-base">
+                <Button asChild size="xl">
                   <Link href="/signup">
-                    Start your free trial
+                    Start Free Trial
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="text-base">
-                  <Link href="/login">See it in action</Link>
+                <Button asChild variant="outline" size="xl">
+                  <Link href="/login">View Demo</Link>
                 </Button>
               </div>
-              <p className="text-sm text-ink/50">
+              
+              <p className="text-sm text-slate-500">
                 No credit card required • Set up in under 5 minutes
               </p>
             </div>
 
             {/* Pain points card */}
-            <div className="rounded-3xl border border-ink/10 bg-white p-8 shadow-soft">
-              <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-ember/10">
-                  <AlertTriangle className="h-5 w-5 text-ember" />
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-brand-500/20 to-accent-500/20 blur-2xl" />
+              <div className="relative rounded-3xl border border-slate-200 bg-white p-8 shadow-xl">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-100">
+                    <AlertTriangle className="h-5 w-5 text-accent-600" />
+                  </div>
+                  <p className="font-semibold text-slate-900">Sound familiar?</p>
                 </div>
-                <p className="font-medium text-ink">Sound familiar?</p>
-              </div>
-              <ul className="space-y-4">
-                {painPoints.map((point, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ink/10">
-                      <span className="text-xs font-medium text-ink/60">{i + 1}</span>
-                    </div>
-                    <span className="text-ink/70">{point}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-6 rounded-2xl bg-pine/5 p-4">
-                <p className="text-sm font-medium text-pine">
-                  LIFTER solves all of this — and more.
-                </p>
+                <ul className="space-y-4">
+                  {painPoints.map((point, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-100">
+                        <span className="text-xs font-bold text-slate-600">{i + 1}</span>
+                      </div>
+                      <span className="text-slate-600">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 rounded-2xl bg-gradient-to-r from-brand-50 to-accent-50 p-4">
+                  <p className="text-sm font-semibold text-brand-700">
+                    ✨ LIFTER solves all of this — and more.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -158,29 +179,32 @@ export default function LandingPage() {
       </section>
 
       {/* Stats */}
-      <section className="border-y border-ink/10 bg-white px-6 py-12 md:px-16">
+      <section className="border-y border-slate-200 bg-white px-6 py-16">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
           {benefits.map((benefit) => (
             <div key={benefit.label} className="text-center">
-              <p className="font-display text-4xl text-pine">{benefit.stat}</p>
-              <p className="mt-2 font-medium text-ink">{benefit.label}</p>
-              <p className="mt-1 text-sm text-ink/60">{benefit.description}</p>
+              <p className="font-display text-5xl font-bold bg-gradient-to-r from-brand-600 to-brand-400 bg-clip-text text-transparent">
+                {benefit.stat}
+              </p>
+              <p className="mt-2 font-semibold text-slate-900">{benefit.label}</p>
+              <p className="mt-1 text-sm text-slate-500">{benefit.description}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Features */}
-      <section className="px-6 py-20 md:px-16">
+      <section className="bg-slate-50 px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-ink/60">
-              Everything you need
-            </p>
-            <h2 className="mt-4 font-display text-3xl text-ink md:text-4xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5">
+              <BarChart3 className="h-4 w-4 text-brand-600" />
+              <span className="text-sm font-medium text-slate-600">Everything you need</span>
+            </div>
+            <h2 className="mt-6 font-display text-3xl font-bold text-slate-900 md:text-4xl">
               Built for elevator service professionals
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-ink/70">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
               From independent contractors to large service companies, LIFTER 
               adapts to how you work.
             </p>
@@ -192,15 +216,15 @@ export default function LandingPage() {
               return (
                 <div
                   key={feature.title}
-                  className="rounded-2xl border border-ink/10 bg-white p-6 shadow-soft transition hover:border-ink/20 hover:shadow-md"
+                  className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-brand-200 hover:shadow-lg hover:shadow-brand-500/10"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-pine/10">
-                    <Icon className="h-6 w-6 text-pine" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 transition-colors group-hover:bg-brand-100">
+                    <Icon className="h-6 w-6 text-brand-600" />
                   </div>
-                  <h3 className="mt-4 text-lg font-semibold text-ink">
+                  <h3 className="mt-4 text-lg font-semibold text-slate-900">
                     {feature.title}
                   </h3>
-                  <p className="mt-2 text-ink/60">{feature.description}</p>
+                  <p className="mt-2 text-slate-600">{feature.description}</p>
                 </div>
               );
             })}
@@ -209,63 +233,52 @@ export default function LandingPage() {
       </section>
 
       {/* How it works */}
-      <section className="bg-ink px-6 py-20 md:px-16">
+      <section className="bg-gradient-to-br from-slate-900 to-slate-800 px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
-              Simple to start
-            </p>
-            <h2 className="mt-4 font-display text-3xl text-white md:text-4xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5">
+              <Zap className="h-4 w-4 text-accent-400" />
+              <span className="text-sm font-medium text-white/80">Simple to start</span>
+            </div>
+            <h2 className="mt-6 font-display text-3xl font-bold text-white md:text-4xl">
               Up and running in minutes
             </h2>
           </div>
 
           <div className="mt-16 grid gap-8 md:grid-cols-3">
-            <div className="text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/10">
-                <span className="font-display text-2xl text-white">1</span>
+            {[
+              { step: "1", title: "Create your workspace", desc: "Sign up and set up your company profile in under a minute." },
+              { step: "2", title: "Add your portfolio", desc: "Import your management companies, buildings, and units." },
+              { step: "3", title: "Stay in control", desc: "Track inspections, schedule jobs, and manage your team." }
+            ].map((item) => (
+              <div key={item.step} className="text-center">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 shadow-lg shadow-brand-500/25">
+                  <span className="font-display text-2xl font-bold text-white">{item.step}</span>
+                </div>
+                <h3 className="mt-6 text-lg font-semibold text-white">{item.title}</h3>
+                <p className="mt-2 text-white/60">{item.desc}</p>
               </div>
-              <h3 className="mt-6 text-lg font-semibold text-white">Create your workspace</h3>
-              <p className="mt-2 text-white/60">
-                Sign up and set up your company profile in under a minute.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/10">
-                <span className="font-display text-2xl text-white">2</span>
-              </div>
-              <h3 className="mt-6 text-lg font-semibold text-white">Add your portfolio</h3>
-              <p className="mt-2 text-white/60">
-                Import your management companies, buildings, and units.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/10">
-                <span className="font-display text-2xl text-white">3</span>
-              </div>
-              <h3 className="mt-6 text-lg font-semibold text-white">Stay in control</h3>
-              <p className="mt-2 text-white/60">
-                Track inspections, schedule jobs, and manage your team.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Compliance CTA */}
-      <section className="px-6 py-20 md:px-16">
+      <section className="px-6 py-24">
         <div className="mx-auto max-w-6xl">
-          <div className="rounded-3xl border border-ember/20 bg-gradient-to-br from-ember/5 to-transparent p-8 md:p-12">
-            <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+          <div className="relative overflow-hidden rounded-3xl border border-accent-200 bg-gradient-to-br from-accent-50 to-white p-8 md:p-12">
+            <div className="absolute top-0 right-0 -mt-20 -mr-20 h-64 w-64 rounded-full bg-accent-200/50 blur-3xl" />
+            
+            <div className="relative grid gap-8 lg:grid-cols-2 lg:items-center">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-ember/10 px-3 py-1 text-sm font-medium text-ember">
-                  <AlertTriangle className="h-4 w-4" />
+                <div className="inline-flex items-center gap-2 rounded-full bg-accent-100 px-3 py-1 text-sm font-semibold text-accent-700">
+                  <Shield className="h-4 w-4" />
                   Compliance matters
                 </div>
-                <h2 className="mt-6 font-display text-3xl text-ink md:text-4xl">
+                <h2 className="mt-6 font-display text-3xl font-bold text-slate-900 md:text-4xl">
                   Never get caught off guard by an expired certificate again
                 </h2>
-                <p className="mt-4 text-lg text-ink/70">
+                <p className="mt-4 text-lg text-slate-600">
                   LIFTER tracks every inspection date and alerts you before 
                   certificates expire. Stay compliant without the stress.
                 </p>
@@ -277,30 +290,35 @@ export default function LandingPage() {
                     "Certificate status at a glance"
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-pine" />
-                      <span className="text-ink/70">{item}</span>
+                      <CheckCircle2 className="h-5 w-5 text-success-500" />
+                      <span className="text-slate-700">{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
+              
               <div className="flex justify-center">
-                <div className="rounded-2xl border border-ink/10 bg-white p-6 shadow-lg">
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xl">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-ember/10">
-                      <Clock className="h-5 w-5 text-ember" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-100">
+                      <Clock className="h-6 w-6 text-accent-600" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-ink">Expiring soon</p>
-                      <p className="text-2xl font-display text-ember">12 units</p>
+                      <p className="text-sm font-medium text-slate-500">Expiring soon</p>
+                      <p className="text-3xl font-bold text-accent-600">12 units</p>
                     </div>
                   </div>
-                  <div className="mt-4 border-t border-ink/10 pt-4">
-                    <p className="text-xs text-ink/50">Next 30 days</p>
-                    <div className="mt-2 space-y-2">
-                      {["Unit A-101 • Tower One", "Unit B-203 • Plaza Center", "Unit C-105 • Main Street"].map((unit) => (
-                        <div key={unit} className="flex items-center justify-between rounded-lg bg-haze px-3 py-2">
-                          <span className="text-sm text-ink/70">{unit}</span>
-                          <span className="text-xs font-medium text-ember">7 days</span>
+                  <div className="mt-4 border-t border-slate-100 pt-4">
+                    <p className="text-xs font-medium text-slate-400 uppercase tracking-wide">Next 30 days</p>
+                    <div className="mt-3 space-y-2">
+                      {[
+                        { unit: "Unit A-101 • Tower One", days: "7 days" },
+                        { unit: "Unit B-203 • Plaza Center", days: "12 days" },
+                        { unit: "Unit C-105 • Main Street", days: "21 days" }
+                      ].map((item) => (
+                        <div key={item.unit} className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3">
+                          <span className="text-sm text-slate-700">{item.unit}</span>
+                          <span className="text-xs font-semibold text-accent-600">{item.days}</span>
                         </div>
                       ))}
                     </div>
@@ -313,36 +331,39 @@ export default function LandingPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="px-6 py-20 md:px-16">
+      <section className="bg-gradient-to-br from-brand-600 to-brand-700 px-6 py-24">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-3xl text-ink md:text-4xl">
+          <h2 className="font-display text-3xl font-bold text-white md:text-4xl">
             Ready to modernize your operation?
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-ink/70">
+          <p className="mx-auto mt-4 max-w-xl text-lg text-white/80">
             Join elevator service companies who trust LIFTER to keep their 
             business organized and compliant.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Button asChild size="lg" className="text-base">
+            <Button asChild size="xl" variant="secondary">
               <Link href="/signup">
-                Start your free trial
+                Start Free Trial
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
-          <p className="mt-4 text-sm text-ink/50">
+          <p className="mt-4 text-sm text-white/60">
             Free to start • No credit card required
           </p>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-ink/10 px-6 py-8 md:px-16">
+      <footer className="border-t border-slate-200 bg-white px-6 py-8">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4">
-          <div className="text-xl font-display tracking-tight text-ink/60">
-            LIFTER
+          <div className="flex items-center gap-2">
+            <div className="flex h-6 w-6 items-center justify-center rounded bg-gradient-brand">
+              <Zap className="h-3 w-3 text-white" />
+            </div>
+            <span className="font-semibold text-slate-400">LIFTER</span>
           </div>
-          <p className="text-sm text-ink/50">
+          <p className="text-sm text-slate-500">
             © {new Date().getFullYear()} LIFTER. Built for the vertical transport industry.
           </p>
         </div>
