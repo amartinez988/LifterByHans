@@ -1,6 +1,6 @@
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import LoginForm from "./login-form";
 
 export default function LoginPage({
@@ -9,29 +9,35 @@ export default function LoginPage({
   searchParams?: { callbackUrl?: string };
 }) {
   return (
-    <div className="mx-auto flex w-full max-w-xl flex-col gap-6">
-      <div className="flex items-center justify-between">
-        <Link className="text-sm text-ink/70 hover:text-ink" href="/">
-          ? Back to home
-        </Link>
-        <Link
-          className="text-sm text-ink/70 hover:text-ink"
-          href={searchParams?.callbackUrl ? `/signup?callbackUrl=${encodeURIComponent(searchParams.callbackUrl)}` : "/signup"}
+    <div className="space-y-8">
+      <div>
+        <Link 
+          className="inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-900 transition-colors" 
+          href="/"
         >
-          Create account
+          <ArrowLeft className="h-4 w-4" />
+          Back to home
         </Link>
       </div>
-      <Card>
-        <CardHeader>
-          <CardTitle>Welcome back</CardTitle>
-          <CardDescription>
-            Log in to continue setting up your LIFTER workspace.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <LoginForm callbackUrl={searchParams?.callbackUrl} />
-        </CardContent>
-      </Card>
+      
+      <div className="space-y-2">
+        <h1 className="font-display text-3xl font-bold text-slate-900">Welcome back</h1>
+        <p className="text-slate-600">
+          Log in to continue managing your LIFTER workspace.
+        </p>
+      </div>
+      
+      <LoginForm callbackUrl={searchParams?.callbackUrl} />
+      
+      <p className="text-center text-sm text-slate-500">
+        Don&apos;t have an account?{" "}
+        <Link 
+          href={searchParams?.callbackUrl ? `/signup?callbackUrl=${encodeURIComponent(searchParams.callbackUrl)}` : "/signup"}
+          className="font-medium text-brand-600 hover:text-brand-500 transition-colors"
+        >
+          Sign up for free
+        </Link>
+      </p>
     </div>
   );
 }
