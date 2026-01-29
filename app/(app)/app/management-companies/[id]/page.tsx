@@ -134,7 +134,7 @@ export default async function ManagementCompanyPage({
               <Link
                 key={building.id}
                 href={`/app/buildings/${building.id}`}
-                className="rounded-2xl border border-ink/10 bg-white p-4 transition hover:border-ink/30"
+                className="block rounded-2xl border border-ink/10 bg-white p-4 transition hover:border-ink/30"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div>
