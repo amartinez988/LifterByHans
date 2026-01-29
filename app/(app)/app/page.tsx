@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { auth } from "@/auth";
-import { Card } from "@/components/ui/card";
+import { QuickActions } from "@/components/ui/quick-actions";
 import { db } from "@/lib/db";
 import { getInspectionComplianceStatus } from "@/lib/derived";
 
@@ -101,23 +101,7 @@ export default async function AppHomePage() {
         </Link>
       </div>
 
-      <Card className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.3em] text-ink/60">Quick links</p>
-        <div className="flex flex-wrap gap-4 text-sm text-ink/70">
-          <Link href="/app/compliance" className="hover:text-ink">
-            Compliance view
-          </Link>
-          <Link href="/app/alerts" className="hover:text-ink">
-            Alerts
-          </Link>
-          <Link href="/app/inspections" className="hover:text-ink">
-            Inspections
-          </Link>
-          <Link href="/app/emergency-calls" className="hover:text-ink">
-            Emergency calls
-          </Link>
-        </div>
-      </Card>
+      <QuickActions />
     </div>
   );
 }
