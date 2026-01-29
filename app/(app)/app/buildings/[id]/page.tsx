@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageHeader } from "@/components/ui/page-header";
@@ -53,6 +54,13 @@ export default async function BuildingPage({ params }: BuildingPageProps) {
 
   return (
     <div className="space-y-6">
+      <Breadcrumbs
+        items={[
+          { label: "Companies", href: "/app/management-companies" },
+          { label: building.managementCompany.name, href: `/app/management-companies/${building.managementCompanyId}` },
+          { label: building.name }
+        ]}
+      />
       <div className="flex flex-wrap items-center justify-between gap-4">
         <PageHeader
           title={building.name}

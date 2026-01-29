@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Card, CardContent } from "@/components/ui/card";
 import { PageHeader } from "@/components/ui/page-header";
 import { db } from "@/lib/db";
@@ -29,7 +30,11 @@ export default async function UnitPage({ params }: UnitPageProps) {
   const unit = await db.unit.findUnique({
     where: { id },
     include: {
-      building: true
+      building: {
+        include: {
+          managementCompany: true
+        }
+      }
     }
   });
 
@@ -66,6 +71,14 @@ export default async function UnitPage({ params }: UnitPageProps) {
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
+      <Breadcrumbs
+        items={[
+          { label: "Companies", href: "/app/management-companies" },
+          { label: unit.building.managementCompany.name, href: `/app/management-companies/${unit.building.managementCompanyId}` },
+          { label: unit.building.name, href: `/app/buildings/${unit.buildingId}` },
+          { label: unit.identifier }
+        ]}
+      />
       <PageHeader
         title={unit.identifier}
         subtitle={unit.building.name}

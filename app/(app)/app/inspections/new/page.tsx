@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/lib/db";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
@@ -57,7 +58,13 @@ export default async function NewInspectionPage() {
   }));
 
   return (
-    <div className="mx-auto max-w-4xl">
+    <div className="mx-auto max-w-4xl space-y-6">
+      <Breadcrumbs
+        items={[
+          { label: "Inspections", href: "/app/inspections" },
+          { label: "New Inspection" }
+        ]}
+      />
       <Card>
         <CardHeader>
           <CardTitle>New inspection</CardTitle>

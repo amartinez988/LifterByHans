@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/lib/db";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
@@ -22,7 +23,8 @@ export default async function NewUnitPage({ params }: NewUnitPageProps) {
   }
 
   const building = await db.building.findUnique({
-    where: { id: params.id }
+    where: { id: params.id },
+    include: { managementCompany: true }
   });
 
   if (!building || building.companyId !== membership.companyId) {
@@ -53,7 +55,15 @@ export default async function NewUnitPage({ params }: NewUnitPageProps) {
   ]);
 
   return (
-    <div className="mx-auto max-w-4xl">
+    <div className="mx-auto max-w-4xl space-y-6">
+      <Breadcrumbs
+        items={[
+          { label: "Companies", href: "/app/management-companies" },
+          { label: building.managementCompany.name, href: `/app/management-companies/${building.managementCompanyId}` },
+          { label: building.name, href: `/app/buildings/${building.id}` },
+          { label: "New Unit" }
+        ]}
+      />
       <Card>
         <CardHeader>
           <CardTitle>New unit</CardTitle>

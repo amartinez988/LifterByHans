@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Card, CardContent } from "@/components/ui/card";
 import { PageHeader } from "@/components/ui/page-header";
 import { db } from "@/lib/db";
@@ -81,6 +82,12 @@ export default async function InspectionDetailPage({ params }: InspectionPagePro
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
+      <Breadcrumbs
+        items={[
+          { label: "Inspections", href: "/app/inspections" },
+          { label: inspection.inspectionCode }
+        ]}
+      />
       <PageHeader
         title={`Inspection ${inspection.inspectionCode}`}
         subtitle={`${inspection.managementCompany.name} - ${inspection.building.name} - ${inspection.unit.identifier}`}

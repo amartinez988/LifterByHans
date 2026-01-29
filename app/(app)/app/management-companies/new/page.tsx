@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 
@@ -17,7 +18,13 @@ export default async function NewManagementCompanyPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto max-w-3xl space-y-6">
+      <Breadcrumbs
+        items={[
+          { label: "Companies", href: "/app/management-companies" },
+          { label: "New Company" }
+        ]}
+      />
       <Card>
         <CardHeader>
           <CardTitle>New management company</CardTitle>

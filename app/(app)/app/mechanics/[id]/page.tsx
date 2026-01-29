@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/lib/db";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
@@ -34,7 +35,13 @@ export default async function MechanicPage({ params }: MechanicPageProps) {
   const canEdit = canEditWorkspace(membership.role);
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto max-w-3xl space-y-6">
+      <Breadcrumbs
+        items={[
+          { label: "Mechanics", href: "/app/mechanics" },
+          { label: `${mechanic.firstName} ${mechanic.lastName}` }
+        ]}
+      />
       <Card>
         <CardHeader>
           <CardTitle>Mechanic profile</CardTitle>

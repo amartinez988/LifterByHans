@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Card, CardContent } from "@/components/ui/card";
 import { PageHeader } from "@/components/ui/page-header";
 import { db } from "@/lib/db";
@@ -77,6 +78,12 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
+      <Breadcrumbs
+        items={[
+          { label: "Jobs", href: "/app/jobs" },
+          { label: job.jobCode }
+        ]}
+      />
       <PageHeader
         title={`Job ${job.jobCode}`}
         subtitle={`${job.managementCompany.name} - ${job.building.name}${job.unit ? ` - ${job.unit.identifier}` : ""}`}

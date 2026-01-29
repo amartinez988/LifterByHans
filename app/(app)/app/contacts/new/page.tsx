@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/lib/db";
@@ -34,7 +35,13 @@ export default async function NewContactPage() {
 
   if (managementCompanies.length === 0) {
     return (
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-3xl space-y-6">
+        <Breadcrumbs
+          items={[
+            { label: "Contacts", href: "/app/contacts" },
+            { label: "New Contact" }
+          ]}
+        />
         <Card>
           <CardHeader>
             <CardTitle>Add a management company first</CardTitle>
@@ -53,7 +60,13 @@ export default async function NewContactPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto max-w-3xl space-y-6">
+      <Breadcrumbs
+        items={[
+          { label: "Contacts", href: "/app/contacts" },
+          { label: "New Contact" }
+        ]}
+      />
       <Card>
         <CardHeader>
           <CardTitle>New contact</CardTitle>

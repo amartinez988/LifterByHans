@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Card, CardContent } from "@/components/ui/card";
 import { PageHeader } from "@/components/ui/page-header";
 import { db } from "@/lib/db";
@@ -77,6 +78,12 @@ export default async function EmergencyCallDetailPage({
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
+      <Breadcrumbs
+        items={[
+          { label: "Emergency Calls", href: "/app/emergency-calls" },
+          { label: emergencyCall.emergencyCode }
+        ]}
+      />
       <PageHeader
         title={`Emergency ${emergencyCall.emergencyCode}`}
         subtitle={`${emergencyCall.managementCompany.name} - ${emergencyCall.building.name} - ${emergencyCall.unit.identifier}`}

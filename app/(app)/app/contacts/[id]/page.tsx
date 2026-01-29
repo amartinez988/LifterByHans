@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Card, CardContent } from "@/components/ui/card";
 import { PageHeader } from "@/components/ui/page-header";
 import { db } from "@/lib/db";
@@ -51,6 +52,12 @@ export default async function ContactPage({ params }: ContactPageProps) {
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
+      <Breadcrumbs
+        items={[
+          { label: "Contacts", href: "/app/contacts" },
+          { label: `${contact.firstName} ${contact.lastName}` }
+        ]}
+      />
       <PageHeader
         title={`${contact.firstName} ${contact.lastName}`}
         subtitle="Review and update contact details."

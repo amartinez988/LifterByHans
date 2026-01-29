@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/lib/db";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
@@ -41,7 +42,13 @@ export default async function NewMaintenancePage() {
   ]);
 
   return (
-    <div className="mx-auto max-w-4xl">
+    <div className="mx-auto max-w-4xl space-y-6">
+      <Breadcrumbs
+        items={[
+          { label: "Maintenance", href: "/app/maintenance" },
+          { label: "New Maintenance" }
+        ]}
+      />
       <Card>
         <CardHeader>
           <CardTitle>New maintenance</CardTitle>

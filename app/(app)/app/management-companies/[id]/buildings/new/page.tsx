@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/lib/db";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
@@ -30,7 +31,14 @@ export default async function NewBuildingPage({ params }: NewBuildingPageProps) 
   }
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto max-w-3xl space-y-6">
+      <Breadcrumbs
+        items={[
+          { label: "Companies", href: "/app/management-companies" },
+          { label: managementCompany.name, href: `/app/management-companies/${managementCompany.id}` },
+          { label: "New Building" }
+        ]}
+      />
       <Card>
         <CardHeader>
           <CardTitle>New building</CardTitle>

@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 
@@ -17,7 +18,13 @@ export default async function NewInspectorPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto max-w-3xl space-y-6">
+      <Breadcrumbs
+        items={[
+          { label: "Inspectors", href: "/app/inspectors" },
+          { label: "New Inspector" }
+        ]}
+      />
       <Card>
         <CardHeader>
           <CardTitle>New inspector</CardTitle>
