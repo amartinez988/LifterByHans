@@ -93,6 +93,9 @@ export default async function AppLayout({
           <Link className="text-sm text-ink/70 hover:text-ink" href="/onboarding">
             Onboarding
           </Link>
+          <Link className="text-sm text-ink/70 hover:text-ink" href="/app/settings">
+            Settings
+          </Link>
           <form action={signOutAction}>
             <Button type="submit" variant="outline" size="sm">
               Log out
