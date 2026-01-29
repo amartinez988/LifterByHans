@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Zap } from "lucide-react";
 
 import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
@@ -26,40 +27,48 @@ export default async function AppLayout({
   const company = membership?.company ?? null;
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-slate-50">
       {/* Sidebar */}
-      <aside className="fixed left-0 top-0 z-40 h-screen w-64 border-r border-ink/10 bg-white/80 backdrop-blur-sm">
+      <aside className="fixed left-0 top-0 z-40 h-screen w-64 border-r border-slate-200 bg-white">
         <div className="flex h-full flex-col">
           {/* Logo/Company Header */}
-          <div className="border-b border-ink/10 p-4">
-            <p className="text-xs uppercase tracking-[0.3em] text-ink/60">
-              Workspace
-            </p>
-            <h1 className="font-display text-lg text-ink truncate">
-              {company?.name ?? "Setup in progress"}
-            </h1>
-            <p className="text-xs text-ink/60 truncate">
-              {membership?.role ?? "Prospect"} • {session.user.name}
-            </p>
+          <div className="border-b border-slate-100 p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-brand">
+                <Zap className="h-4 w-4 text-white" />
+              </div>
+              <span className="font-bold text-slate-900">LIFTER</span>
+            </div>
+            <div className="rounded-lg bg-slate-50 p-3">
+              <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">
+                Workspace
+              </p>
+              <h1 className="font-semibold text-slate-900 truncate mt-0.5">
+                {company?.name ?? "Setup in progress"}
+              </h1>
+              <p className="text-xs text-slate-500 truncate mt-0.5">
+                {membership?.role ?? "Prospect"} • {session.user.name}
+              </p>
+            </div>
           </div>
 
           {/* Navigation */}
-          <div className="flex-1 overflow-y-auto py-2">
+          <div className="flex-1 overflow-y-auto py-4 px-3">
             <SidebarNav />
           </div>
 
           {/* Footer with Onboarding & Logout */}
-          <div className="border-t border-ink/10 p-3 space-y-2">
+          <div className="border-t border-slate-100 p-3 space-y-2">
             {!company && (
               <Link
                 href="/onboarding"
-                className="flex w-full items-center justify-center rounded-lg bg-ember/10 px-3 py-2 text-sm font-medium text-ember hover:bg-ember/20 transition-colors"
+                className="flex w-full items-center justify-center rounded-xl bg-brand-50 border border-brand-200 px-3 py-2.5 text-sm font-semibold text-brand-700 hover:bg-brand-100 transition-colors"
               >
                 Complete Setup
               </Link>
             )}
             <form action={signOutAction} className="w-full">
-              <Button type="submit" variant="outline" size="sm" className="w-full">
+              <Button type="submit" variant="ghost" size="sm" className="w-full text-slate-600">
                 Log out
               </Button>
             </form>
@@ -68,7 +77,7 @@ export default async function AppLayout({
       </aside>
 
       {/* Main Content */}
-      <main className="ml-64 flex-1 p-6">
+      <main className="ml-64 flex-1 p-8">
         <div className="mx-auto max-w-6xl">
           {children}
         </div>

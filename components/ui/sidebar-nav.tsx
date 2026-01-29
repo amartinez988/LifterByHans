@@ -115,10 +115,10 @@ function NavGroupComponent({ group }: { group: NavGroup }) {
     <div className="mb-1">
       <button
         onClick={() => setIsOpen(!shouldBeOpen)}
-        className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+        className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-medium transition-colors ${
           hasActiveItem
-            ? "bg-ember/10 text-ember"
-            : "text-ink/70 hover:bg-ink/5 hover:text-ink"
+            ? "bg-brand-50 text-brand-700"
+            : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
         }`}
       >
         <span className="flex items-center gap-2">
@@ -132,7 +132,7 @@ function NavGroupComponent({ group }: { group: NavGroup }) {
         )}
       </button>
       {shouldBeOpen && (
-        <div className="ml-3 mt-1 space-y-1 border-l border-ink/10 pl-3">
+        <div className="ml-3 mt-1 space-y-0.5 border-l-2 border-slate-100 pl-3">
           {group.items.map((item) => {
             const isActive =
               pathname === item.href ||
@@ -143,8 +143,8 @@ function NavGroupComponent({ group }: { group: NavGroup }) {
                 href={item.href}
                 className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors ${
                   isActive
-                    ? "bg-ember/10 font-medium text-ember"
-                    : "text-ink/60 hover:bg-ink/5 hover:text-ink"
+                    ? "bg-brand-50 font-medium text-brand-700"
+                    : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
                 }`}
               >
                 {item.icon}
@@ -160,7 +160,7 @@ function NavGroupComponent({ group }: { group: NavGroup }) {
 
 export function SidebarNav() {
   return (
-    <nav className="space-y-1 p-2">
+    <nav className="space-y-1">
       {navGroups.map((group) => (
         <NavGroupComponent key={group.title} group={group} />
       ))}
