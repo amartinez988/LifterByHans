@@ -70,11 +70,10 @@ export function ConfirmModal({
           <Button
             onClick={onConfirm}
             disabled={isPending}
-            className={cn(
-              variant === "destructive" && "bg-red-600 hover:bg-red-700"
-            )}
+            variant={variant === "destructive" ? "destructive" : "default"}
+            loading={isPending}
           >
-            {isPending ? "Processing..." : confirmText}
+            {confirmText}
           </Button>
         </div>
       </div>
