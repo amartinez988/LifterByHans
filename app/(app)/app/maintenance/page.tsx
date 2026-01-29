@@ -3,8 +3,8 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { ArchiveFilter } from "@/components/ui/archive-filter";
+import { EmptyState } from "@/components/ui/empty-state";
 import { SearchInput } from "@/components/ui/search-input";
 import { getArchiveWhereClause } from "@/lib/archive";
 import { getSearchFilter } from "@/lib/search";
@@ -68,9 +68,7 @@ export default async function MaintenancePage({ searchParams }: PageProps) {
 
       <div className="grid gap-4">
         {maintenances.length === 0 ? (
-          <Card className="text-sm text-ink/70">
-            {params.q ? `No maintenance matching "${params.q}"` : "No maintenance records found."}
-          </Card>
+          <EmptyState type="maintenance" searchTerm={params.q} showAction={canEdit} />
         ) : (
           maintenances.map((record) => (
             <Link

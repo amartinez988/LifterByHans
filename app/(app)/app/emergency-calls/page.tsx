@@ -3,8 +3,8 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { ArchiveFilter } from "@/components/ui/archive-filter";
+import { EmptyState } from "@/components/ui/empty-state";
 import { SearchInput } from "@/components/ui/search-input";
 import { getArchiveWhereClause } from "@/lib/archive";
 import { getSearchFilter } from "@/lib/search";
@@ -71,9 +71,7 @@ export default async function EmergencyCallsPage({ searchParams }: PageProps) {
 
       <div className="grid gap-4">
         {calls.length === 0 ? (
-          <Card className="text-sm text-ink/70">
-            {params.q ? `No emergency calls matching "${params.q}"` : "No emergency calls found."}
-          </Card>
+          <EmptyState type="emergency-calls" searchTerm={params.q} showAction={canEdit} />
         ) : (
           calls.map((call) => (
             <Link

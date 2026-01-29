@@ -2,8 +2,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
-import { Card } from "@/components/ui/card";
 import { ArchiveFilter } from "@/components/ui/archive-filter";
+import { EmptyState } from "@/components/ui/empty-state";
 import { SearchInput } from "@/components/ui/search-input";
 import { getArchiveWhereClause } from "@/lib/archive";
 import { getSearchFilter } from "@/lib/search";
@@ -64,9 +64,12 @@ export default async function BuildingsPage({ searchParams }: PageProps) {
 
       <div className="grid gap-4">
         {buildings.length === 0 ? (
-          <Card className="text-sm text-ink/70">
-            {params.q ? `No buildings matching "${params.q}"` : "No buildings found. Add buildings through management companies."}
-          </Card>
+          <EmptyState
+            type="buildings"
+            searchTerm={params.q}
+            showAction={false}
+            customDescription="Add buildings through management companies."
+          />
         ) : (
           buildings.map((building) => (
             <Link

@@ -3,8 +3,8 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { ArchiveFilter } from "@/components/ui/archive-filter";
+import { EmptyState } from "@/components/ui/empty-state";
 import { SearchInput } from "@/components/ui/search-input";
 import { getArchiveWhereClause } from "@/lib/archive";
 import { getSearchFilter } from "@/lib/search";
@@ -69,9 +69,7 @@ export default async function InspectionsPage({ searchParams }: PageProps) {
 
       <div className="grid gap-4">
         {inspections.length === 0 ? (
-          <Card className="text-sm text-ink/70">
-            {params.q ? `No inspections matching "${params.q}"` : "No inspections found."}
-          </Card>
+          <EmptyState type="inspections" searchTerm={params.q} showAction={canEdit} />
         ) : (
           inspections.map((inspection) => (
             <Link

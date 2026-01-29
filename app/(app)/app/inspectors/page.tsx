@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { EmptyState } from "@/components/ui/empty-state";
 import { SearchInput } from "@/components/ui/search-input";
 import { getSearchFilter } from "@/lib/search";
 import { db } from "@/lib/db";
@@ -55,9 +55,7 @@ export default async function InspectorsPage({ searchParams }: PageProps) {
 
       <div className="grid gap-4">
         {inspectors.length === 0 ? (
-          <Card className="text-sm text-ink/70">
-            {params.q ? `No inspectors matching "${params.q}"` : "No inspectors yet."}
-          </Card>
+          <EmptyState type="inspectors" searchTerm={params.q} showAction={canEdit} />
         ) : (
           inspectors.map((inspector) => (
             <Link

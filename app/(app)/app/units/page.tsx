@@ -2,8 +2,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
-import { Card } from "@/components/ui/card";
 import { ArchiveFilter } from "@/components/ui/archive-filter";
+import { EmptyState } from "@/components/ui/empty-state";
 import { SearchInput } from "@/components/ui/search-input";
 import { getArchiveWhereClause } from "@/lib/archive";
 import { getSearchFilter } from "@/lib/search";
@@ -68,9 +68,12 @@ export default async function UnitsPage({ searchParams }: PageProps) {
 
       <div className="grid gap-4">
         {units.length === 0 ? (
-          <Card className="text-sm text-ink/70">
-            {params.q ? `No units matching "${params.q}"` : "No units found. Add units through building detail pages."}
-          </Card>
+          <EmptyState
+            type="units"
+            searchTerm={params.q}
+            showAction={false}
+            customDescription="Add units through building detail pages."
+          />
         ) : (
           units.map((unit) => (
             <Link

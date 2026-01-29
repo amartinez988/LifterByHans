@@ -3,8 +3,8 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { ArchiveFilter } from "@/components/ui/archive-filter";
+import { EmptyState } from "@/components/ui/empty-state";
 import { SearchInput } from "@/components/ui/search-input";
 import { getArchiveWhereClause } from "@/lib/archive";
 import { getSearchFilter } from "@/lib/search";
@@ -148,9 +148,7 @@ export default async function JobsPage({ searchParams }: PageProps) {
 
       <div className="grid gap-4">
         {jobs.length === 0 ? (
-          <Card className="text-sm text-ink/70">
-            {params.q ? `No jobs matching "${params.q}"` : "No jobs found."}
-          </Card>
+          <EmptyState type="jobs" searchTerm={params.q} showAction={canEdit} />
         ) : (
           jobs.map((job) => (
             <Link
