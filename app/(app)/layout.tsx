@@ -69,6 +69,9 @@ export default async function AppLayout({
           <Link className="text-sm text-ink/70 hover:text-ink" href="/app/maintenance">
             Maintenance
           </Link>
+          <Link className="text-sm text-ink/70 hover:text-ink" href="/app/jobs">
+            Jobs
+          </Link>
           <Link className="text-sm text-ink/70 hover:text-ink" href="/app/inspectors">
             Inspectors
           </Link>

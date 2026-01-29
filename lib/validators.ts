@@ -165,3 +165,19 @@ export const emergencyCallSchema = z.object({
   issueDescription: z.string().min(1, "Issue description is required."),
   notes: z.string().optional().nullable()
 });
+
+export const scheduledJobSchema = z.object({
+  title: z.string().min(1, "Title is required."),
+  description: z.string().optional().nullable(),
+  managementCompanyId: z.string().min(1, "Select a management company."),
+  buildingId: z.string().min(1, "Select a building."),
+  unitId: z.string().optional().nullable(),
+  mechanicId: z.string().optional().nullable(),
+  scheduledDate: z.string().min(1, "Scheduled date is required."),
+  scheduledStartTime: z.string().optional().nullable(),
+  scheduledEndTime: z.string().optional().nullable(),
+  status: z.enum(["SCHEDULED", "EN_ROUTE", "ON_SITE", "COMPLETED", "CANCELLED"]).optional(),
+  priority: z.enum(["LOW", "NORMAL", "HIGH", "URGENT"]).optional(),
+  jobType: z.enum(["MAINTENANCE", "INSPECTION", "EMERGENCY", "CALLBACK", "OTHER"]).optional(),
+  notes: z.string().optional().nullable()
+});
