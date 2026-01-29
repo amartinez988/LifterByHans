@@ -11,6 +11,5 @@ export const db =
     log: ["error", "warn"]
   });
 
-if (process.env.NODE_ENV !== "production") {
-  global.prisma = db;
-}
+// Cache globally to prevent connection exhaustion in serverless
+global.prisma = db;
