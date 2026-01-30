@@ -3,6 +3,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const FROM_EMAIL = "Uplio <noreply@uplio.app>";
+const LOGO_URL = "https://uplio.app/email-logo.png";
 
 export async function sendVerificationEmail(email: string, token: string) {
   const verifyUrl = `${process.env.NEXT_PUBLIC_APP_URL}/verify-email?token=${token}`;
@@ -21,7 +22,7 @@ export async function sendVerificationEmail(email: string, token: string) {
         <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc; margin: 0; padding: 40px 20px;">
           <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
             <div style="text-align: center; margin-bottom: 32px;">
-              <div style="display: inline-block; background: linear-gradient(135deg, #3b82f6, #8b5cf6); width: 48px; height: 48px; border-radius: 12px; margin-bottom: 16px;"></div>
+              <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="border-radius: 12px; margin-bottom: 16px;" />
               <h1 style="margin: 0; font-size: 24px; font-weight: 700; background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">UPLIO</h1>
             </div>
             
@@ -67,7 +68,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
         <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc; margin: 0; padding: 40px 20px;">
           <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
             <div style="text-align: center; margin-bottom: 32px;">
-              <div style="display: inline-block; background: linear-gradient(135deg, #3b82f6, #8b5cf6); width: 48px; height: 48px; border-radius: 12px; margin-bottom: 16px;"></div>
+              <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="border-radius: 12px; margin-bottom: 16px;" />
               <h1 style="margin: 0; font-size: 24px; font-weight: 700; background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">UPLIO</h1>
             </div>
             
@@ -119,7 +120,7 @@ export async function sendTeamInviteEmail(
         <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc; margin: 0; padding: 40px 20px;">
           <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
             <div style="text-align: center; margin-bottom: 32px;">
-              <div style="display: inline-block; background: linear-gradient(135deg, #3b82f6, #8b5cf6); width: 48px; height: 48px; border-radius: 12px; margin-bottom: 16px;"></div>
+              <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="border-radius: 12px; margin-bottom: 16px;" />
               <h1 style="margin: 0; font-size: 24px; font-weight: 700; background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">UPLIO</h1>
             </div>
             
@@ -163,7 +164,7 @@ export async function sendWelcomeEmail(email: string, name: string) {
         <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc; margin: 0; padding: 40px 20px;">
           <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
             <div style="text-align: center; margin-bottom: 32px;">
-              <div style="display: inline-block; background: linear-gradient(135deg, #3b82f6, #8b5cf6); width: 48px; height: 48px; border-radius: 12px; margin-bottom: 16px;"></div>
+              <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="border-radius: 12px; margin-bottom: 16px;" />
               <h1 style="margin: 0; font-size: 24px; font-weight: 700; background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">UPLIO</h1>
             </div>
             
