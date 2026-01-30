@@ -1,8 +1,12 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { render } from "@react-email/render";
 
 import { db } from "@/lib/db";
+import { sendEmail } from "@/lib/email";
+import { JobStatusUpdateEmail } from "@/lib/email-templates";
+import { getNotificationRecipients } from "@/lib/notifications";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 import { scheduledJobSchema } from "@/lib/validators";
 
@@ -173,12 +177,21 @@ export async function updateJobStatusAction(
   }
 
   const existing = await db.scheduledJob.findUnique({
-    where: { id: jobId }
+    where: { id: jobId },
+    include: {
+      building: true,
+      unit: true,
+      mechanic: true,
+      managementCompany: true,
+      company: true,
+    }
   });
 
   if (!existing || existing.companyId !== membership.companyId) {
     return { error: "Job not found." };
   }
+
+  const oldStatus = existing.status;
 
   // Members can only update status on jobs assigned to them (by mechanic match)
   // For now, allow all members to update status. Role-based mechanic matching can be added later.
@@ -197,6 +210,74 @@ export async function updateJobStatusAction(
       where: { id: jobId },
       data: updateData
     });
+
+    // Send email notifications to:
+    // 1. Primary contacts of the management company
+    // 2. Company members who have opted in for job status updates
+    const [primaryContacts, notificationRecipients] = await Promise.all([
+      db.contact.findMany({
+        where: {
+          managementCompanyId: existing.managementCompanyId,
+          isPrimary: true,
+          email: { not: null },
+          archivedAt: null,
+        }
+      }),
+      getNotificationRecipients(existing.companyId, "jobStatusUpdates")
+    ]);
+
+    // Combine recipients, avoiding duplicates
+    const allRecipients: { email: string; name: string }[] = [];
+    const seenEmails = new Set<string>();
+
+    for (const contact of primaryContacts) {
+      if (contact.email && !seenEmails.has(contact.email)) {
+        seenEmails.add(contact.email);
+        allRecipients.push({
+          email: contact.email,
+          name: `${contact.firstName} ${contact.lastName}`,
+        });
+      }
+    }
+
+    for (const recipient of notificationRecipients) {
+      if (!seenEmails.has(recipient.email)) {
+        seenEmails.add(recipient.email);
+        allRecipients.push(recipient);
+      }
+    }
+
+    for (const recipient of allRecipients) {
+      try {
+        const emailHtml = await render(
+          JobStatusUpdateEmail({
+            recipientName: recipient.name,
+            companyName: existing.company.name,
+            jobCode: existing.jobCode,
+            jobTitle: existing.title,
+            oldStatus: oldStatus,
+            newStatus: status,
+            buildingName: existing.building.name,
+            buildingAddress: existing.building.address,
+            unitIdentifier: existing.unit?.identifier,
+            mechanicName: existing.mechanic 
+              ? `${existing.mechanic.firstName} ${existing.mechanic.lastName}` 
+              : undefined,
+            scheduledDate: existing.scheduledDate.toLocaleDateString(),
+            notes: existing.notes ?? undefined,
+          })
+        );
+
+        await sendEmail({
+          to: recipient.email,
+          subject: `Job ${existing.jobCode} - Status Update: ${status.replace("_", " ")}`,
+          html: emailHtml,
+        });
+      } catch (emailError) {
+        // Log but don't fail the action if email fails
+        console.error("Failed to send job status email:", emailError);
+      }
+    }
   } catch (error) {
     return { error: "Unable to update job status." };
   }

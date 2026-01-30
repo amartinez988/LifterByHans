@@ -1,8 +1,12 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { render } from "@react-email/render";
 
 import { db } from "@/lib/db";
+import { sendEmail } from "@/lib/email";
+import { EmergencyCallAlertEmail } from "@/lib/email-templates";
+import { getNotificationRecipients } from "@/lib/notifications";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 import { emergencyCallSchema } from "@/lib/validators";
 
@@ -68,6 +72,7 @@ export async function createEmergencyCallAction(
   const completedAt = parseDateTime(parsed.data.completedAt);
 
   let emergencyId: string | null = null;
+  let emergencyCode: string | null = null;
   try {
     await db.$transaction(async (tx) => {
       const seq = await tx.emergencyCallSequence.upsert({
@@ -76,7 +81,7 @@ export async function createEmergencyCallAction(
         update: { nextNumber: { increment: 1 } }
       });
 
-      const emergencyCode = formatEmergencyCode(seq.nextNumber - 1);
+      emergencyCode = formatEmergencyCode(seq.nextNumber - 1);
 
       const emergency = await tx.emergencyCall.create({
         data: {
@@ -97,6 +102,72 @@ export async function createEmergencyCallAction(
 
       emergencyId = emergency.id;
     });
+
+    // Send email alerts to primary contacts and company members who opted in
+    const [primaryContacts, notificationRecipients, company] = await Promise.all([
+      db.contact.findMany({
+        where: {
+          managementCompanyId: managementCompany.id,
+          isPrimary: true,
+          email: { not: null },
+          archivedAt: null,
+        }
+      }),
+      getNotificationRecipients(membership.companyId, "emergencyAlerts"),
+      db.company.findUnique({
+        where: { id: membership.companyId },
+      })
+    ]);
+
+    // Collect all recipients (primary contacts + opted-in members)
+    const recipients: { email: string; name: string }[] = [];
+    const seenEmails = new Set<string>();
+
+    for (const contact of primaryContacts) {
+      if (contact.email && !seenEmails.has(contact.email)) {
+        seenEmails.add(contact.email);
+        recipients.push({ 
+          email: contact.email, 
+          name: `${contact.firstName} ${contact.lastName}` 
+        });
+      }
+    }
+
+    for (const recipient of notificationRecipients) {
+      if (!seenEmails.has(recipient.email)) {
+        seenEmails.add(recipient.email);
+        recipients.push(recipient);
+      }
+    }
+
+    // Send emails
+    for (const recipient of recipients) {
+      try {
+        const emailHtml = await render(
+          EmergencyCallAlertEmail({
+            recipientName: recipient.name,
+            companyName: company?.name ?? "Your Company",
+            emergencyCode: emergencyCode!,
+            buildingName: building.name,
+            buildingAddress: building.address,
+            unitIdentifier: unit.identifier,
+            issueDescription: parsed.data.issueDescription,
+            callInTime: callInAt.toLocaleString(),
+            assignedMechanic: mechanic 
+              ? `${mechanic.firstName} ${mechanic.lastName}` 
+              : undefined,
+          })
+        );
+
+        await sendEmail({
+          to: recipient.email,
+          subject: `🚨 Emergency Call Alert: ${emergencyCode} - ${building.name}`,
+          html: emailHtml,
+        });
+      } catch (emailError) {
+        console.error("Failed to send emergency alert email:", emailError);
+      }
+    }
   } catch (error) {
     return { error: "Unable to create emergency call. Check for duplicates." };
   }

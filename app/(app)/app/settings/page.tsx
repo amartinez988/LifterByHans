@@ -1,10 +1,13 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
+import { Upload, Download, Bell } from "lucide-react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { db } from "@/lib/db";
+import { Button } from "@/components/ui/button";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 
-import { ImportJobs } from "./import-jobs";
+import { NotificationPreferences } from "./notification-preferences";
+import { getNotificationPreferencesAction } from "./actions";
 
 export default async function SettingsPage() {
   const { membership } = await getCurrentMembership();
@@ -17,26 +20,6 @@ export default async function SettingsPage() {
     redirect("/app");
   }
 
-  // Get lookup data for validation reference
-  const [managementCompanies, buildings, units, mechanics] = await Promise.all([
-    db.managementCompany.findMany({
-      where: { companyId: membership.companyId, archivedAt: null },
-      select: { id: true, name: true }
-    }),
-    db.building.findMany({
-      where: { companyId: membership.companyId, archivedAt: null },
-      select: { id: true, name: true, managementCompanyId: true }
-    }),
-    db.unit.findMany({
-      where: { companyId: membership.companyId, archivedAt: null },
-      select: { id: true, identifier: true, buildingId: true }
-    }),
-    db.mechanic.findMany({
-      where: { companyId: membership.companyId, isActive: true },
-      select: { id: true, firstName: true, lastName: true }
-    })
-  ]);
-
   return (
     <div className="space-y-6">
       <div>
@@ -47,28 +30,61 @@ export default async function SettingsPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Import Jobs</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Upload className="h-5 w-5" />
+            Import Data
+          </CardTitle>
           <CardDescription>
-            Bulk import scheduled jobs from a CSV file. Download the template, fill in your data, and upload.
+            Bulk import data from CSV files. Import Management Companies, Buildings, Units, Mechanics, Contacts, and Jobs.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <ImportJobs
-            managementCompanies={managementCompanies}
-            buildings={buildings}
-            units={units}
-            mechanics={mechanics}
-          />
+          <Link href="/app/settings/import">
+            <Button>
+              <Upload className="mr-2 h-4 w-4" />
+              Open Import Wizard
+            </Button>
+          </Link>
         </CardContent>
       </Card>
+
+      <NotificationPreferencesCard />
 
       {/* Future settings sections */}
       <Card className="opacity-50">
         <CardHeader>
-          <CardTitle>Export Data</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Download className="h-5 w-5" />
+            Export Data
+          </CardTitle>
           <CardDescription>Export your workspace data. Coming soon.</CardDescription>
         </CardHeader>
       </Card>
     </div>
+  );
+}
+
+async function NotificationPreferencesCard() {
+  const result = await getNotificationPreferencesAction();
+  
+  if (result.error || !result.data) {
+    return null;
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Bell className="h-5 w-5" />
+          Email Notifications
+        </CardTitle>
+        <CardDescription>
+          Choose which email notifications you want to receive.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <NotificationPreferences initialPreferences={result.data} />
+      </CardContent>
+    </Card>
   );
 }

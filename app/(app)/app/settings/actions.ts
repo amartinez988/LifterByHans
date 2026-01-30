@@ -1,7 +1,73 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+
 import { db } from "@/lib/db";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
+
+// ============================================
+// Notification Preferences
+// ============================================
+
+export type NotificationPreferencesData = {
+  jobStatusUpdates: boolean;
+  emergencyAlerts: boolean;
+  inspectionReminders: boolean;
+  weeklySummary: boolean;
+};
+
+export async function getNotificationPreferencesAction() {
+  const { membership } = await getCurrentMembership();
+  if (!membership) {
+    return { error: "Not authenticated" };
+  }
+
+  const prefs = await db.notificationPreferences.findUnique({
+    where: { companyMemberId: membership.id },
+  });
+
+  // Return defaults if no preferences exist yet
+  if (!prefs) {
+    return {
+      data: {
+        jobStatusUpdates: true,
+        emergencyAlerts: true,
+        inspectionReminders: true,
+        weeklySummary: true,
+      },
+    };
+  }
+
+  return {
+    data: {
+      jobStatusUpdates: prefs.jobStatusUpdates,
+      emergencyAlerts: prefs.emergencyAlerts,
+      inspectionReminders: prefs.inspectionReminders,
+      weeklySummary: prefs.weeklySummary,
+    },
+  };
+}
+
+export async function updateNotificationPreferencesAction(
+  preferences: NotificationPreferencesData
+) {
+  const { membership } = await getCurrentMembership();
+  if (!membership) {
+    return { error: "Not authenticated" };
+  }
+
+  await db.notificationPreferences.upsert({
+    where: { companyMemberId: membership.id },
+    create: {
+      companyMemberId: membership.id,
+      ...preferences,
+    },
+    update: preferences,
+  });
+
+  revalidatePath("/app/settings");
+  return { success: true };
+}
 
 type JobImportData = {
   title: string;
