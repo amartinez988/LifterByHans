@@ -22,7 +22,7 @@ export async function sendVerificationEmail(email: string, token: string) {
         <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc; margin: 0; padding: 40px 20px;">
           <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
             <div style="text-align: center; margin-bottom: 32px;">
-              <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="border-radius: 12px; margin-bottom: 16px;" />
+              <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="margin-bottom: 16px;" />
               <h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #4f46e5;">UPLIO</h1>
             </div>
             
@@ -68,7 +68,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
         <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc; margin: 0; padding: 40px 20px;">
           <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
             <div style="text-align: center; margin-bottom: 32px;">
-              <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="border-radius: 12px; margin-bottom: 16px;" />
+              <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="margin-bottom: 16px;" />
               <h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #4f46e5;">UPLIO</h1>
             </div>
             
@@ -120,7 +120,7 @@ export async function sendTeamInviteEmail(
         <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc; margin: 0; padding: 40px 20px;">
           <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
             <div style="text-align: center; margin-bottom: 32px;">
-              <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="border-radius: 12px; margin-bottom: 16px;" />
+              <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="margin-bottom: 16px;" />
               <h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #4f46e5;">UPLIO</h1>
             </div>
             
@@ -164,7 +164,7 @@ export async function sendWelcomeEmail(email: string, name: string) {
         <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc; margin: 0; padding: 40px 20px;">
           <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
             <div style="text-align: center; margin-bottom: 32px;">
-              <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="border-radius: 12px; margin-bottom: 16px;" />
+              <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="margin-bottom: 16px;" />
               <h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #4f46e5;">UPLIO</h1>
             </div>
             
