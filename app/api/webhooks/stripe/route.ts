@@ -135,12 +135,22 @@ async function updateSubscriptionRecord(
   const priceId = subscription.items.data[0]?.price?.id;
   const plan = priceId ? getPlanByPriceId(priceId) : null;
 
+  // Access period timestamps from the raw subscription object
+  const subData = subscription as unknown as {
+    current_period_start?: number;
+    current_period_end?: number;
+  };
+
   const updateData: Record<string, unknown> = {
     status: mapStripeStatus(subscription.status),
     stripeSubscriptionId: subscription.id,
     stripePriceId: priceId || undefined,
-    currentPeriodStart: new Date(subscription.currentPeriodStart * 1000),
-    currentPeriodEnd: new Date(subscription.currentPeriodEnd * 1000),
+    currentPeriodStart: subData.current_period_start 
+      ? new Date(subData.current_period_start * 1000) 
+      : null,
+    currentPeriodEnd: subData.current_period_end 
+      ? new Date(subData.current_period_end * 1000) 
+      : null,
     canceledAt: subscription.canceled_at
       ? new Date(subscription.canceled_at * 1000)
       : null,
