@@ -20,6 +20,7 @@ import {
   Settings,
   ChevronDown,
   ChevronRight,
+  BarChart3,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -43,6 +44,7 @@ const navGroups: NavGroup[] = [
     defaultOpen: true,
     items: [
       { label: "Overview", href: "/app", icon: <LayoutDashboard className="h-4 w-4" /> },
+      { label: "Analytics", href: "/app/analytics", icon: <BarChart3 className="h-4 w-4" /> },
       { label: "Compliance", href: "/app/compliance", icon: <ShieldCheck className="h-4 w-4" /> },
       { label: "Alerts", href: "/app/alerts", icon: <AlertTriangle className="h-4 w-4" /> },
     ],

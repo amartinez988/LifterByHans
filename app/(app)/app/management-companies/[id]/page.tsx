@@ -11,6 +11,7 @@ import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 import ContactForm from "../../contacts/contact-form";
 import CompanyForm from "../company-form";
 import AddExistingContactForm from "../add-existing-contact-form";
+import { PortalManager } from "../portal-manager";
 import {
   archiveManagementCompanyAction,
   restoreManagementCompanyAction,
@@ -60,6 +61,11 @@ export default async function ManagementCompanyPage({
       NOT: { managementCompanyId: company.id }
     },
     orderBy: { createdAt: "desc" }
+  });
+
+  const portalAccesses = await db.portalAccess.findMany({
+    where: { managementCompanyId: company.id },
+    orderBy: { createdAt: "desc" },
   });
 
   const managementCompanies = await db.managementCompany.findMany({
@@ -164,6 +170,15 @@ export default async function ManagementCompanyPage({
           ) : null}
         </CardContent>
       </Card>
+
+      {/* Customer Portal */}
+      {canEdit && !isArchived && (
+        <PortalManager
+          managementCompanyId={company.id}
+          managementCompanyName={company.name}
+          portalAccesses={portalAccesses}
+        />
+      )}
 
       <Card>
         <CardHeader>
