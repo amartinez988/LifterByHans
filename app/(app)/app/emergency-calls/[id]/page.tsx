@@ -46,17 +46,17 @@ export default async function EmergencyCallDetailPage({
   const [managementCompanies, buildings, units, mechanics, statuses] =
     await Promise.all([
       db.managementCompany.findMany({
-        where: { companyId: membership.companyId },
+        where: { companyId: membership.companyId, OR: [{ archivedAt: null }, { id: emergencyCall.managementCompanyId }] },
         orderBy: { name: "asc" },
         select: { id: true, name: true }
       }),
       db.building.findMany({
-        where: { companyId: membership.companyId },
+        where: { companyId: membership.companyId, OR: [{ archivedAt: null }, { id: emergencyCall.buildingId }] },
         orderBy: { name: "asc" },
         select: { id: true, name: true, managementCompanyId: true }
       }),
       db.unit.findMany({
-        where: { companyId: membership.companyId },
+        where: { companyId: membership.companyId, OR: [{ archivedAt: null }, { id: emergencyCall.unitId }] },
         orderBy: { identifier: "asc" },
         select: { id: true, identifier: true, buildingId: true }
       }),

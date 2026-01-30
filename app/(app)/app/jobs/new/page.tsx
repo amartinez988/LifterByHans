@@ -20,17 +20,17 @@ export default async function NewJobPage() {
 
   const [managementCompanies, buildings, units, mechanics] = await Promise.all([
     db.managementCompany.findMany({
-      where: { companyId: membership.companyId },
+      where: { companyId: membership.companyId, archivedAt: null },
       orderBy: { name: "asc" },
       select: { id: true, name: true }
     }),
     db.building.findMany({
-      where: { companyId: membership.companyId },
+      where: { companyId: membership.companyId, archivedAt: null },
       orderBy: { name: "asc" },
       select: { id: true, name: true, managementCompanyId: true }
     }),
     db.unit.findMany({
-      where: { companyId: membership.companyId },
+      where: { companyId: membership.companyId, archivedAt: null },
       orderBy: { identifier: "asc" },
       select: { id: true, identifier: true, buildingId: true }
     }),

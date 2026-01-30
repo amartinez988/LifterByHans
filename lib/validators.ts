@@ -1,5 +1,15 @@
 import { z } from "zod";
 
+// Phone validation - accepts common formats: (555) 123-4567, 555-123-4567, 5551234567, +1 555 123 4567
+const phoneRegex = /^(\+?1[-.\s]?)?(\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}$/;
+
+const phoneValidation = z.string()
+  .refine((val) => !val || val === "" || phoneRegex.test(val.replace(/\s/g, "")), {
+    message: "Enter a valid phone number."
+  })
+  .optional()
+  .nullable();
+
 export const signUpSchema = z.object({
   name: z.string().min(2, "Name is required."),
   email: z.string().email("Enter a valid email."),
@@ -24,8 +34,8 @@ export const managementCompanySchema = z.object({
   name: z.string().min(2, "Name is required."),
   accountNumber: z.string().optional().nullable(),
   website: z.string().optional().nullable(),
-  mainPhone: z.string().optional().nullable(),
-  emergencyPhone: z.string().optional().nullable(),
+  mainPhone: phoneValidation,
+  emergencyPhone: phoneValidation,
   notes: z.string().optional().nullable()
 });
 
@@ -40,7 +50,7 @@ export const contactSchema = z.object({
   firstName: z.string().min(1, "First name is required."),
   lastName: z.string().min(1, "Last name is required."),
   email: z.string().email("Enter a valid email.").optional().or(z.literal("")),
-  phone: z.string().optional().nullable(),
+  phone: phoneValidation,
   isPrimary: z.boolean().optional(),
   notes: z.string().optional().nullable()
 });
@@ -48,7 +58,7 @@ export const contactSchema = z.object({
 export const buildingSchema = z.object({
   name: z.string().min(2, "Name is required."),
   address: z.string().min(2, "Address is required."),
-  localPhone: z.string().optional().nullable(),
+  localPhone: phoneValidation,
   jurisdiction: z.string().optional().nullable(),
   notes: z.string().optional().nullable()
 });
@@ -90,6 +100,14 @@ export const unitSchema = z.object({
   certificateUrl: z.string().url("Enter a valid URL.").optional().nullable().or(z.literal("")),
   photoUrl: z.string().url("Enter a valid URL.").optional().nullable().or(z.literal("")),
   notes: z.string().optional().nullable()
+}).refine((data) => {
+  if (data.agreementStartDate && data.agreementEndDate) {
+    return new Date(data.agreementEndDate) >= new Date(data.agreementStartDate);
+  }
+  return true;
+}, {
+  message: "Agreement end date must be after start date.",
+  path: ["agreementEndDate"]
 });
 
 export const mechanicSchema = z.object({
@@ -97,7 +115,7 @@ export const mechanicSchema = z.object({
   firstName: z.string().min(1, "First name is required."),
   lastName: z.string().min(1, "Last name is required."),
   email: z.string().email("Enter a valid email.").optional().or(z.literal("")),
-  phone: z.string().optional().nullable(),
+  phone: phoneValidation,
   isActive: z.boolean().optional()
 });
 
@@ -121,7 +139,7 @@ export const inspectorSchema = z.object({
   lastName: z.string().min(1, "Last name is required."),
   companyName: z.string().optional().nullable(),
   email: z.string().email("Enter a valid email.").optional().or(z.literal("")),
-  phone: z.string().optional().nullable(),
+  phone: phoneValidation,
   isActive: z.boolean().optional()
 });
 
@@ -146,6 +164,14 @@ export const inspectionSchema = z.object({
   expirationDate: z.string().optional().nullable(),
   reportUrl: z.string().url("Enter a valid URL.").optional().nullable().or(z.literal("")),
   notes: z.string().optional().nullable()
+}).refine((data) => {
+  if (data.inspectionDate && data.expirationDate) {
+    return new Date(data.expirationDate) >= new Date(data.inspectionDate);
+  }
+  return true;
+}, {
+  message: "Expiration date must be after inspection date.",
+  path: ["expirationDate"]
 });
 
 export const emergencyCallStatusSchema = z.object({
@@ -164,6 +190,14 @@ export const emergencyCallSchema = z.object({
   ticketNumber: z.string().optional().nullable(),
   issueDescription: z.string().min(1, "Issue description is required."),
   notes: z.string().optional().nullable()
+}).refine((data) => {
+  if (data.callInAt && data.completedAt) {
+    return new Date(data.completedAt) >= new Date(data.callInAt);
+  }
+  return true;
+}, {
+  message: "Completion time must be after call-in time.",
+  path: ["completedAt"]
 });
 
 export const scheduledJobSchema = z.object({
@@ -180,4 +214,12 @@ export const scheduledJobSchema = z.object({
   priority: z.enum(["LOW", "NORMAL", "HIGH", "URGENT"]).optional(),
   jobType: z.enum(["MAINTENANCE", "INSPECTION", "EMERGENCY", "CALLBACK", "OTHER"]).optional(),
   notes: z.string().optional().nullable()
+}).refine((data) => {
+  if (data.scheduledStartTime && data.scheduledEndTime) {
+    return data.scheduledEndTime >= data.scheduledStartTime;
+  }
+  return true;
+}, {
+  message: "End time must be after start time.",
+  path: ["scheduledEndTime"]
 });

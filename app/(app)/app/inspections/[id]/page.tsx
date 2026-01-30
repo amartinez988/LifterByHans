@@ -45,17 +45,17 @@ export default async function InspectionDetailPage({ params }: InspectionPagePro
   const [managementCompanies, buildings, units, inspectors, statuses, results] =
     await Promise.all([
       db.managementCompany.findMany({
-        where: { companyId: membership.companyId },
+        where: { companyId: membership.companyId, OR: [{ archivedAt: null }, { id: inspection.managementCompanyId }] },
         orderBy: { name: "asc" },
         select: { id: true, name: true }
       }),
       db.building.findMany({
-        where: { companyId: membership.companyId },
+        where: { companyId: membership.companyId, OR: [{ archivedAt: null }, { id: inspection.buildingId }] },
         orderBy: { name: "asc" },
         select: { id: true, name: true, managementCompanyId: true }
       }),
       db.unit.findMany({
-        where: { companyId: membership.companyId },
+        where: { companyId: membership.companyId, OR: [{ archivedAt: null }, { id: inspection.unitId }] },
         orderBy: { identifier: "asc" },
         select: { id: true, identifier: true, buildingId: true }
       }),
