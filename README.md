@@ -59,3 +59,35 @@ Phase 1 covers landing, authentication, and company onboarding. Phase 2 adds tea
 - Compliance view at `/app/compliance`
 - Alerts view at `/app/alerts`
 - Derived inspection compliance, emergency, and maintenance statuses
+
+## Phase 10 Features (Overnight Enhancements - Jan 2026)
+
+### Analytics Dashboard
+- Business intelligence at `/app/analytics`
+- Key metrics: jobs completed, maintenance, emergency response time
+- Activity trend chart (last 30 days)
+- Mechanic performance chart
+- Job status and priority distribution charts
+
+### Customer Portal
+- Public portal for building managers at `/portal/[token]`
+- View unit compliance status
+- View service history and upcoming inspections
+- Track open maintenance and emergency calls
+- Portal link management from management company pages
+- Automatic email notification when portal link is generated
+
+### Email Templates
+- Professional email templates using @react-email/components
+- Templates for:
+  - Inspection reminders (30/14/7 days before expiration)
+  - Job status updates
+  - Emergency call alerts
+  - Weekly summary reports
+
+### Marketing Plan
+- Comprehensive marketing strategy in MARKETING-PLAN.md
+- Target customer segments defined
+- Pricing strategy recommendations
+- Go-to-market channels identified
+- Outreach messaging and templates
