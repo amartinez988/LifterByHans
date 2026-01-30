@@ -1,9 +1,28 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Use a dummy key during build if not available
+const resend = new Resend(process.env.RESEND_API_KEY || "re_dummy_key_for_build");
 
 const FROM_EMAIL = "Uplio <noreply@uplio.app>";
 const LOGO_URL = "https://uplio.app/email-logo.png";
+
+// Generic send email function
+export async function sendEmail({
+  to,
+  subject,
+  html,
+}: {
+  to: string;
+  subject: string;
+  html: string;
+}) {
+  await resend.emails.send({
+    from: FROM_EMAIL,
+    to,
+    subject,
+    html,
+  });
+}
 
 export async function sendVerificationEmail(email: string, token: string) {
   const verifyUrl = `${process.env.NEXT_PUBLIC_APP_URL}/verify-email?token=${token}`;

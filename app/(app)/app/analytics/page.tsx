@@ -12,7 +12,6 @@ import {
 
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
-import { PageHeader } from "@/components/ui/page-header";
 import { AnalyticsCharts } from "./analytics-charts";
 
 export default async function AnalyticsPage() {
@@ -325,10 +324,13 @@ export default async function AnalyticsPage() {
 
   return (
     <div className="space-y-8">
-      <PageHeader
-        title="Analytics"
-        description="Track performance metrics and business insights for your operations."
-      />
+      <div>
+        <p className="text-sm font-medium text-brand-600">Business Intelligence</p>
+        <h1 className="mt-1 font-display text-3xl font-bold text-slate-900">Analytics</h1>
+        <p className="mt-1 text-slate-500">
+          Track performance metrics and business insights for your operations.
+        </p>
+      </div>
 
       {/* Key Metrics Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
