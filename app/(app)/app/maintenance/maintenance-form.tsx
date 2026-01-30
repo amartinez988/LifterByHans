@@ -211,8 +211,8 @@ export default function MaintenanceForm({
 
       {error ? <p className="text-sm text-ember">{error}</p> : null}
       {readOnly ? null : (
-        <Button type="submit" disabled={isPending}>
-          {isPending ? "Saving..." : maintenanceId ? "Save maintenance" : "Create maintenance"}
+        <Button type="submit" disabled={isPending} loading={isPending}>
+          {maintenanceId ? "Save maintenance" : "Create maintenance"}
         </Button>
       )}
     </form>

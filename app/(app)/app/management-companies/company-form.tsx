@@ -106,8 +106,8 @@ export default function CompanyForm({
       </div>
       {error ? <p className="text-sm text-ember">{error}</p> : null}
       {readOnly ? null : (
-        <Button type="submit" disabled={isPending}>
-          {isPending ? "Saving..." : companyId ? "Save changes" : "Create company"}
+        <Button type="submit" disabled={isPending} loading={isPending}>
+          {companyId ? "Save changes" : "Create company"}
         </Button>
       )}
     </form>

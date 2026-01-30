@@ -41,7 +41,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
 
   const [managementCompanies, categories] = await Promise.all([
     db.managementCompany.findMany({
-      where: { companyId: membership.companyId },
+      where: { companyId: membership.companyId, OR: [{ archivedAt: null }, { id: contact.managementCompanyId }] },
       orderBy: { name: "asc" },
       select: { id: true, name: true }
     }),

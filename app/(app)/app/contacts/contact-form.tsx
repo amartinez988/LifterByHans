@@ -262,8 +262,8 @@ export default function ContactForm({
 
       {error ? <p className="text-sm text-ember">{error}</p> : null}
       {readOnly ? null : (
-        <Button type="submit" disabled={isPending}>
-          {isPending ? "Saving..." : contactId ? "Save contact" : "Create contact"}
+        <Button type="submit" disabled={isPending} loading={isPending}>
+          {contactId ? "Save contact" : "Create contact"}
         </Button>
       )}
     </form>

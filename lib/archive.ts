@@ -14,3 +14,18 @@ export function getArchiveWhereClause(filter: ArchiveFilterValue | string | unde
       return { archivedAt: null };
   }
 }
+
+// Helper function for isActive-based filtering (mechanics, inspectors)
+export function getActiveWhereClause(filter: ArchiveFilterValue | string | undefined) {
+  const filterValue = (filter as ArchiveFilterValue) || "active";
+
+  switch (filterValue) {
+    case "archived":
+      return { isActive: false };
+    case "all":
+      return {};
+    case "active":
+    default:
+      return { isActive: true };
+  }
+}

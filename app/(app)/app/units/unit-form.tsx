@@ -590,8 +590,8 @@ export default function UnitForm({
       </div>
       {error ? <p className="text-sm text-ember">{error}</p> : null}
       {readOnly ? null : (
-        <Button type="submit" disabled={isPending}>
-          {isPending ? "Saving..." : unitId ? "Save unit" : "Create unit"}
+        <Button type="submit" disabled={isPending} loading={isPending}>
+          {unitId ? "Save unit" : "Create unit"}
         </Button>
       )}
     </form>

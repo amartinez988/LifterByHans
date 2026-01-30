@@ -2,15 +2,17 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
+import { ArchiveFilter } from "@/components/ui/archive-filter";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { SearchInput } from "@/components/ui/search-input";
+import { getActiveWhereClause } from "@/lib/archive";
 import { getSearchFilter } from "@/lib/search";
 import { db } from "@/lib/db";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 
 type PageProps = {
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{ filter?: string; q?: string }>;
 };
 
 export default async function MechanicsPage({ searchParams }: PageProps) {
@@ -21,11 +23,13 @@ export default async function MechanicsPage({ searchParams }: PageProps) {
   }
 
   const params = await searchParams;
+  const activeFilter = getActiveWhereClause(params.filter);
   const searchFilter = getSearchFilter(params.q, ["firstName", "lastName", "email", "phone"]);
 
   const mechanics = await db.mechanic.findMany({
     where: {
       companyId: membership.companyId,
+      ...activeFilter,
       ...searchFilter
     },
     include: { mechanicLevel: true },
@@ -45,6 +49,9 @@ export default async function MechanicsPage({ searchParams }: PageProps) {
         <div className="flex flex-wrap items-center gap-3">
           <Suspense fallback={null}>
             <SearchInput placeholder="Search mechanics..." />
+          </Suspense>
+          <Suspense fallback={null}>
+            <ArchiveFilter />
           </Suspense>
           {canEdit ? (
             <Button asChild size="sm">

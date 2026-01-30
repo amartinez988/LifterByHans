@@ -302,8 +302,8 @@ export default function JobForm({
 
       {error ? <p className="text-sm text-ember">{error}</p> : null}
       {readOnly ? null : (
-        <Button type="submit" disabled={isPending}>
-          {isPending ? "Saving..." : jobId ? "Save job" : "Create job"}
+        <Button type="submit" disabled={isPending} loading={isPending}>
+          {jobId ? "Save job" : "Create job"}
         </Button>
       )}
     </form>

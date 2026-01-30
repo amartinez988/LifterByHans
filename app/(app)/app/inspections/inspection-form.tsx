@@ -531,8 +531,8 @@ export default function InspectionForm({
 
       {error ? <p className="text-sm text-ember">{error}</p> : null}
       {readOnly ? null : (
-        <Button type="submit" disabled={isPending}>
-          {isPending ? "Saving..." : inspectionId ? "Save inspection" : "Create inspection"}
+        <Button type="submit" disabled={isPending} loading={isPending}>
+          {inspectionId ? "Save inspection" : "Create inspection"}
         </Button>
       )}
     </form>

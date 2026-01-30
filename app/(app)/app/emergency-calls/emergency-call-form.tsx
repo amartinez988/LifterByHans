@@ -318,8 +318,8 @@ export default function EmergencyCallForm({
 
       {error ? <p className="text-sm text-ember">{error}</p> : null}
       {readOnly ? null : (
-        <Button type="submit" disabled={isPending}>
-          {isPending ? "Saving..." : emergencyId ? "Save emergency call" : "Create emergency call"}
+        <Button type="submit" disabled={isPending} loading={isPending}>
+          {emergencyId ? "Save emergency call" : "Create emergency call"}
         </Button>
       )}
     </form>

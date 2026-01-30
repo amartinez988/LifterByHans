@@ -183,8 +183,8 @@ export default function MechanicForm({
       </div>
       {error ? <p className="text-sm text-ember">{error}</p> : null}
       {readOnly ? null : (
-        <Button type="submit" disabled={isPending}>
-          {isPending ? "Saving..." : mechanicId ? "Save mechanic" : "Create mechanic"}
+        <Button type="submit" disabled={isPending} loading={isPending}>
+          {mechanicId ? "Save mechanic" : "Create mechanic"}
         </Button>
       )}
     </form>

@@ -22,7 +22,7 @@ export default async function NewContactPage() {
 
   const [managementCompanies, categories] = await Promise.all([
     db.managementCompany.findMany({
-      where: { companyId: membership.companyId },
+      where: { companyId: membership.companyId, archivedAt: null },
       orderBy: { name: "asc" },
       select: { id: true, name: true }
     }),

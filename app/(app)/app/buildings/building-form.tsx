@@ -93,8 +93,8 @@ export default function BuildingForm({
       </div>
       {error ? <p className="text-sm text-ember">{error}</p> : null}
       {readOnly ? null : (
-        <Button type="submit" disabled={isPending}>
-          {isPending ? "Saving..." : buildingId ? "Save building" : "Create building"}
+        <Button type="submit" disabled={isPending} loading={isPending}>
+          {buildingId ? "Save building" : "Create building"}
         </Button>
       )}
     </form>
