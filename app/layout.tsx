@@ -15,8 +15,12 @@ const sans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "LIFTER",
-  description: "Vertical SaaS for elevator and escalator service teams."
+  title: "UPLIO",
+  description: "Elevator and escalator service management platform.",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg"
+  }
 };
 
 export default function RootLayout({

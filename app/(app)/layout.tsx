@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Zap } from "lucide-react";
 
 import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
@@ -34,10 +34,8 @@ export default async function AppLayout({
           {/* Logo/Company Header */}
           <div className="border-b border-slate-100 p-4">
             <div className="flex items-center gap-2 mb-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-brand">
-                <Zap className="h-4 w-4 text-white" />
-              </div>
-              <span className="font-bold text-slate-900">LIFTER</span>
+              <Image src="/icon.svg" alt="Uplio" width={32} height={32} className="rounded-lg" />
+              <span className="font-bold text-slate-900 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">UPLIO</span>
             </div>
             <div className="rounded-lg bg-slate-50 p-3">
               <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">

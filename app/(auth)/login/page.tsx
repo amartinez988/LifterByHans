@@ -23,7 +23,7 @@ export default function LoginPage({
       <div className="space-y-2">
         <h1 className="font-display text-3xl font-bold text-slate-900">Welcome back</h1>
         <p className="text-slate-600">
-          Log in to continue managing your LIFTER workspace.
+          Log in to continue managing your Uplio workspace.
         </p>
       </div>
       

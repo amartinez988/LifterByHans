@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -84,10 +85,8 @@ export default function LandingPage() {
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200/50 bg-white/80 backdrop-blur-lg">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-brand">
-              <Zap className="h-4 w-4 text-white" />
-            </div>
-            <span className="text-xl font-bold text-slate-900">LIFTER</span>
+            <Image src="/icon.svg" alt="Uplio" width={32} height={32} className="rounded-lg" />
+            <span className="text-xl font-bold bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">UPLIO</span>
           </div>
           <nav className="flex items-center gap-3">
             <Link 
@@ -125,7 +124,7 @@ export default function LandingPage() {
               </h1>
               
               <p className="text-lg text-slate-600 md:text-xl">
-                LIFTER is the all-in-one platform for elevator and escalator service 
+                UPLIO is the all-in-one platform for elevator and escalator service 
                 companies. Track units, manage compliance, dispatch emergencies, and 
                 keep your entire operation running smoothly.
               </p>
@@ -169,7 +168,7 @@ export default function LandingPage() {
                 </ul>
                 <div className="mt-6 rounded-2xl bg-gradient-to-r from-brand-50 to-accent-50 p-4">
                   <p className="text-sm font-semibold text-brand-700">
-                    ✨ LIFTER solves all of this — and more.
+                    ✨ UPLIO solves all of this — and more.
                   </p>
                 </div>
               </div>
@@ -205,7 +204,7 @@ export default function LandingPage() {
               Built for elevator service professionals
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
-              From independent contractors to large service companies, LIFTER 
+              From independent contractors to large service companies, UPLIO 
               adapts to how you work.
             </p>
           </div>
@@ -279,7 +278,7 @@ export default function LandingPage() {
                   Never get caught off guard by an expired certificate again
                 </h2>
                 <p className="mt-4 text-lg text-slate-600">
-                  LIFTER tracks every inspection date and alerts you before 
+                  UPLIO tracks every inspection date and alerts you before 
                   certificates expire. Stay compliant without the stress.
                 </p>
                 <ul className="mt-6 space-y-3">
@@ -337,7 +336,7 @@ export default function LandingPage() {
             Ready to modernize your operation?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-white/80">
-            Join elevator service companies who trust LIFTER to keep their 
+            Join elevator service companies who trust UPLIO to keep their 
             business organized and compliant.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -358,13 +357,11 @@ export default function LandingPage() {
       <footer className="border-t border-slate-200 bg-white px-6 py-8">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded bg-gradient-brand">
-              <Zap className="h-3 w-3 text-white" />
-            </div>
-            <span className="font-semibold text-slate-400">LIFTER</span>
+            <Image src="/icon.svg" alt="Uplio" width={24} height={24} className="rounded" />
+            <span className="font-semibold bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">UPLIO</span>
           </div>
           <p className="text-sm text-slate-500">
-            © {new Date().getFullYear()} LIFTER. Built for the vertical transport industry.
+            © {new Date().getFullYear()} UPLIO. Built for the vertical transport industry.
           </p>
         </div>
       </footer>

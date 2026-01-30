@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
+import Image from "next/image";
 import { redirect } from "next/navigation";
-import { Zap } from "lucide-react";
 
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
@@ -23,16 +23,14 @@ export default async function AuthLayout({ children }: { children: ReactNode }) 
       {/* Left side - Branding */}
       <div className="hidden lg:flex lg:flex-col lg:justify-between bg-gradient-to-br from-brand-600 to-brand-800 p-12">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20">
-            <Zap className="h-5 w-5 text-white" />
-          </div>
-          <span className="text-2xl font-bold text-white">LIFTER</span>
+          <Image src="/icon.svg" alt="Uplio" width={40} height={40} className="rounded-xl" />
+          <span className="text-2xl font-bold text-white">UPLIO</span>
         </div>
         
         <div className="space-y-6">
           <blockquote className="space-y-2">
             <p className="text-2xl font-medium text-white/90">
-              &ldquo;LIFTER transformed how we manage our service operations. 
+              &ldquo;Uplio transformed how we manage our service operations. 
               We&apos;ve cut compliance issues by 90% and our team loves it.&rdquo;
             </p>
             <footer className="text-white/70">
@@ -44,7 +42,7 @@ export default async function AuthLayout({ children }: { children: ReactNode }) 
         </div>
         
         <p className="text-sm text-white/50">
-          © {new Date().getFullYear()} LIFTER. All rights reserved.
+          © {new Date().getFullYear()} Uplio. All rights reserved.
         </p>
       </div>
       
@@ -53,10 +51,8 @@ export default async function AuthLayout({ children }: { children: ReactNode }) 
         <div className="mx-auto w-full max-w-md">
           {/* Mobile logo */}
           <div className="mb-8 flex items-center justify-center gap-2 lg:hidden">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-brand">
-              <Zap className="h-4 w-4 text-white" />
-            </div>
-            <span className="text-xl font-bold text-slate-900">LIFTER</span>
+            <Image src="/icon.svg" alt="Uplio" width={32} height={32} className="rounded-lg" />
+            <span className="text-xl font-bold bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">UPLIO</span>
           </div>
           
           {children}
