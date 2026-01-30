@@ -154,7 +154,7 @@ export default async function JobsPage({ searchParams }: PageProps) {
             <Link
               key={job.id}
               href={`/app/jobs/${job.id}`}
-              className="rounded-2xl border border-ink/10 bg-white/80 p-4 shadow-soft transition hover:border-ink/30"
+              className="block rounded-2xl border border-ink/10 bg-white/80 p-4 shadow-soft transition hover:border-ink/30"
             >
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div className="space-y-1">

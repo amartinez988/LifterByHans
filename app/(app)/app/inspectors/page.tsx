@@ -61,7 +61,7 @@ export default async function InspectorsPage({ searchParams }: PageProps) {
             <Link
               key={inspector.id}
               href={`/app/inspectors/${inspector.id}`}
-              className="rounded-2xl border border-ink/10 bg-white/80 p-4 shadow-soft transition hover:border-ink/30"
+              className="block rounded-2xl border border-ink/10 bg-white/80 p-4 shadow-soft transition hover:border-ink/30"
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div>

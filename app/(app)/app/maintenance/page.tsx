@@ -74,7 +74,7 @@ export default async function MaintenancePage({ searchParams }: PageProps) {
             <Link
               key={record.id}
               href={`/app/maintenance/${record.id}`}
-              className="rounded-2xl border border-ink/10 bg-white/80 p-4 shadow-soft transition hover:border-ink/30"
+              className="block rounded-2xl border border-ink/10 bg-white/80 p-4 shadow-soft transition hover:border-ink/30"
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div>
