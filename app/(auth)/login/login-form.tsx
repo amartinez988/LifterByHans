@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -60,7 +61,15 @@ export default function LoginForm({ callbackUrl }: { callbackUrl?: string }) {
       </div>
       
       <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
+        <div className="flex items-center justify-between">
+          <Label htmlFor="password">Password</Label>
+          <Link 
+            href="/forgot-password" 
+            className="text-xs text-brand-600 hover:text-brand-500 transition-colors"
+          >
+            Forgot password?
+          </Link>
+        </div>
         <Input 
           id="password" 
           type="password" 

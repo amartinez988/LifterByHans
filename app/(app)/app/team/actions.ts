@@ -4,6 +4,7 @@ import crypto from "crypto";
 import { revalidatePath } from "next/cache";
 
 import { db } from "@/lib/db";
+import { sendTeamInviteEmail } from "@/lib/email";
 import { canManageTeam, getCurrentMembership } from "@/lib/team";
 import { inviteSchema } from "@/lib/validators";
 
@@ -56,6 +57,12 @@ export async function createInviteAction(
   const expiresAt = new Date();
   expiresAt.setDate(expiresAt.getDate() + INVITE_EXPIRY_DAYS);
 
+  // Get inviter name and company name for the email
+  const [inviter, company] = await Promise.all([
+    db.user.findUnique({ where: { id: membership.userId }, select: { name: true } }),
+    db.company.findUnique({ where: { id: membership.companyId }, select: { name: true } })
+  ]);
+
   await db.companyInvite.create({
     data: {
       companyId: membership.companyId,
@@ -66,6 +73,20 @@ export async function createInviteAction(
       createdByUserId: membership.userId
     }
   });
+
+  // Send invite email
+  try {
+    await sendTeamInviteEmail(
+      email,
+      inviter?.name ?? "Your teammate",
+      company?.name ?? "a workspace",
+      token,
+      role === "ADMIN" ? "Admin" : "Member"
+    );
+  } catch (error) {
+    console.error("Failed to send invite email:", error);
+    // Don't fail the invite if email fails - user can still copy the link
+  }
 
   revalidatePath("/app/team");
 
