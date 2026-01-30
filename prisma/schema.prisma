@@ -30,6 +30,7 @@ model Company {
   owner     User     @relation("CompanyOwner", fields: [ownerId], references: [id])
   members   CompanyMember[]
   invites   CompanyInvite[]
+  subscription Subscription?
   managementCompanies ManagementCompany[]
   contacts  Contact[]
   contactCategories ContactCategory[]
@@ -635,4 +636,54 @@ model PortalAccess {
 
   @@index([managementCompanyId])
   @@index([contactEmail])
+}
+
+// Subscription & Billing
+enum SubscriptionStatus {
+  TRIALING
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  UNPAID
+}
+
+enum SubscriptionPlan {
+  STARTER
+  PROFESSIONAL
+  BUSINESS
+}
+
+model Subscription {
+  id                    String             @id @default(uuid())
+  companyId             String             @unique
+  company               Company            @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  
+  // Subscription status
+  status                SubscriptionStatus @default(TRIALING)
+  plan                  SubscriptionPlan   @default(STARTER)
+  
+  // Trial info
+  trialEndsAt           DateTime?
+  
+  // Stripe IDs
+  stripeCustomerId      String?            @unique
+  stripeSubscriptionId  String?            @unique
+  stripePriceId         String?
+  
+  // Current period
+  currentPeriodStart    DateTime?
+  currentPeriodEnd      DateTime?
+  
+  // Admin controls
+  isTester              Boolean            @default(false)  // Exempt from payment
+  trialExtendedAt       DateTime?                           // Track if trial was extended
+  trialExtendedDays     Int?                                // How many days it was extended
+  
+  // Limits based on plan (can be overridden)
+  maxUsers              Int?
+  maxUnits              Int?
+  
+  canceledAt            DateTime?
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
 }

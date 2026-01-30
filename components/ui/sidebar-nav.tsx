@@ -21,6 +21,7 @@ import {
   ChevronDown,
   ChevronRight,
   BarChart3,
+  CreditCard,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -97,6 +98,7 @@ const navGroups: NavGroup[] = [
     defaultOpen: false,
     items: [
       { label: "Workspace", href: "/app/settings", icon: <Settings className="h-4 w-4" /> },
+      { label: "Billing", href: "/app/settings/billing", icon: <CreditCard className="h-4 w-4" /> },
     ],
   },
 ];

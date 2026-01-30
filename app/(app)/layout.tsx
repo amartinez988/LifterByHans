@@ -1,13 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 
 import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { SidebarNav } from "@/components/ui/sidebar-nav";
 import { db } from "@/lib/db";
+import { checkSubscriptionAccess } from "@/lib/check-subscription";
 
 import { signOutAction } from "./actions";
+import { SubscriptionBanner } from "./subscription-banner";
+
+// Paths that don't require subscription check
+const EXEMPT_PATHS = ["/subscribe", "/onboarding", "/app/settings/billing"];
 
 export default async function AppLayout({
   children
@@ -25,6 +31,21 @@ export default async function AppLayout({
     include: { company: true }
   });
   const company = membership?.company ?? null;
+
+  // Check subscription access
+  const headersList = await headers();
+  const pathname = headersList.get("x-pathname") || "";
+  const isExemptPath = EXEMPT_PATHS.some(p => pathname.startsWith(p));
+
+  let subscriptionCheck = null;
+  if (company && !isExemptPath) {
+    subscriptionCheck = await checkSubscriptionAccess(company.id);
+    
+    // Redirect to subscribe page if no access
+    if (!subscriptionCheck.hasAccess) {
+      redirect("/subscribe");
+    }
+  }
 
   return (
     <div className="flex min-h-screen bg-slate-50">
@@ -75,9 +96,20 @@ export default async function AppLayout({
       </aside>
 
       {/* Main Content */}
-      <main className="ml-64 flex-1 p-8">
-        <div className="mx-auto max-w-6xl">
-          {children}
+      <main className="ml-64 flex-1">
+        {/* Subscription Warning Banners */}
+        {subscriptionCheck && (
+          <SubscriptionBanner 
+            status={subscriptionCheck.subscription?.status}
+            daysRemaining={subscriptionCheck.daysRemaining}
+            reason={subscriptionCheck.reason}
+          />
+        )}
+        
+        <div className="p-8">
+          <div className="mx-auto max-w-6xl">
+            {children}
+          </div>
         </div>
       </main>
     </div>

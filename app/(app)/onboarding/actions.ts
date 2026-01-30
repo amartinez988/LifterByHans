@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
 import { onboardingSchema } from "@/lib/validators";
+import { createTrialSubscription } from "@/lib/subscription";
 
 export type OnboardingActionState = {
   error?: string;
@@ -52,6 +53,9 @@ export async function createCompanyAction(
       role: "OWNER"
     }
   });
+
+  // Create trial subscription for new company
+  await createTrialSubscription(company.id);
 
   redirect("/app");
 }
