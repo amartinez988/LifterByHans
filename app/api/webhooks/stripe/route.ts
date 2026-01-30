@@ -139,8 +139,8 @@ async function updateSubscriptionRecord(
     status: mapStripeStatus(subscription.status),
     stripeSubscriptionId: subscription.id,
     stripePriceId: priceId || undefined,
-    currentPeriodStart: new Date(subscription.current_period_start * 1000),
-    currentPeriodEnd: new Date(subscription.current_period_end * 1000),
+    currentPeriodStart: new Date(subscription.currentPeriodStart * 1000),
+    currentPeriodEnd: new Date(subscription.currentPeriodEnd * 1000),
     canceledAt: subscription.canceled_at
       ? new Date(subscription.canceled_at * 1000)
       : null,
