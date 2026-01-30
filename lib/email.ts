@@ -23,7 +23,7 @@ export async function sendVerificationEmail(email: string, token: string) {
           <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
             <div style="text-align: center; margin-bottom: 32px;">
               <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="border-radius: 12px; margin-bottom: 16px;" />
-              <h1 style="margin: 0; font-size: 24px; font-weight: 700; background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">UPLIO</h1>
+              <h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #4f46e5;">UPLIO</h1>
             </div>
             
             <h2 style="margin: 0 0 16px; font-size: 20px; font-weight: 600; color: #0f172a;">Verify your email</h2>
@@ -31,7 +31,7 @@ export async function sendVerificationEmail(email: string, token: string) {
               Thanks for signing up for Uplio! Click the button below to verify your email address and get started.
             </p>
             
-            <a href="${verifyUrl}" style="display: inline-block; background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; text-decoration: none; padding: 14px 28px; border-radius: 12px; font-weight: 600; font-size: 14px;">
+            <a href="${verifyUrl}" style="display: inline-block; background-color: #4f46e5; color: #ffffff; text-decoration: none; padding: 14px 28px; border-radius: 12px; font-weight: 600; font-size: 14px; mso-padding-alt: 0; text-align: center;">
               Verify Email
             </a>
             
@@ -69,7 +69,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
           <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
             <div style="text-align: center; margin-bottom: 32px;">
               <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="border-radius: 12px; margin-bottom: 16px;" />
-              <h1 style="margin: 0; font-size: 24px; font-weight: 700; background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">UPLIO</h1>
+              <h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #4f46e5;">UPLIO</h1>
             </div>
             
             <h2 style="margin: 0 0 16px; font-size: 20px; font-weight: 600; color: #0f172a;">Reset your password</h2>
@@ -77,7 +77,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
               We received a request to reset your password. Click the button below to create a new password.
             </p>
             
-            <a href="${resetUrl}" style="display: inline-block; background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; text-decoration: none; padding: 14px 28px; border-radius: 12px; font-weight: 600; font-size: 14px;">
+            <a href="${resetUrl}" style="display: inline-block; background-color: #4f46e5; color: #ffffff; text-decoration: none; padding: 14px 28px; border-radius: 12px; font-weight: 600; font-size: 14px; mso-padding-alt: 0; text-align: center;">
               Reset Password
             </a>
             
@@ -121,7 +121,7 @@ export async function sendTeamInviteEmail(
           <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
             <div style="text-align: center; margin-bottom: 32px;">
               <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="border-radius: 12px; margin-bottom: 16px;" />
-              <h1 style="margin: 0; font-size: 24px; font-weight: 700; background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">UPLIO</h1>
+              <h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #4f46e5;">UPLIO</h1>
             </div>
             
             <h2 style="margin: 0 0 16px; font-size: 20px; font-weight: 600; color: #0f172a;">You're invited!</h2>
@@ -129,7 +129,7 @@ export async function sendTeamInviteEmail(
               <strong style="color: #0f172a;">${inviterName}</strong> has invited you to join <strong style="color: #0f172a;">${companyName}</strong> on Uplio as a <strong style="color: #0f172a;">${role}</strong>.
             </p>
             
-            <a href="${inviteUrl}" style="display: inline-block; background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; text-decoration: none; padding: 14px 28px; border-radius: 12px; font-weight: 600; font-size: 14px;">
+            <a href="${inviteUrl}" style="display: inline-block; background-color: #4f46e5; color: #ffffff; text-decoration: none; padding: 14px 28px; border-radius: 12px; font-weight: 600; font-size: 14px; mso-padding-alt: 0; text-align: center;">
               Accept Invitation
             </a>
             
@@ -165,7 +165,7 @@ export async function sendWelcomeEmail(email: string, name: string) {
           <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
             <div style="text-align: center; margin-bottom: 32px;">
               <img src="${LOGO_URL}" alt="Uplio" width="48" height="48" style="border-radius: 12px; margin-bottom: 16px;" />
-              <h1 style="margin: 0; font-size: 24px; font-weight: 700; background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">UPLIO</h1>
+              <h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #4f46e5;">UPLIO</h1>
             </div>
             
             <h2 style="margin: 0 0 16px; font-size: 20px; font-weight: 600; color: #0f172a;">Welcome to Uplio, ${name}! 🎉</h2>
@@ -180,7 +180,7 @@ export async function sendWelcomeEmail(email: string, name: string) {
               <li>Invite your team members</li>
             </ul>
             
-            <a href="${process.env.NEXT_PUBLIC_APP_URL}/app" style="display: inline-block; background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; text-decoration: none; padding: 14px 28px; border-radius: 12px; font-weight: 600; font-size: 14px;">
+            <a href="${process.env.NEXT_PUBLIC_APP_URL}/app" style="display: inline-block; background-color: #4f46e5; color: #ffffff; text-decoration: none; padding: 14px 28px; border-radius: 12px; font-weight: 600; font-size: 14px; mso-padding-alt: 0; text-align: center;">
               Go to Dashboard
             </a>
             
