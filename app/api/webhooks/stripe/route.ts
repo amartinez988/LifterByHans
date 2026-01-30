@@ -192,7 +192,8 @@ async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
 }
 
 async function handlePaymentSucceeded(invoice: Stripe.Invoice) {
-  const subscriptionId = invoice.subscription as string | null;
+  const invoiceData = invoice as unknown as { subscription?: string };
+  const subscriptionId = invoiceData.subscription;
   if (!subscriptionId) return;
 
   const existing = await db.subscription.findFirst({
@@ -212,7 +213,8 @@ async function handlePaymentSucceeded(invoice: Stripe.Invoice) {
 }
 
 async function handlePaymentFailed(invoice: Stripe.Invoice) {
-  const subscriptionId = invoice.subscription as string | null;
+  const invoiceData = invoice as unknown as { subscription?: string };
+  const subscriptionId = invoiceData.subscription;
   if (!subscriptionId) return;
 
   const existing = await db.subscription.findFirst({
