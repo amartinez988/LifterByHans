@@ -135,13 +135,12 @@ async function updateSubscriptionRecord(
   const priceId = subscription.items.data[0]?.price?.id;
   const plan = priceId ? getPlanByPriceId(priceId) : null;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const updateData: any = {
+  const updateData: Record<string, unknown> = {
     status: mapStripeStatus(subscription.status),
     stripeSubscriptionId: subscription.id,
     stripePriceId: priceId || undefined,
-    currentPeriodStart: new Date((subscription as any).current_period_start * 1000),
-    currentPeriodEnd: new Date((subscription as any).current_period_end * 1000),
+    currentPeriodStart: new Date(subscription.current_period_start * 1000),
+    currentPeriodEnd: new Date(subscription.current_period_end * 1000),
     canceledAt: subscription.canceled_at
       ? new Date(subscription.canceled_at * 1000)
       : null,
@@ -183,7 +182,7 @@ async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
 }
 
 async function handlePaymentSucceeded(invoice: Stripe.Invoice) {
-  const subscriptionId = (invoice as any).subscription as string;
+  const subscriptionId = invoice.subscription as string | null;
   if (!subscriptionId) return;
 
   const existing = await db.subscription.findFirst({
@@ -203,7 +202,7 @@ async function handlePaymentSucceeded(invoice: Stripe.Invoice) {
 }
 
 async function handlePaymentFailed(invoice: Stripe.Invoice) {
-  const subscriptionId = (invoice as any).subscription as string;
+  const subscriptionId = invoice.subscription as string | null;
   if (!subscriptionId) return;
 
   const existing = await db.subscription.findFirst({
