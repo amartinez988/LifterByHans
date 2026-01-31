@@ -28,9 +28,7 @@ interface Job {
     building: {
       id: string;
       name: string;
-      address: string | null;
-      city: string | null;
-      state: string | null;
+      address: string;
       localPhone: string | null;
     };
   } | null;
@@ -64,13 +62,7 @@ export function JobCard({ job }: JobCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const fullAddress = job.unit ? [
-    job.unit.building.address,
-    job.unit.building.city,
-    job.unit.building.state,
-  ]
-    .filter(Boolean)
-    .join(", ") : "";
+  const fullAddress = job.unit?.building.address || "";
 
   const mapsUrl = fullAddress
     ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(fullAddress)}`
