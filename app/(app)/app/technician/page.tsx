@@ -173,7 +173,7 @@ export default async function TechnicianPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <a
-                      href={`tel:${emergency.unit.building.phone || ""}`}
+                      href={`tel:${emergency.unit.building.localPhone || ""}`}
                       className="p-2 bg-red-100 rounded-lg"
                       onClick={(e) => e.stopPropagation()}
                     >
