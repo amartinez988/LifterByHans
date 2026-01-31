@@ -95,6 +95,9 @@ export default function LandingPage() {
             >
               Log in
             </Link>
+            <Button asChild variant="outline" size="sm">
+              <Link href="/contact">Request Demo</Link>
+            </Button>
             <Button asChild size="sm">
               <Link href="/signup">Get Started Free</Link>
             </Button>
@@ -137,7 +140,7 @@ export default function LandingPage() {
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="xl">
-                  <Link href="/login">View Demo</Link>
+                  <Link href="/contact">Request Demo</Link>
                 </Button>
               </div>
               
