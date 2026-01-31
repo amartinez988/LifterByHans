@@ -48,7 +48,8 @@ export async function createMaintenanceAction(
     return { error: "Invalid maintenance relationships." };
   }
 
-  const maintenanceDate = new Date(parsed.data.maintenanceDate);
+  // Append T12:00:00 to parse as local noon, avoiding timezone date shift
+  const maintenanceDate = new Date(parsed.data.maintenanceDate + "T12:00:00");
   if (Number.isNaN(maintenanceDate.getTime())) {
     return { error: "Invalid maintenance date." };
   }
@@ -130,7 +131,8 @@ export async function updateMaintenanceAction(
     return { error: "Invalid maintenance relationships." };
   }
 
-  const maintenanceDate = new Date(parsed.data.maintenanceDate);
+  // Append T12:00:00 to parse as local noon, avoiding timezone date shift
+  const maintenanceDate = new Date(parsed.data.maintenanceDate + "T12:00:00");
   if (Number.isNaN(maintenanceDate.getTime())) {
     return { error: "Invalid maintenance date." };
   }

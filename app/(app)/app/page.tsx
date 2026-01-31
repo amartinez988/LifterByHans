@@ -5,6 +5,8 @@ import { AlertTriangle, ArrowRight, Clock, Phone, Shield, Wrench } from "lucide-
 import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { QuickActions } from "@/components/ui/quick-actions";
+import { ComplianceForecast } from "@/components/compliance-forecast";
+import { RecentActivity } from "@/components/recent-activity";
 import { db } from "@/lib/db";
 import { getInspectionComplianceStatus } from "@/lib/derived";
 
@@ -24,7 +26,16 @@ export default async function AppHomePage() {
     redirect("/onboarding");
   }
 
-  const [units, openMaintenance, openEmergency] = await Promise.all([
+  const [
+    units, 
+    openMaintenance, 
+    openEmergency, 
+    allInspections,
+    recentInspections,
+    recentMaintenance,
+    recentEmergency,
+    recentIssueReports,
+  ] = await Promise.all([
     db.unit.findMany({
       where: { companyId: membership.companyId, isActive: true },
       include: {
@@ -36,8 +47,131 @@ export default async function AppHomePage() {
     }),
     db.emergencyCall.count({
       where: { companyId: membership.companyId, completedAt: null }
-    })
+    }),
+    // Get all latest inspections for compliance forecast
+    db.inspection.findMany({
+      where: { 
+        companyId: membership.companyId,
+        archivedAt: null,
+      },
+      orderBy: { inspectionDate: "desc" },
+      distinct: ["unitId"],
+      select: {
+        expirationDate: true,
+        unit: {
+          select: { identifier: true }
+        }
+      }
+    }),
+    // Recent inspections for activity feed
+    db.inspection.findMany({
+      where: { companyId: membership.companyId },
+      orderBy: { inspectionDate: "desc" },
+      take: 5,
+      select: {
+        id: true,
+        inspectionDate: true,
+        unit: { select: { identifier: true } },
+        inspectionResult: { select: { name: true } },
+      }
+    }),
+    // Recent maintenance for activity feed
+    db.maintenance.findMany({
+      where: { companyId: membership.companyId },
+      orderBy: { createdAt: "desc" },
+      take: 5,
+      select: {
+        id: true,
+        status: true,
+        maintenanceDate: true,
+        notes: true,
+        unit: { select: { identifier: true } },
+      }
+    }),
+    // Recent emergency calls for activity feed
+    db.emergencyCall.findMany({
+      where: { companyId: membership.companyId },
+      orderBy: { callInAt: "desc" },
+      take: 5,
+      select: {
+        id: true,
+        callInAt: true,
+        completedAt: true,
+        issueDescription: true,
+        unit: { select: { identifier: true } },
+      }
+    }),
+    // Recent issue reports for activity feed
+    db.issueReport.findMany({
+      where: { companyId: membership.companyId },
+      orderBy: { reportedAt: "desc" },
+      take: 5,
+      select: {
+        id: true,
+        issueType: true,
+        status: true,
+        reportedAt: true,
+        unit: { select: { identifier: true } },
+      }
+    }),
   ]);
+  
+  // Format inspections for forecast
+  const forecastInspections = allInspections.map(insp => ({
+    expirationDate: insp.expirationDate,
+    unitIdentifier: insp.unit.identifier,
+  }));
+
+  // Prepare recent activity feed
+  type ActivityItem = {
+    id: string;
+    type: "inspection" | "maintenance" | "emergency" | "issue_report";
+    title: string;
+    subtitle: string;
+    status?: string;
+    date: Date;
+    link?: string;
+  };
+
+  const activities: ActivityItem[] = [
+    ...recentInspections.map((i) => ({
+      id: `insp-${i.id}`,
+      type: "inspection" as const,
+      title: `Inspection - ${i.unit.identifier}`,
+      subtitle: i.inspectionResult?.name || "Pending result",
+      date: i.inspectionDate,
+      link: `/app/inspections`,
+    })),
+    ...recentMaintenance.map((m) => ({
+      id: `maint-${m.id}`,
+      type: "maintenance" as const,
+      title: `Maintenance - ${m.unit.identifier}`,
+      subtitle: `Scheduled for ${m.maintenanceDate.toLocaleDateString()}`,
+      status: m.status,
+      date: m.maintenanceDate,
+      link: `/app/maintenance`,
+    })),
+    ...recentEmergency.map((e) => ({
+      id: `emerg-${e.id}`,
+      type: "emergency" as const,
+      title: `Emergency Call - ${e.unit.identifier}`,
+      subtitle: e.issueDescription?.slice(0, 50) || "No description",
+      status: e.completedAt ? "COMPLETED" : "OPEN",
+      date: e.callInAt,
+      link: `/app/emergency-calls`,
+    })),
+    ...recentIssueReports.map((r) => ({
+      id: `issue-${r.id}`,
+      type: "issue_report" as const,
+      title: `Issue Report - ${r.unit.identifier}`,
+      subtitle: r.issueType.replace(/_/g, " "),
+      status: r.status,
+      date: r.reportedAt,
+      link: `/app/issue-reports`,
+    })),
+  ]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 10);
 
   let expiringSoon = 0;
   let overdue = 0;
@@ -172,6 +306,19 @@ export default async function AppHomePage() {
             </p>
           </div>
         </Link>
+      </div>
+
+      {/* Charts Row */}
+      <div className="grid gap-6 lg:grid-cols-2">
+        {/* Compliance Forecast */}
+        <ComplianceForecast
+          inspections={forecastInspections}
+          totalUnits={activeUnits}
+          currentCompliant={compliant}
+        />
+
+        {/* Recent Activity */}
+        <RecentActivity activities={activities} />
       </div>
 
       {/* Quick Actions */}

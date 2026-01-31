@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Calendar, Wrench, AlertCircle, CheckCircle, Clock } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Card, CardContent } from "@/components/ui/card";
 import { PageHeader } from "@/components/ui/page-header";
+import { UnitQRCode } from "@/components/unit-qr-code";
+import { DocumentUpload } from "@/components/document-upload";
 import { db } from "@/lib/db";
 import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 
@@ -39,7 +42,38 @@ export default async function UnitPage({ params }: UnitPageProps) {
       unitCategory: true,
       unitStatus: true,
       brand: true,
-      equipmentType: true
+      equipmentType: true,
+      inspections: {
+        where: { archivedAt: null },
+        orderBy: { inspectionDate: "desc" },
+        take: 5,
+        include: {
+          inspectionResult: true,
+          inspectionStatus: true,
+          inspector: true,
+        },
+      },
+      maintenances: {
+        where: { archivedAt: null },
+        orderBy: { maintenanceDate: "desc" },
+        take: 5,
+        include: {
+          mechanic: true,
+        },
+      },
+      emergencyCalls: {
+        where: { archivedAt: null },
+        orderBy: { callInAt: "desc" },
+        take: 5,
+        include: {
+          emergencyCallStatus: true,
+          mechanic: true,
+        },
+      },
+      documents: {
+        orderBy: { createdAt: "desc" },
+        take: 20,
+      },
     }
   });
 
@@ -103,6 +137,24 @@ export default async function UnitPage({ params }: UnitPageProps) {
           }
         ]}
       />
+
+      {/* QR Code Section */}
+      <Card>
+        <CardContent className="pt-6">
+          <UnitQRCode unitId={unit.id} unitIdentifier={unit.identifier} />
+        </CardContent>
+      </Card>
+
+      {/* Documents Section */}
+      <Card>
+        <CardContent className="pt-6">
+          <DocumentUpload 
+            unitId={unit.id} 
+            documents={unit.documents} 
+            canEdit={canEdit && !isArchived}
+          />
+        </CardContent>
+      </Card>
 
       {/* Location & Unit Info */}
       <Card>
@@ -211,6 +263,135 @@ export default async function UnitPage({ params }: UnitPageProps) {
               notes: unit.notes ?? ""
             }}
           />
+        </CardContent>
+      </Card>
+
+      {/* Service Timeline */}
+      <Card>
+        <CardContent className="pt-6">
+          <h3 className="text-sm font-medium text-ink/60 mb-4 flex items-center gap-2">
+            <Clock className="h-4 w-4" />
+            Service Timeline
+          </h3>
+          
+          {(unit.inspections.length === 0 && unit.maintenances.length === 0 && unit.emergencyCalls.length === 0) ? (
+            <p className="text-sm text-ink/50 text-center py-8">No service history yet.</p>
+          ) : (
+            <div className="space-y-4">
+              {/* Combine and sort all events */}
+              {[
+                ...unit.inspections.map(i => ({
+                  type: "inspection" as const,
+                  date: i.inspectionDate,
+                  data: i,
+                })),
+                ...unit.maintenances.map(m => ({
+                  type: "maintenance" as const,
+                  date: m.maintenanceDate,
+                  data: m,
+                })),
+                ...unit.emergencyCalls.map(e => ({
+                  type: "emergency" as const,
+                  date: e.callInAt,
+                  data: e,
+                })),
+              ]
+                .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                .slice(0, 10)
+                .map((event, index) => (
+                  <div
+                    key={`${event.type}-${index}`}
+                    className={`flex items-start gap-4 p-3 rounded-lg border-l-4 ${
+                      event.type === "inspection"
+                        ? "border-l-blue-500 bg-blue-50/50"
+                        : event.type === "maintenance"
+                        ? "border-l-green-500 bg-green-50/50"
+                        : "border-l-red-500 bg-red-50/50"
+                    }`}
+                  >
+                    <div className={`p-2 rounded-full ${
+                      event.type === "inspection"
+                        ? "bg-blue-100"
+                        : event.type === "maintenance"
+                        ? "bg-green-100"
+                        : "bg-red-100"
+                    }`}>
+                      {event.type === "inspection" ? (
+                        <Calendar className="h-4 w-4 text-blue-600" />
+                      ) : event.type === "maintenance" ? (
+                        <Wrench className="h-4 w-4 text-green-600" />
+                      ) : (
+                        <AlertCircle className="h-4 w-4 text-red-600" />
+                      )}
+                    </div>
+                    
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="text-sm font-medium text-ink">
+                          {event.type === "inspection" && (
+                            <>
+                              Inspection
+                              {event.data.inspectionResult && (
+                                <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${
+                                  event.data.inspectionResult.name.toLowerCase().includes("passed")
+                                    ? "bg-green-100 text-green-700"
+                                    : "bg-amber-100 text-amber-700"
+                                }`}>
+                                  {event.data.inspectionResult.name}
+                                </span>
+                              )}
+                            </>
+                          )}
+                          {event.type === "maintenance" && (
+                            <>
+                              Maintenance
+                              <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${
+                                event.data.status === "COMPLETED"
+                                  ? "bg-green-100 text-green-700"
+                                  : "bg-blue-100 text-blue-700"
+                              }`}>
+                                {event.data.status}
+                              </span>
+                            </>
+                          )}
+                          {event.type === "emergency" && (
+                            <>
+                              Emergency Call
+                              <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-red-100 text-red-700">
+                                {event.data.emergencyCallStatus?.name}
+                              </span>
+                            </>
+                          )}
+                        </p>
+                        <time className="text-xs text-ink/50">
+                          {new Date(event.date).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </time>
+                      </div>
+                      
+                      {event.type === "inspection" && event.data.inspector && (
+                        <p className="text-xs text-ink/60 mt-1">
+                          Inspector: {event.data.inspector.firstName} {event.data.inspector.lastName}
+                        </p>
+                      )}
+                      {event.type === "maintenance" && event.data.mechanic && (
+                        <p className="text-xs text-ink/60 mt-1">
+                          Mechanic: {event.data.mechanic.firstName} {event.data.mechanic.lastName}
+                        </p>
+                      )}
+                      {event.type === "emergency" && (
+                        <p className="text-xs text-ink/60 mt-1 line-clamp-2">
+                          {event.data.issueDescription}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>

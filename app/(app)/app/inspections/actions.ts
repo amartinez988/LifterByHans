@@ -16,7 +16,8 @@ function formatInspectionCode(value: number) {
 
 function parseDate(value: string | null | undefined) {
   if (!value) return null;
-  const date = new Date(value);
+  // Append T12:00:00 to parse as local noon, avoiding timezone date shift
+  const date = new Date(value + "T12:00:00");
   if (Number.isNaN(date.getTime())) {
     return null;
   }

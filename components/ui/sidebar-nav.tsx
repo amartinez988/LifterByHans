@@ -22,6 +22,8 @@ import {
   ChevronRight,
   BarChart3,
   CreditCard,
+  MessageSquareWarning,
+  Smartphone,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -82,6 +84,8 @@ const navGroups: NavGroup[] = [
       { label: "Schedule", href: "/app/schedule", icon: <Calendar className="h-4 w-4" /> },
       { label: "Dispatch", href: "/app/dispatch", icon: <Radio className="h-4 w-4" /> },
       { label: "Inspections", href: "/app/inspections", icon: <ClipboardList className="h-4 w-4" /> },
+      { label: "Issue Reports", href: "/app/issue-reports", icon: <MessageSquareWarning className="h-4 w-4" /> },
+      { label: "Technician View", href: "/app/technician", icon: <Smartphone className="h-4 w-4" /> },
     ],
   },
   {

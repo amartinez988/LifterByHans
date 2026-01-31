@@ -588,7 +588,8 @@ export async function importJobsAction(
       mechanicId = mechanic?.id || null;
     }
 
-    const scheduledDate = new Date(row.scheduledDate);
+    // Append T12:00:00 to parse as local noon, avoiding timezone date shift
+    const scheduledDate = new Date(row.scheduledDate + "T12:00:00");
     if (isNaN(scheduledDate.getTime())) {
       skipped++;
       continue;

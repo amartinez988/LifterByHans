@@ -54,6 +54,9 @@ model Company {
   emergencyCallSequence EmergencyCallSequence?
   scheduledJobs ScheduledJob[]
   jobSequence JobSequence?
+  issueReports IssueReport[]
+  activityLogs ActivityLog[]
+  documents Document[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -257,6 +260,8 @@ model Unit {
   inspections         Inspection[]
   emergencyCalls      EmergencyCall[]
   scheduledJobs       ScheduledJob[]
+  issueReports        IssueReport[]
+  documents           Document[]
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 
@@ -686,4 +691,116 @@ model Subscription {
   canceledAt            DateTime?
   createdAt             DateTime           @default(now())
   updatedAt             DateTime           @updatedAt
+}
+
+// ============================================
+// PHASE 10: QR Code & Issue Reports
+// ============================================
+
+// Issue reports from QR code scans
+model IssueReport {
+  id          String   @id @default(uuid())
+  companyId   String
+  unitId      String
+  issueType   String   // stuck, noise, door, button, light, other
+  description String?
+  contactInfo String?  // Optional contact info from reporter
+  status      IssueReportStatus @default(NEW)
+  resolvedAt  DateTime?
+  resolvedBy  String?
+  resolution  String?
+  company     Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  unit        Unit     @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  reportedAt  DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([companyId])
+  @@index([unitId])
+  @@index([status])
+}
+
+enum IssueReportStatus {
+  NEW
+  ACKNOWLEDGED
+  IN_PROGRESS
+  RESOLVED
+  DISMISSED
+}
+
+// Activity log for service timeline
+model ActivityLog {
+  id          String   @id @default(uuid())
+  companyId   String
+  unitId      String?
+  buildingId  String?
+  activityType ActivityType
+  title       String
+  description String?
+  metadata    String?  // JSON string for extra data
+  performedBy String?  // User ID or name
+  company     Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+
+  @@index([companyId])
+  @@index([unitId])
+  @@index([buildingId])
+  @@index([activityType])
+}
+
+enum ActivityType {
+  INSPECTION_CREATED
+  INSPECTION_PASSED
+  INSPECTION_FAILED
+  MAINTENANCE_SCHEDULED
+  MAINTENANCE_COMPLETED
+  EMERGENCY_CALL
+  EMERGENCY_RESOLVED
+  JOB_SCHEDULED
+  JOB_COMPLETED
+  UNIT_CREATED
+  UNIT_UPDATED
+  ISSUE_REPORTED
+  ISSUE_RESOLVED
+  DOCUMENT_UPLOADED
+  CERTIFICATE_UPLOADED
+  NOTE_ADDED
+}
+
+// Documents management
+model Document {
+  id          String   @id @default(uuid())
+  companyId   String
+  unitId      String?
+  buildingId  String?
+  inspectionId String?
+  documentType DocumentType
+  title       String
+  description String?
+  fileUrl     String
+  fileName    String
+  fileSize    Int?
+  mimeType    String?
+  uploadedBy  String?
+  company     Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  unit        Unit?    @relation(fields: [unitId], references: [id], onDelete: SetNull)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([companyId])
+  @@index([unitId])
+  @@index([buildingId])
+  @@index([documentType])
+}
+
+enum DocumentType {
+  CERTIFICATE
+  INSPECTION_REPORT
+  MAINTENANCE_REPORT
+  MANUAL
+  SCHEMATIC
+  PHOTO
+  CONTRACT
+  INVOICE
+  OTHER
 }

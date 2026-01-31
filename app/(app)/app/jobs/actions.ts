@@ -50,7 +50,8 @@ export async function createJobAction(
     return { error: "Invalid job relationships." };
   }
 
-  const scheduledDate = new Date(parsed.data.scheduledDate);
+  // Append T12:00:00 to parse as local noon, avoiding timezone date shift
+  const scheduledDate = new Date(parsed.data.scheduledDate + "T12:00:00");
   if (Number.isNaN(scheduledDate.getTime())) {
     return { error: "Invalid scheduled date." };
   }
@@ -136,7 +137,8 @@ export async function updateJobAction(
     return { error: "Invalid job relationships." };
   }
 
-  const scheduledDate = new Date(parsed.data.scheduledDate);
+  // Append T12:00:00 to parse as local noon, avoiding timezone date shift
+  const scheduledDate = new Date(parsed.data.scheduledDate + "T12:00:00");
   if (Number.isNaN(scheduledDate.getTime())) {
     return { error: "Invalid scheduled date." };
   }
