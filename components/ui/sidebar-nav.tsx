@@ -85,7 +85,7 @@ const navGroups: NavGroup[] = [
       { label: "Dispatch", href: "/app/dispatch", icon: <Radio className="h-4 w-4" /> },
       { label: "Inspections", href: "/app/inspections", icon: <ClipboardList className="h-4 w-4" /> },
       { label: "Issue Reports", href: "/app/issue-reports", icon: <MessageSquareWarning className="h-4 w-4" /> },
-      { label: "Technician View", href: "/app/technician", icon: <Smartphone className="h-4 w-4" /> },
+      { label: "Technician View", href: "/technician", icon: <Smartphone className="h-4 w-4" /> },
     ],
   },
   {
