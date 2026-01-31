@@ -321,7 +321,7 @@ export default function InspectionForm({
             </button>
           ) : null}
           {showStatusForm && !readOnly ? (
-            <div className="space-y-3 rounded-2xl border border-ink/10 bg-haze p-3">
+            <div className="space-y-3 rounded-2xl border border-ink/10 bg-slate-50 p-3">
               <div className="space-y-2">
                 <Label htmlFor="new-status-name">Name</Label>
                 <Input
@@ -377,7 +377,7 @@ export default function InspectionForm({
             </button>
           ) : null}
           {showResultForm && !readOnly ? (
-            <div className="space-y-3 rounded-2xl border border-ink/10 bg-haze p-3">
+            <div className="space-y-3 rounded-2xl border border-ink/10 bg-slate-50 p-3">
               <div className="space-y-2">
                 <Label htmlFor="new-result-name">Name</Label>
                 <Input
@@ -433,7 +433,7 @@ export default function InspectionForm({
             </button>
           ) : null}
           {showInspectorForm && !readOnly ? (
-            <div className="space-y-3 rounded-2xl border border-ink/10 bg-haze p-3">
+            <div className="space-y-3 rounded-2xl border border-ink/10 bg-slate-50 p-3">
               <div className="grid gap-3 md:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="new-inspector-first">First name</Label>

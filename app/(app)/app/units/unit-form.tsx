@@ -244,7 +244,7 @@ export default function UnitForm({
             </button>
           ) : null}
           {showCategoryForm && !readOnly ? (
-            <div className="space-y-3 rounded-2xl border border-ink/10 bg-haze p-3">
+            <div className="space-y-3 rounded-2xl border border-ink/10 bg-slate-50 p-3">
               <div className="space-y-2">
                 <Label htmlFor="new-category-name">Name</Label>
                 <Input
@@ -305,7 +305,7 @@ export default function UnitForm({
             </button>
           ) : null}
           {showStatusForm && !readOnly ? (
-            <div className="space-y-3 rounded-2xl border border-ink/10 bg-haze p-3">
+            <div className="space-y-3 rounded-2xl border border-ink/10 bg-slate-50 p-3">
               <div className="space-y-2">
                 <Label htmlFor="new-status-name">Name</Label>
                 <Input
@@ -366,7 +366,7 @@ export default function UnitForm({
             </button>
           ) : null}
           {showEquipmentForm && !readOnly ? (
-            <div className="space-y-3 rounded-2xl border border-ink/10 bg-haze p-3">
+            <div className="space-y-3 rounded-2xl border border-ink/10 bg-slate-50 p-3">
               <div className="space-y-2">
                 <Label htmlFor="new-equipment-name">Name</Label>
                 <Input
@@ -435,7 +435,7 @@ export default function UnitForm({
             </button>
           ) : null}
           {showBrandForm && !readOnly ? (
-            <div className="space-y-3 rounded-2xl border border-ink/10 bg-haze p-3">
+            <div className="space-y-3 rounded-2xl border border-ink/10 bg-slate-50 p-3">
               <div className="space-y-2">
                 <Label htmlFor="new-brand-name">Name</Label>
                 <Input
