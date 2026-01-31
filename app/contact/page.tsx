@@ -94,14 +94,13 @@ export default function ContactPage() {
             <div className="space-y-8">
               <div>
                 <h1 className="text-4xl font-bold text-slate-900 mb-4">
-                  Let's talk about your{" "}
+                  Let&apos;s talk about your{" "}
                   <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                     elevator business
                   </span>
                 </h1>
                 <p className="text-lg text-slate-600">
-                  Whether you want a personalized demo, have questions about pricing, 
-                  or just want to see if Uplio is right for your company — we're here to help.
+                  Whether you want a personalized demo, have questions about pricing, or just want to see if Uplio is right for your company — we&apos;re here to help.
                 </p>
               </div>
 
@@ -122,7 +121,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900">Enterprise Solutions</h3>
-                    <p className="text-slate-600">Managing 500+ units? Let's discuss custom pricing and features.</p>
+                    <p className="text-slate-600">Managing 500+ units? Let&apos;s discuss custom pricing and features.</p>
                   </div>
                 </div>
 
@@ -158,7 +157,7 @@ export default function ContactPage() {
                   </div>
                   <h2 className="text-2xl font-bold text-slate-900 mb-2">Message sent!</h2>
                   <p className="text-slate-600 mb-6">
-                    Thanks for reaching out. We'll get back to you within 24 hours.
+                    Thanks for reaching out. We&apos;ll get back to you within 24 hours.
                   </p>
                   <Button asChild variant="outline">
                     <Link href="/">Back to Home</Link>
@@ -167,7 +166,7 @@ export default function ContactPage() {
               ) : (
                 <>
                   <h2 className="text-2xl font-bold text-slate-900 mb-2">Request a Demo</h2>
-                  <p className="text-slate-600 mb-6">Fill out the form and we'll be in touch soon.</p>
+                  <p className="text-slate-600 mb-6">Fill out the form and we&apos;ll be in touch soon.</p>
 
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid sm:grid-cols-2 gap-4">
@@ -235,7 +234,7 @@ export default function ContactPage() {
                         name="message"
                         required
                         rows={4}
-                        placeholder="Tell us about your company, current challenges, or what you'd like to see in a demo..."
+                        placeholder="Tell us about your company, current challenges, or what you would like to see in a demo..."
                         className="w-full px-3 py-2 rounded-md border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                       />
                     </div>
