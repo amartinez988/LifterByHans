@@ -24,6 +24,7 @@ import {
   CreditCard,
   MessageSquareWarning,
   Smartphone,
+  BookOpen,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -172,6 +173,19 @@ export function SidebarNav() {
       {navGroups.map((group) => (
         <NavGroupComponent key={group.title} group={group} />
       ))}
+
+      {/* Documentation Link - Standalone */}
+      <div className="pt-4 mt-4 border-t border-slate-100">
+        <Link
+          href="/docs"
+          target="_blank"
+          className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors"
+        >
+          <BookOpen className="h-4 w-4" />
+          Documentation
+          <span className="ml-auto text-xs text-slate-400">↗</span>
+        </Link>
+      </div>
     </nav>
   );
 }
