@@ -67,14 +67,14 @@ export function IssueReportActions({ reportId, currentStatus }: IssueReportActio
         
         {(currentStatus === "NEW" || currentStatus === "ACKNOWLEDGED") && (
           <DropdownMenuItem onClick={() => updateStatus("IN_PROGRESS")}>
-            <Clock className="mr-2 h-4 w-4 text-blue-500" />
+            <Clock className="mr-2 h-4 w-4 text-brand-500" />
             Mark In Progress
           </DropdownMenuItem>
         )}
         
         {currentStatus !== "RESOLVED" && (
           <DropdownMenuItem onClick={() => updateStatus("RESOLVED")}>
-            <CheckCircle className="mr-2 h-4 w-4 text-green-500" />
+            <CheckCircle className="mr-2 h-4 w-4 text-success-500" />
             Mark Resolved
           </DropdownMenuItem>
         )}

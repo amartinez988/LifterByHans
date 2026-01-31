@@ -56,18 +56,18 @@ export default async function SubscribePage() {
             return (
               <Card 
                 key={key} 
-                className={`relative ${isPopular ? "border-2 border-indigo-500 shadow-lg" : ""}`}
+                className={`relative ${isPopular ? "border-2 border-brand-500 shadow-lg" : ""}`}
               >
                 {isPopular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="bg-indigo-500 text-white text-sm font-medium px-4 py-1 rounded-full">
+                    <span className="bg-brand-500 text-white text-sm font-medium px-4 py-1 rounded-full">
                       Most Popular
                     </span>
                   </div>
                 )}
                 <CardHeader className="text-center pb-2">
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-indigo-100 flex items-center justify-center">
-                    <Icon className="h-6 w-6 text-indigo-600" />
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-brand-100 flex items-center justify-center">
+                    <Icon className="h-6 w-6 text-brand-600" />
                   </div>
                   <CardTitle className="text-xl">{plan.name}</CardTitle>
                   <CardDescription>{plan.description}</CardDescription>
@@ -81,7 +81,7 @@ export default async function SubscribePage() {
                   <ul className="space-y-3 mb-8 text-left">
                     {plan.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
+                        <Check className="h-5 w-5 text-success-500 shrink-0 mt-0.5" />
                         <span className="text-sm text-slate-600">{feature}</span>
                       </li>
                     ))}

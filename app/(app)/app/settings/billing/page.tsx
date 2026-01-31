@@ -56,25 +56,25 @@ export default async function BillingPage() {
                       {PLANS[subscriptionInfo.plan]?.name || subscriptionInfo.plan}
                     </h3>
                     {subscriptionInfo.isTester && (
-                      <span className="px-2 py-1 text-xs bg-purple-100 text-purple-700 rounded-full">
+                      <span className="px-2 py-1 text-xs bg-accent-100 text-accent-700 rounded-full">
                         Tester Account
                       </span>
                     )}
                   </div>
                   <p className="text-sm text-muted-foreground mt-1">
                     {subscriptionInfo.isTrialing && subscriptionInfo.trialDaysRemaining !== null && (
-                      <span className="text-amber-600">
+                      <span className="text-warning-600">
                         Trial ends in {subscriptionInfo.trialDaysRemaining} days
                       </span>
                     )}
                     {subscriptionInfo.isActive && (
-                      <span className="text-green-600">Active subscription</span>
+                      <span className="text-success-600">Active subscription</span>
                     )}
                     {subscriptionInfo.status === "PAST_DUE" && (
-                      <span className="text-red-600">Payment past due</span>
+                      <span className="text-danger-600">Payment past due</span>
                     )}
                     {subscriptionInfo.status === "CANCELED" && (
-                      <span className="text-gray-600">Subscription canceled</span>
+                      <span className="text-slate-600">Subscription canceled</span>
                     )}
                   </p>
                 </div>
@@ -97,7 +97,7 @@ export default async function BillingPage() {
                     </span>
                   </p>
                   {planLimits.usersExceeded && (
-                    <p className="text-xs text-red-600 mt-1">Limit exceeded</p>
+                    <p className="text-xs text-danger-600 mt-1">Limit exceeded</p>
                   )}
                 </div>
                 <div className="p-4 bg-muted rounded-lg">
@@ -109,7 +109,7 @@ export default async function BillingPage() {
                     </span>
                   </p>
                   {planLimits.unitsExceeded && (
-                    <p className="text-xs text-red-600 mt-1">Limit exceeded</p>
+                    <p className="text-xs text-danger-600 mt-1">Limit exceeded</p>
                   )}
                 </div>
               </div>
@@ -180,7 +180,7 @@ export default async function BillingPage() {
                   <ul className="space-y-2 mb-6 flex-1">
                     {plan.features.map((feature, i) => (
                       <li key={i} className="flex items-center gap-2 text-sm">
-                        <Check className="h-4 w-4 text-green-600" />
+                        <Check className="h-4 w-4 text-success-600" />
                         {feature}
                       </li>
                     ))}

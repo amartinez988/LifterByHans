@@ -80,7 +80,7 @@ export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
           {...form.register("password")}
         />
         {form.formState.errors.password ? (
-          <p className="text-xs text-red-500">{form.formState.errors.password.message}</p>
+          <p className="text-xs text-danger-500">{form.formState.errors.password.message}</p>
         ) : null}
       </div>
 
@@ -93,11 +93,11 @@ export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
           {...form.register("confirmPassword")}
         />
         {form.formState.errors.confirmPassword ? (
-          <p className="text-xs text-red-500">{form.formState.errors.confirmPassword.message}</p>
+          <p className="text-xs text-danger-500">{form.formState.errors.confirmPassword.message}</p>
         ) : null}
       </div>
 
-      {error ? <p className="text-sm text-red-500">{error}</p> : null}
+      {error ? <p className="text-sm text-danger-500">{error}</p> : null}
 
       <Button type="submit" className="w-full" disabled={isPending} loading={isPending}>
         Reset password

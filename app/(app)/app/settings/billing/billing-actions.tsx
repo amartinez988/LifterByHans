@@ -100,7 +100,7 @@ export function BillingActions({
   // Tester account - no billing actions needed
   if (isTester) {
     return (
-      <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
+      <div className="p-4 bg-accent-50 border border-accent-200 rounded-lg">
         <p className="text-purple-800 text-sm">
           🎉 You have a tester account with full access. No payment required.
         </p>
@@ -132,7 +132,7 @@ export function BillingActions({
   if (isTrialing) {
     return (
       <div className="space-y-3">
-        <p className="text-sm text-amber-600">
+        <p className="text-sm text-warning-600">
           Your trial will end soon. Choose a plan to continue using Uplio.
         </p>
         <div className="flex gap-3">

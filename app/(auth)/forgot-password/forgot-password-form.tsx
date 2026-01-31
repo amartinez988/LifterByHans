@@ -68,11 +68,11 @@ export default function ForgotPasswordForm() {
           {...form.register("email")}
         />
         {form.formState.errors.email ? (
-          <p className="text-xs text-red-500">{form.formState.errors.email.message}</p>
+          <p className="text-xs text-danger-500">{form.formState.errors.email.message}</p>
         ) : null}
       </div>
 
-      {error ? <p className="text-sm text-red-500">{error}</p> : null}
+      {error ? <p className="text-sm text-danger-500">{error}</p> : null}
 
       <Button type="submit" className="w-full" disabled={isPending} loading={isPending}>
         Send reset link

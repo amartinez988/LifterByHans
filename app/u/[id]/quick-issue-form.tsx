@@ -61,8 +61,8 @@ export function QuickIssueForm({ unitId, buildingName, unitIdentifier }: QuickIs
   if (isSubmitted) {
     return (
       <div className="text-center py-6">
-        <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-3">
-          <CheckCircle2 className="h-6 w-6 text-green-600" />
+        <div className="w-12 h-12 rounded-full bg-success-100 flex items-center justify-center mx-auto mb-3">
+          <CheckCircle2 className="h-6 w-6 text-success-600" />
         </div>
         <h3 className="font-semibold text-slate-900 mb-1">Report Submitted!</h3>
         <p className="text-sm text-slate-600">
@@ -87,7 +87,7 @@ export function QuickIssueForm({ unitId, buildingName, unitIdentifier }: QuickIs
               onClick={() => setSelectedType(type.id)}
               className={`p-3 rounded-lg border text-left transition-all ${
                 selectedType === type.id
-                  ? "border-blue-500 bg-blue-50 ring-2 ring-blue-200"
+                  ? "border-brand-500 bg-brand-50 ring-2 ring-brand-200"
                   : "border-slate-200 bg-white hover:border-slate-300"
               }`}
             >
@@ -129,7 +129,7 @@ export function QuickIssueForm({ unitId, buildingName, unitIdentifier }: QuickIs
       </div>
 
       {error && (
-        <p className="text-sm text-red-600">{error}</p>
+        <p className="text-sm text-danger-600">{error}</p>
       )}
 
       {/* Submit Button */}

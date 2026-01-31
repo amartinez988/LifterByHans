@@ -117,8 +117,8 @@ export default async function PublicUnitPage({ params }: PageProps) {
               </div>
               <div className={`px-3 py-1 rounded-full text-sm font-medium ${
                 unit.unitStatus.name.toLowerCase().includes("operational")
-                  ? "bg-green-100 text-green-700"
-                  : "bg-amber-100 text-amber-700"
+                  ? "bg-success-100 text-success-700"
+                  : "bg-warning-100 text-warning-700"
               }`}>
                 {unit.unitStatus.name}
               </div>
@@ -136,7 +136,7 @@ export default async function PublicUnitPage({ params }: PageProps) {
               {unit.building.localPhone && (
                 <div className="flex items-center gap-3 text-slate-600">
                   <Phone className="h-4 w-4 text-slate-400" />
-                  <a href={`tel:${unit.building.localPhone}`} className="text-blue-600 hover:underline">
+                  <a href={`tel:${unit.building.localPhone}`} className="text-brand-600 hover:underline">
                     {unit.building.localPhone}
                   </a>
                 </div>
@@ -209,8 +209,8 @@ export default async function PublicUnitPage({ params }: PageProps) {
                 </div>
                 <div className={`text-sm ${
                   latestInspection.inspectionResult?.name.toLowerCase().includes("passed")
-                    ? "text-green-600"
-                    : "text-amber-600"
+                    ? "text-success-600"
+                    : "text-warning-600"
                 }`}>
                   {latestInspection.inspectionResult?.name || "Pending"}
                 </div>
@@ -240,8 +240,8 @@ export default async function PublicUnitPage({ params }: PageProps) {
             </h2>
             <div className="space-y-3">
               {unit.maintenances.map((m) => (
-                <div key={m.id} className="flex items-center gap-3 text-sm border-l-2 border-blue-400 pl-3">
-                  <Wrench className="h-3 w-3 text-blue-500" />
+                <div key={m.id} className="flex items-center gap-3 text-sm border-l-2 border-brand-400 pl-3">
+                  <Wrench className="h-3 w-3 text-brand-500" />
                   <div>
                     <span className="text-slate-900">Maintenance</span>
                     <span className="text-slate-500 ml-2">
@@ -251,8 +251,8 @@ export default async function PublicUnitPage({ params }: PageProps) {
                 </div>
               ))}
               {unit.emergencyCalls.slice(0, 2).map((e) => (
-                <div key={e.id} className="flex items-center gap-3 text-sm border-l-2 border-red-400 pl-3">
-                  <AlertCircle className="h-3 w-3 text-red-500" />
+                <div key={e.id} className="flex items-center gap-3 text-sm border-l-2 border-danger-400 pl-3">
+                  <AlertCircle className="h-3 w-3 text-danger-500" />
                   <div>
                     <span className="text-slate-900">Emergency Call</span>
                     <span className="text-slate-500 ml-2">
@@ -268,7 +268,7 @@ export default async function PublicUnitPage({ params }: PageProps) {
         {/* Quick Issue Report */}
         <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-lg border border-blue-200 p-5">
           <h2 className="font-semibold text-slate-900 mb-2 flex items-center gap-2">
-            <AlertCircle className="h-4 w-4 text-blue-500" />
+            <AlertCircle className="h-4 w-4 text-brand-500" />
             Report an Issue
           </h2>
           <p className="text-sm text-slate-600 mb-4">

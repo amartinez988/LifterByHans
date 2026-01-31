@@ -248,18 +248,18 @@ export function ImportUnits({
       </div>
 
       {buildings.length === 0 && (
-        <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg flex items-center gap-2">
-          <AlertCircle className="h-5 w-5 text-yellow-600" />
-          <p className="text-yellow-800 text-sm">
+        <div className="p-4 bg-warning-50 border border-warning-200 rounded-lg flex items-center gap-2">
+          <AlertCircle className="h-5 w-5 text-warning-600" />
+          <p className="text-warning-800 text-sm">
             No Buildings found. Import Management Companies and Buildings first.
           </p>
         </div>
       )}
 
       {missingLookups && (
-        <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg flex items-center gap-2">
-          <AlertCircle className="h-5 w-5 text-yellow-600" />
-          <p className="text-yellow-800 text-sm">
+        <div className="p-4 bg-warning-50 border border-warning-200 rounded-lg flex items-center gap-2">
+          <AlertCircle className="h-5 w-5 text-warning-600" />
+          <p className="text-warning-800 text-sm">
             Missing lookup values. Create Categories, Statuses, Equipment Types, and Brands in the app first.
           </p>
         </div>
@@ -297,11 +297,11 @@ export function ImportUnits({
         <div className="space-y-4">
           <div className="flex items-center gap-4 text-sm">
             <span>{rows.length} rows found</span>
-            <span className="text-green-600 flex items-center gap-1">
+            <span className="text-success-600 flex items-center gap-1">
               <CheckCircle className="h-4 w-4" /> {validCount} valid
             </span>
             {invalidCount > 0 && (
-              <span className="text-red-600 flex items-center gap-1">
+              <span className="text-danger-600 flex items-center gap-1">
                 <XCircle className="h-4 w-4" /> {invalidCount} with errors
               </span>
             )}
@@ -322,20 +322,20 @@ export function ImportUnits({
               </thead>
               <tbody>
                 {rows.map((row) => (
-                  <tr key={row.rowNumber} className={row.isValid ? "bg-green-50" : "bg-red-50"}>
+                  <tr key={row.rowNumber} className={row.isValid ? "bg-success-50" : "bg-danger-50"}>
                     <td className="px-2 py-2">{row.rowNumber}</td>
                     <td className="px-2 py-2">
                       {row.isValid ? (
-                        <CheckCircle className="h-4 w-4 text-green-600" />
+                        <CheckCircle className="h-4 w-4 text-success-600" />
                       ) : (
-                        <XCircle className="h-4 w-4 text-red-600" />
+                        <XCircle className="h-4 w-4 text-danger-600" />
                       )}
                     </td>
                     <td className="px-2 py-2 truncate max-w-[100px]">{row.managementCompany}</td>
                     <td className="px-2 py-2 truncate max-w-[100px]">{row.building}</td>
                     <td className="px-2 py-2">{row.identifier}</td>
                     <td className="px-2 py-2">{row.category}</td>
-                    <td className="px-2 py-2 text-xs text-red-600 max-w-[200px] truncate">{row.errors.join("; ")}</td>
+                    <td className="px-2 py-2 text-xs text-danger-600 max-w-[200px] truncate">{row.errors.join("; ")}</td>
                   </tr>
                 ))}
               </tbody>
@@ -355,8 +355,8 @@ export function ImportUnits({
       )}
 
       {result && (
-        <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-          <p className="text-green-800">
+        <div className="p-4 bg-success-50 border border-success-200 rounded-lg">
+          <p className="text-success-800">
             ✓ Imported {result.imported} units
             {result.skipped > 0 && ` (${result.skipped} skipped)`}
           </p>
@@ -364,8 +364,8 @@ export function ImportUnits({
       )}
 
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-800">{error}</p>
+        <div className="p-4 bg-danger-50 border border-danger-200 rounded-lg">
+          <p className="text-danger-800">{error}</p>
         </div>
       )}
     </div>

@@ -16,18 +16,18 @@ type PageProps = {
 };
 
 const statusColors: Record<string, string> = {
-  SCHEDULED: "bg-blue-100 text-blue-800",
-  EN_ROUTE: "bg-yellow-100 text-yellow-800",
-  ON_SITE: "bg-orange-100 text-orange-800",
-  COMPLETED: "bg-green-100 text-green-800",
-  CANCELLED: "bg-gray-100 text-gray-500"
+  SCHEDULED: "bg-brand-100 text-brand-800",
+  EN_ROUTE: "bg-warning-100 text-warning-800",
+  ON_SITE: "bg-accent-100 text-accent-800",
+  COMPLETED: "bg-success-100 text-success-800",
+  CANCELLED: "bg-slate-100 text-slate-500"
 };
 
 const priorityColors: Record<string, string> = {
   LOW: "text-ink/40",
   NORMAL: "text-ink/60",
-  HIGH: "text-orange-600",
-  URGENT: "text-red-600 font-semibold"
+  HIGH: "text-accent-600",
+  URGENT: "text-danger-600 font-semibold"
 };
 
 export default async function JobsPage({ searchParams }: PageProps) {

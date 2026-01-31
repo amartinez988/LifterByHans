@@ -128,7 +128,7 @@ export default function JobStatusActions({
           <Button
             size="sm"
             variant="outline"
-            className="text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200"
+            className="text-danger-600 hover:text-danger-700 hover:bg-danger-50 border-danger-200"
             onClick={() => handleStatusChange("CANCELLED")}
             disabled={isPending}
           >
@@ -149,7 +149,7 @@ export default function JobStatusActions({
       </div>
 
       {error && (
-        <p className="text-xs text-red-600">{error}</p>
+        <p className="text-xs text-danger-600">{error}</p>
       )}
     </div>
   );

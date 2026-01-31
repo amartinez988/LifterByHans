@@ -146,7 +146,7 @@ export default async function TechnicianPage() {
             <p className="text-xs text-brand-100">Completed</p>
           </div>
           <div className="bg-white/10 backdrop-blur rounded-xl p-3 text-center">
-            <p className="text-3xl font-bold text-amber-300">{openEmergencies.length}</p>
+            <p className="text-3xl font-bold text-warning-300">{openEmergencies.length}</p>
             <p className="text-xs text-brand-100">Emergencies</p>
           </div>
         </div>
@@ -155,10 +155,10 @@ export default async function TechnicianPage() {
       {/* Emergency Alerts */}
       {openEmergencies.length > 0 && (
         <div className="px-4 mt-4">
-          <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+          <div className="bg-danger-50 border border-danger-200 rounded-xl p-4">
             <div className="flex items-center gap-2 mb-3">
-              <AlertTriangle className="h-5 w-5 text-red-600" />
-              <h2 className="font-semibold text-red-900">Active Emergencies</h2>
+              <AlertTriangle className="h-5 w-5 text-danger-600" />
+              <h2 className="font-semibold text-danger-900">Active Emergencies</h2>
             </div>
             <div className="space-y-2">
               {openEmergencies.map((emergency) => (
@@ -174,10 +174,10 @@ export default async function TechnicianPage() {
                   <div className="flex items-center gap-2">
                     <a
                       href={`tel:${emergency.unit.building.localPhone || ""}`}
-                      className="p-2 bg-red-100 rounded-lg"
+                      className="p-2 bg-danger-100 rounded-lg"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <Phone className="h-4 w-4 text-red-600" />
+                      <Phone className="h-4 w-4 text-danger-600" />
                     </a>
                     <ChevronRight className="h-5 w-5 text-slate-400" />
                   </div>
@@ -202,7 +202,7 @@ export default async function TechnicianPage() {
 
         {todaysJobs.length === 0 ? (
           <div className="bg-white rounded-xl p-8 text-center border border-slate-200">
-            <CheckCircle2 className="h-12 w-12 text-green-500 mx-auto mb-3" />
+            <CheckCircle2 className="h-12 w-12 text-success-500 mx-auto mb-3" />
             <p className="font-medium text-slate-900">All caught up!</p>
             <p className="text-sm text-slate-500">No more jobs scheduled for today.</p>
           </div>

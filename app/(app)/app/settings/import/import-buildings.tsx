@@ -168,8 +168,8 @@ export function ImportBuildings({ managementCompanies, existingBuildings }: Prop
       </div>
 
       {managementCompanies.length === 0 && (
-        <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg flex items-center gap-2">
-          <AlertCircle className="h-5 w-5 text-yellow-600" />
+        <div className="p-4 bg-warning-50 border border-warning-200 rounded-lg flex items-center gap-2">
+          <AlertCircle className="h-5 w-5 text-warning-600" />
           <p className="text-yellow-800 text-sm">
             No Management Companies found. Import those first before importing Buildings.
           </p>
@@ -196,11 +196,11 @@ export function ImportBuildings({ managementCompanies, existingBuildings }: Prop
         <div className="space-y-4">
           <div className="flex items-center gap-4 text-sm">
             <span>{rows.length} rows found</span>
-            <span className="text-green-600 flex items-center gap-1">
+            <span className="text-success-600 flex items-center gap-1">
               <CheckCircle className="h-4 w-4" /> {validCount} valid
             </span>
             {invalidCount > 0 && (
-              <span className="text-red-600 flex items-center gap-1">
+              <span className="text-danger-600 flex items-center gap-1">
                 <XCircle className="h-4 w-4" /> {invalidCount} with errors
               </span>
             )}
@@ -220,19 +220,19 @@ export function ImportBuildings({ managementCompanies, existingBuildings }: Prop
               </thead>
               <tbody>
                 {rows.map((row) => (
-                  <tr key={row.rowNumber} className={row.isValid ? "bg-green-50" : "bg-red-50"}>
+                  <tr key={row.rowNumber} className={row.isValid ? "bg-success-50" : "bg-danger-50"}>
                     <td className="px-3 py-2">{row.rowNumber}</td>
                     <td className="px-3 py-2">
                       {row.isValid ? (
-                        <CheckCircle className="h-4 w-4 text-green-600" />
+                        <CheckCircle className="h-4 w-4 text-success-600" />
                       ) : (
-                        <XCircle className="h-4 w-4 text-red-600" />
+                        <XCircle className="h-4 w-4 text-danger-600" />
                       )}
                     </td>
                     <td className="px-3 py-2 truncate max-w-[150px]">{row.managementCompany}</td>
                     <td className="px-3 py-2 truncate max-w-[150px]">{row.name}</td>
                     <td className="px-3 py-2 truncate max-w-[200px]">{row.address}</td>
-                    <td className="px-3 py-2 text-xs text-red-600">{row.errors.join("; ")}</td>
+                    <td className="px-3 py-2 text-xs text-danger-600">{row.errors.join("; ")}</td>
                   </tr>
                 ))}
               </tbody>
@@ -252,8 +252,8 @@ export function ImportBuildings({ managementCompanies, existingBuildings }: Prop
       )}
 
       {result && (
-        <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-          <p className="text-green-800">
+        <div className="p-4 bg-success-50 border border-success-200 rounded-lg">
+          <p className="text-success-800">
             ✓ Imported {result.imported} buildings
             {result.skipped > 0 && ` (${result.skipped} skipped)`}
           </p>
@@ -261,8 +261,8 @@ export function ImportBuildings({ managementCompanies, existingBuildings }: Prop
       )}
 
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-800">{error}</p>
+        <div className="p-4 bg-danger-50 border border-danger-200 rounded-lg">
+          <p className="text-danger-800">{error}</p>
         </div>
       )}
     </div>

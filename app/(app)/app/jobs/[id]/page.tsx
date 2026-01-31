@@ -19,11 +19,11 @@ type JobDetailPageProps = {
 };
 
 const statusColors: Record<string, string> = {
-  SCHEDULED: "bg-blue-100 text-blue-800",
-  EN_ROUTE: "bg-yellow-100 text-yellow-800",
-  ON_SITE: "bg-orange-100 text-orange-800",
-  COMPLETED: "bg-green-100 text-green-800",
-  CANCELLED: "bg-gray-100 text-gray-500"
+  SCHEDULED: "bg-brand-100 text-brand-800",
+  EN_ROUTE: "bg-warning-100 text-warning-800",
+  ON_SITE: "bg-accent-100 text-accent-800",
+  COMPLETED: "bg-success-100 text-success-800",
+  CANCELLED: "bg-slate-100 text-slate-500"
 };
 
 export default async function JobDetailPage({ params }: JobDetailPageProps) {
@@ -108,7 +108,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
                 </span>
                 <span className="text-sm text-ink/60">
                   {job.priority !== "NORMAL" && (
-                    <span className={job.priority === "URGENT" ? "text-red-600 font-semibold" : job.priority === "HIGH" ? "text-orange-600" : "text-ink/40"}>
+                    <span className={job.priority === "URGENT" ? "text-danger-600 font-semibold" : job.priority === "HIGH" ? "text-accent-600" : "text-ink/40"}>
                       {job.priority} priority
                     </span>
                   )}
@@ -131,7 +131,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
                 </p>
               )}
               {job.completedAt && (
-                <p className="text-sm text-green-700">
+                <p className="text-sm text-success-700">
                   Completed: {new Date(job.completedAt).toLocaleString()}
                 </p>
               )}

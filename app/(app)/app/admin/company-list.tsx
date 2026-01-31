@@ -95,22 +95,22 @@ export function CompanyList({ companies }: Props) {
 
   const getStatusBadge = (subscription: Company["subscription"]) => {
     if (!subscription) {
-      return <span className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">No Sub</span>;
+      return <span className="px-2 py-1 text-xs bg-slate-100 text-slate-700 rounded-full">No Sub</span>;
     }
     if (subscription.isTester) {
-      return <span className="px-2 py-1 text-xs bg-purple-100 text-purple-700 rounded-full">Tester</span>;
+      return <span className="px-2 py-1 text-xs bg-accent-100 text-accent-700 rounded-full">Tester</span>;
     }
     switch (subscription.status) {
       case "TRIALING":
-        return <span className="px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded-full">Trial</span>;
+        return <span className="px-2 py-1 text-xs bg-warning-100 text-warning-700 rounded-full">Trial</span>;
       case "ACTIVE":
-        return <span className="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">Active</span>;
+        return <span className="px-2 py-1 text-xs bg-success-100 text-success-700 rounded-full">Active</span>;
       case "PAST_DUE":
-        return <span className="px-2 py-1 text-xs bg-red-100 text-red-700 rounded-full">Past Due</span>;
+        return <span className="px-2 py-1 text-xs bg-danger-100 text-danger-700 rounded-full">Past Due</span>;
       case "CANCELED":
-        return <span className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">Canceled</span>;
+        return <span className="px-2 py-1 text-xs bg-slate-100 text-slate-700 rounded-full">Canceled</span>;
       default:
-        return <span className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">{subscription.status}</span>;
+        return <span className="px-2 py-1 text-xs bg-slate-100 text-slate-700 rounded-full">{subscription.status}</span>;
     }
   };
 

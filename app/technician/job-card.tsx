@@ -44,17 +44,17 @@ interface JobCardProps {
 }
 
 const statusColors: Record<string, string> = {
-  SCHEDULED: "bg-blue-100 text-blue-700 border-blue-200",
-  EN_ROUTE: "bg-amber-100 text-amber-700 border-amber-200",
-  ON_SITE: "bg-purple-100 text-purple-700 border-purple-200",
-  COMPLETED: "bg-green-100 text-green-700 border-green-200",
+  SCHEDULED: "bg-brand-100 text-brand-700 border-brand-200",
+  EN_ROUTE: "bg-warning-100 text-warning-700 border-warning-200",
+  ON_SITE: "bg-accent-100 text-accent-700 border-accent-200",
+  COMPLETED: "bg-success-100 text-success-700 border-success-200",
 };
 
 const priorityColors: Record<string, string> = {
   LOW: "bg-slate-100 text-slate-600",
-  NORMAL: "bg-blue-100 text-blue-600",
-  HIGH: "bg-amber-100 text-amber-600",
-  URGENT: "bg-red-100 text-red-600",
+  NORMAL: "bg-brand-100 text-brand-600",
+  HIGH: "bg-warning-100 text-warning-600",
+  URGENT: "bg-danger-100 text-danger-600",
 };
 
 export function JobCard({ job }: JobCardProps) {
@@ -184,9 +184,9 @@ export function JobCard({ job }: JobCardProps) {
                 href={mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-blue-100 rounded-lg hover:bg-blue-200 transition"
+                className="p-2 bg-brand-100 rounded-lg hover:bg-brand-200 transition"
               >
-                <Navigation2 className="h-4 w-4 text-blue-600" />
+                <Navigation2 className="h-4 w-4 text-brand-600" />
               </a>
             )}
           </div>

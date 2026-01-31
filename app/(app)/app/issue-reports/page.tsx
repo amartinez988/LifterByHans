@@ -17,10 +17,10 @@ const issueTypeLabels: Record<string, { label: string; emoji: string }> = {
 };
 
 const statusColors: Record<string, string> = {
-  NEW: "bg-red-100 text-red-700",
-  ACKNOWLEDGED: "bg-yellow-100 text-yellow-700",
-  IN_PROGRESS: "bg-blue-100 text-blue-700",
-  RESOLVED: "bg-green-100 text-green-700",
+  NEW: "bg-danger-100 text-danger-700",
+  ACKNOWLEDGED: "bg-warning-100 text-warning-700",
+  IN_PROGRESS: "bg-brand-100 text-brand-700",
+  RESOLVED: "bg-success-100 text-success-700",
   DISMISSED: "bg-slate-100 text-slate-700",
 };
 
@@ -68,26 +68,26 @@ export default async function IssueReportsPage() {
 
       {/* Stats */}
       <div className="grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-red-200 bg-red-50 p-4">
+        <div className="rounded-xl border border-danger-200 bg-danger-50 p-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100">
-              <AlertCircle className="h-5 w-5 text-red-600" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-danger-100">
+              <AlertCircle className="h-5 w-5 text-danger-600" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-red-900">{newCount}</p>
-              <p className="text-sm text-red-600">New Reports</p>
+              <p className="text-2xl font-bold text-danger-900">{newCount}</p>
+              <p className="text-sm text-danger-600">New Reports</p>
             </div>
           </div>
         </div>
         
-        <div className="rounded-xl border border-blue-200 bg-blue-50 p-4">
+        <div className="rounded-xl border border-brand-200 bg-brand-50 p-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100">
-              <Clock className="h-5 w-5 text-blue-600" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-100">
+              <Clock className="h-5 w-5 text-brand-600" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-blue-900">{inProgressCount}</p>
-              <p className="text-sm text-blue-600">In Progress</p>
+              <p className="text-2xl font-bold text-brand-900">{inProgressCount}</p>
+              <p className="text-sm text-brand-600">In Progress</p>
             </div>
           </div>
         </div>

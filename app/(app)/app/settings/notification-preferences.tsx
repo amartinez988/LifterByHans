@@ -134,7 +134,7 @@ export function NotificationPreferences({
           )}
         </Button>
         {saved && (
-          <span className="text-sm text-green-600">✓ Saved successfully</span>
+          <span className="text-sm text-success-600">✓ Saved successfully</span>
         )}
       </div>
     </div>

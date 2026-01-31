@@ -9,11 +9,11 @@ import { canEditWorkspace, getCurrentMembership } from "@/lib/team";
 import { QuickAssign } from "./quick-assign";
 
 const statusColors: Record<string, string> = {
-  SCHEDULED: "bg-blue-100 text-blue-800 border-blue-200",
-  EN_ROUTE: "bg-yellow-100 text-yellow-800 border-yellow-200",
-  ON_SITE: "bg-orange-100 text-orange-800 border-orange-200",
-  COMPLETED: "bg-green-100 text-green-800 border-green-200",
-  CANCELLED: "bg-gray-100 text-gray-500 border-gray-200"
+  SCHEDULED: "bg-brand-100 text-brand-800 border-brand-200",
+  EN_ROUTE: "bg-warning-100 text-warning-800 border-warning-200",
+  ON_SITE: "bg-accent-100 text-accent-800 border-accent-200",
+  COMPLETED: "bg-success-100 text-success-800 border-success-200",
+  CANCELLED: "bg-slate-100 text-slate-500 border-slate-200"
 };
 
 export default async function DispatchPage() {
@@ -139,7 +139,7 @@ export default async function DispatchPage() {
         </Card>
         <Card>
           <CardContent className="pt-4">
-            <p className="text-3xl font-bold text-blue-600">{jobsByStatus.SCHEDULED.length}</p>
+            <p className="text-3xl font-bold text-brand-600">{jobsByStatus.SCHEDULED.length}</p>
             <p className="text-xs text-ink/60">Scheduled</p>
           </CardContent>
         </Card>
@@ -151,7 +151,7 @@ export default async function DispatchPage() {
         </Card>
         <Card>
           <CardContent className="pt-4">
-            <p className="text-3xl font-bold text-green-600">{jobsByStatus.COMPLETED.length}</p>
+            <p className="text-3xl font-bold text-success-600">{jobsByStatus.COMPLETED.length}</p>
             <p className="text-xs text-ink/60">Completed</p>
           </CardContent>
         </Card>
@@ -269,7 +269,7 @@ export default async function DispatchPage() {
                         </div>
                         <div className="flex-1 h-4 bg-ink/10 rounded-full overflow-hidden">
                           <div
-                            className={`h-full rounded-full transition-all ${count >= maxJobs ? "bg-red-500" : count >= 4 ? "bg-yellow-500" : "bg-green-500"}`}
+                            className={`h-full rounded-full transition-all ${count >= maxJobs ? "bg-danger-500" : count >= 4 ? "bg-warning-500" : "bg-success-500"}`}
                             style={{ width: `${percentage}%` }}
                           />
                         </div>

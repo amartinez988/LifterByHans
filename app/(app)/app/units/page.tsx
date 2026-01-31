@@ -91,7 +91,7 @@ export default async function UnitsPage({ searchParams }: PageProps) {
                       </span>
                     )}
                     {!unit.isActive && !unit.archivedAt && (
-                      <span className="ml-2 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-normal text-amber-700">
+                      <span className="ml-2 rounded-full bg-warning-100 px-2 py-0.5 text-xs font-normal text-warning-700">
                         Inactive
                       </span>
                     )}

@@ -15,11 +15,11 @@ type PageProps = {
 };
 
 const statusColors: Record<string, string> = {
-  SCHEDULED: "bg-blue-500",
-  EN_ROUTE: "bg-yellow-500",
-  ON_SITE: "bg-orange-500",
-  COMPLETED: "bg-green-500",
-  CANCELLED: "bg-gray-400"
+  SCHEDULED: "bg-brand-500",
+  EN_ROUTE: "bg-warning-500",
+  ON_SITE: "bg-accent-500",
+  COMPLETED: "bg-success-500",
+  CANCELLED: "bg-slate-400"
 };
 
 function getWeekDates(date: Date): Date[] {
@@ -261,23 +261,23 @@ export default async function SchedulePage({ searchParams }: PageProps) {
       {/* Legend */}
       <div className="flex flex-wrap gap-4 text-xs">
         <div className="flex items-center gap-1">
-          <div className="w-3 h-3 rounded bg-blue-500"></div>
+          <div className="w-3 h-3 rounded bg-brand-500"></div>
           <span>Scheduled</span>
         </div>
         <div className="flex items-center gap-1">
-          <div className="w-3 h-3 rounded bg-yellow-500"></div>
+          <div className="w-3 h-3 rounded bg-warning-500"></div>
           <span>En Route</span>
         </div>
         <div className="flex items-center gap-1">
-          <div className="w-3 h-3 rounded bg-orange-500"></div>
+          <div className="w-3 h-3 rounded bg-accent-500"></div>
           <span>On Site</span>
         </div>
         <div className="flex items-center gap-1">
-          <div className="w-3 h-3 rounded bg-green-500"></div>
+          <div className="w-3 h-3 rounded bg-success-500"></div>
           <span>Completed</span>
         </div>
         <div className="flex items-center gap-1">
-          <div className="w-3 h-3 rounded bg-gray-400"></div>
+          <div className="w-3 h-3 rounded bg-slate-400"></div>
           <span>Cancelled</span>
         </div>
       </div>

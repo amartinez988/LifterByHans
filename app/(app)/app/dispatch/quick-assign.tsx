@@ -58,7 +58,7 @@ export function QuickAssign({ jobId, mechanics }: QuickAssignProps) {
           </option>
         ))}
       </select>
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      {error && <p className="text-xs text-danger-600">{error}</p>}
       
       <ConfirmModal
         open={!!pendingMechanic}

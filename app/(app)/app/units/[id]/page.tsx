@@ -303,25 +303,25 @@ export default async function UnitPage({ params }: UnitPageProps) {
                     key={`${event.type}-${index}`}
                     className={`flex items-start gap-4 p-3 rounded-lg border-l-4 ${
                       event.type === "inspection"
-                        ? "border-l-blue-500 bg-blue-50/50"
+                        ? "border-l-brand-500 bg-brand-50/50"
                         : event.type === "maintenance"
-                        ? "border-l-green-500 bg-green-50/50"
-                        : "border-l-red-500 bg-red-50/50"
+                        ? "border-l-success-500 bg-success-50/50"
+                        : "border-l-danger-500 bg-danger-50/50"
                     }`}
                   >
                     <div className={`p-2 rounded-full ${
                       event.type === "inspection"
-                        ? "bg-blue-100"
+                        ? "bg-brand-100"
                         : event.type === "maintenance"
-                        ? "bg-green-100"
-                        : "bg-red-100"
+                        ? "bg-success-100"
+                        : "bg-danger-100"
                     }`}>
                       {event.type === "inspection" ? (
-                        <Calendar className="h-4 w-4 text-blue-600" />
+                        <Calendar className="h-4 w-4 text-brand-600" />
                       ) : event.type === "maintenance" ? (
-                        <Wrench className="h-4 w-4 text-green-600" />
+                        <Wrench className="h-4 w-4 text-success-600" />
                       ) : (
-                        <AlertCircle className="h-4 w-4 text-red-600" />
+                        <AlertCircle className="h-4 w-4 text-danger-600" />
                       )}
                     </div>
                     
@@ -334,8 +334,8 @@ export default async function UnitPage({ params }: UnitPageProps) {
                               {event.data.inspectionResult && (
                                 <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${
                                   event.data.inspectionResult.name.toLowerCase().includes("passed")
-                                    ? "bg-green-100 text-green-700"
-                                    : "bg-amber-100 text-amber-700"
+                                    ? "bg-success-100 text-success-700"
+                                    : "bg-warning-100 text-warning-700"
                                 }`}>
                                   {event.data.inspectionResult.name}
                                 </span>
@@ -347,8 +347,8 @@ export default async function UnitPage({ params }: UnitPageProps) {
                               Maintenance
                               <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${
                                 event.data.status === "COMPLETED"
-                                  ? "bg-green-100 text-green-700"
-                                  : "bg-blue-100 text-blue-700"
+                                  ? "bg-success-100 text-success-700"
+                                  : "bg-brand-100 text-brand-700"
                               }`}>
                                 {event.data.status}
                               </span>
@@ -357,7 +357,7 @@ export default async function UnitPage({ params }: UnitPageProps) {
                           {event.type === "emergency" && (
                             <>
                               Emergency Call
-                              <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-red-100 text-red-700">
+                              <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-danger-100 text-danger-700">
                                 {event.data.emergencyCallStatus?.name}
                               </span>
                             </>

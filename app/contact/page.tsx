@@ -106,8 +106,8 @@ export default function ContactPage() {
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
-                    <MessageSquare className="h-6 w-6 text-blue-600" />
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-brand-100 flex items-center justify-center">
+                    <MessageSquare className="h-6 w-6 text-brand-600" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900">Personalized Demo</h3>
@@ -116,8 +116,8 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center">
-                    <Building2 className="h-6 w-6 text-purple-600" />
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-accent-100 flex items-center justify-center">
+                    <Building2 className="h-6 w-6 text-accent-600" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900">Enterprise Solutions</h3>
@@ -126,8 +126,8 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
-                    <Phone className="h-6 w-6 text-green-600" />
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-success-100 flex items-center justify-center">
+                    <Phone className="h-6 w-6 text-success-600" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900">Quick Response</h3>
@@ -140,7 +140,7 @@ export default function ContactPage() {
                 <p className="text-sm text-slate-500 mb-2">Prefer email?</p>
                 <a 
                   href="mailto:hello@uplio.app" 
-                  className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
+                  className="inline-flex items-center gap-2 text-brand-600 hover:text-brand-700 font-medium"
                 >
                   <Mail className="h-4 w-4" />
                   hello@uplio.app
@@ -152,8 +152,8 @@ export default function ContactPage() {
             <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-8">
               {isSubmitted ? (
                 <div className="text-center py-12">
-                  <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle2 className="h-8 w-8 text-green-600" />
+                  <div className="w-16 h-16 rounded-full bg-success-100 flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle2 className="h-8 w-8 text-success-600" />
                   </div>
                   <h2 className="text-2xl font-bold text-slate-900 mb-2">Message sent!</h2>
                   <p className="text-slate-600 mb-6">
@@ -240,7 +240,7 @@ export default function ContactPage() {
                     </div>
 
                     {error && (
-                      <p className="text-sm text-red-600">{error}</p>
+                      <p className="text-sm text-danger-600">{error}</p>
                     )}
 
                     <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>

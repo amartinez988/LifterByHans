@@ -36,9 +36,9 @@ export default async function ResetPasswordPage({ searchParams }: ResetPasswordP
           </Link>
         </div>
         
-        <div className="rounded-2xl border border-red-200 bg-red-50 p-6">
-          <h2 className="font-semibold text-red-900">Link expired</h2>
-          <p className="mt-1 text-sm text-red-700">
+        <div className="rounded-2xl border border-danger-200 bg-danger-50 p-6">
+          <h2 className="font-semibold text-danger-900">Link expired</h2>
+          <p className="mt-1 text-sm text-danger-700">
             This password reset link has expired or is invalid. Please request a new one.
           </p>
         </div>

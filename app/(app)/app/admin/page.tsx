@@ -63,25 +63,25 @@ export default async function AdminPage() {
         </Card>
         <Card>
           <CardContent className="pt-6">
-            <p className="text-3xl font-bold text-amber-600">{stats.trialing}</p>
+            <p className="text-3xl font-bold text-warning-600">{stats.trialing}</p>
             <p className="text-sm text-muted-foreground">Trialing</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
-            <p className="text-3xl font-bold text-green-600">{stats.active}</p>
+            <p className="text-3xl font-bold text-success-600">{stats.active}</p>
             <p className="text-sm text-muted-foreground">Active</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
-            <p className="text-3xl font-bold text-purple-600">{stats.testers}</p>
+            <p className="text-3xl font-bold text-accent-600">{stats.testers}</p>
             <p className="text-sm text-muted-foreground">Testers</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
-            <p className="text-3xl font-bold text-gray-400">{stats.noSubscription}</p>
+            <p className="text-3xl font-bold text-slate-400">{stats.noSubscription}</p>
             <p className="text-sm text-muted-foreground">No Subscription</p>
           </CardContent>
         </Card>

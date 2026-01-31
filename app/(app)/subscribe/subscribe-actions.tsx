@@ -41,7 +41,7 @@ export function SubscribeActions({ plan, isPopular }: Props) {
     <Button
       onClick={handleSubscribe}
       disabled={loading}
-      className={`w-full ${isPopular ? "bg-indigo-600 hover:bg-indigo-700" : ""}`}
+      className={`w-full ${isPopular ? "bg-brand-600 hover:bg-brand-700" : ""}`}
       variant={isPopular ? "default" : "outline"}
       size="lg"
     >
