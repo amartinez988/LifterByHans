@@ -265,3 +265,4 @@ All users can view the Schedule.
 ---
 
 *The Schedule is your visual planning tool. Use it to see the big picture and plan your team's work.*
+

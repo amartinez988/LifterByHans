@@ -211,3 +211,4 @@ From the dashboard, you can:
 ---
 
 *The dashboard is designed to give you everything you need at a glance. Check it daily to stay on top of your operations.*
+

@@ -260,3 +260,4 @@ Issue Reports affect your dashboard:
 ---
 
 *Issue Reports give building occupants a voice. Monitor them closely to catch problems early and keep your customers happy.*
+

@@ -331,3 +331,4 @@ Enable in Settings > Notification Preferences.
 ---
 
 *Emergency calls require immediate attention. Keep this section accurate for quick response and proper documentation.*
+
