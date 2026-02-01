@@ -54,7 +54,7 @@ Each card displays:
 - **Status** — Current resolution status
 - **Mechanic** — Assigned responder (or "Unassigned")
 
-> 📸 *Screenshot: Emergency call cards*
+![Emergency call cards](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/emergency-call-cards.png)
 
 ---
 
@@ -146,7 +146,7 @@ RECEIVED → DISPATCHED → ON SITE → RESOLVED
 
 Click any emergency call from the list.
 
-> 📸 *Screenshot: Emergency call detail page*
+![Emergency call detail](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/emergency-call-detail.png)
 
 ### Detail Page Information
 

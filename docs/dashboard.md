@@ -60,7 +60,7 @@ The dashboard displays four primary metric cards at the top:
 
 **What it measures:** Units where the inspection has expired OR no inspection has ever been recorded.
 
-> 📸 *Screenshot: The four metric cards in a row*
+![Dashboard metric cards](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/dashboard-metric-cards.png)
 
 ---
 
@@ -82,7 +82,7 @@ The chart projects what happens as inspection expiration dates pass. It helps yo
 - Plan inspection renewals in advance
 - Prioritize units that need attention soon
 
-> 📸 *Screenshot: Compliance forecast line chart*
+![Compliance forecast chart](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/compliance-forecast-chart.png)
 
 ---
 
@@ -107,7 +107,7 @@ Each activity shows:
 - **Status/Result** — What happened (e.g., "Passed", "OPEN", "COMPLETED")
 - **Timestamp** — When it occurred
 
-> 📸 *Screenshot: Recent activity feed showing mixed activity types*
+![Recent activity feed](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/recent-activity-feed.png)
 
 ---
 
@@ -122,7 +122,7 @@ At the bottom of the dashboard, you'll find quick action buttons for common task
 | **Add Job** | Schedule a new job |
 | **View Compliance** | Jump to the compliance page |
 
-> 📸 *Screenshot: Quick actions bar*
+![Quick actions bar](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/quick-actions-bar.png)
 
 ---
 

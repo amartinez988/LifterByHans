@@ -47,7 +47,7 @@ Below the stats, issues are listed with:
 - **Contact Info** — Reporter's contact (if provided)
 - **Report Time** — When it was submitted
 
-> 📸 *Screenshot: Issue report list items*
+![Issue report items](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/issue-report-items.png)
 
 ---
 
@@ -186,7 +186,7 @@ When users scan a QR code and visit the public unit page, they see:
 
 Users see a confirmation that their report was received.
 
-> 📸 *Screenshot: Public unit page with issue report form*
+![Public issue form](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/public-issue-form.png)
 
 ---
 

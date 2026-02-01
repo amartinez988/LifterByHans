@@ -53,7 +53,7 @@ Each card displays:
 - **Status** — Current inspection status
 - **Result** — Pass/Fail outcome (if set)
 
-> 📸 *Screenshot: Inspection cards with status and result*
+![Inspection cards](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/inspection-cards.png)
 
 ---
 
@@ -66,7 +66,7 @@ Each card displays:
 3. Fill in the inspection form
 4. Click **"Create inspection"**
 
-> 📸 *Screenshot: New inspection form*
+![Inspection form](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/inspection-form.png)
 
 ### Inspection Form Fields
 
@@ -151,7 +151,7 @@ Based on expiration dates, units fall into categories:
 
 Click any inspection from the list.
 
-> 📸 *Screenshot: Inspection detail page*
+![Inspection detail](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/inspection-detail.png)
 
 ### Detail Page Information
 

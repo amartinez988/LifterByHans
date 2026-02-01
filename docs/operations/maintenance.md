@@ -56,7 +56,7 @@ Each card displays:
 - **Mechanic** — Assigned technician (or "Unassigned")
 - **Status** — OPEN or COMPLETED
 
-> 📸 *Screenshot: Maintenance cards with status indicators*
+![Maintenance cards](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/maintenance-cards.png)
 
 ---
 
@@ -69,7 +69,7 @@ Each card displays:
 3. Fill in the maintenance form
 4. Click **"Create maintenance"**
 
-> 📸 *Screenshot: New maintenance form*
+![Maintenance form](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/maintenance-form.png)
 
 ### Maintenance Form Fields
 
@@ -118,7 +118,7 @@ Each maintenance record receives an auto-generated code:
 
 Click any maintenance record from the list.
 
-> 📸 *Screenshot: Maintenance detail page*
+![Maintenance detail](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/maintenance-detail.png)
 
 ### Detail Page Information
 

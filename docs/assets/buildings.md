@@ -52,7 +52,7 @@ Each building card displays:
 - **Unit count** — Number of elevators/escalators in the building
 - **Archive status** (badge shown if archived)
 
-> 📸 *Screenshot: Building cards showing key information*
+![Building cards](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/building-cards.png)
 
 ---
 
@@ -91,7 +91,7 @@ Buildings must be created from within a management company.
 1. Click on any building in the list
 2. Or click a building from the management company page
 
-> 📸 *Screenshot: Building detail page*
+![Building detail](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/building-detail.png)
 
 ### Detail Page Sections
 
@@ -129,7 +129,7 @@ A list of all elevators and escalators in the building:
 2. Update any fields in the form
 3. Click **"Save changes"**
 
-> 📸 *Screenshot: Building edit form*
+![Building edit form](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/building-edit-form.png)
 
 ---
 

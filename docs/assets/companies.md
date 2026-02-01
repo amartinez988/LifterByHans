@@ -42,7 +42,7 @@ Each company card displays:
 - **Account number** (if set)
 - **Archive status** (badge shown if archived)
 
-> 📸 *Screenshot: Company list with search and filter controls*
+![Company list filters](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/company-list-filters.png)
 
 ---
 
@@ -149,7 +149,7 @@ Archiving hides a company from the default list view without deleting data.
 2. Click the **filter dropdown** (shows "Active" by default)
 3. Select **"Archived"** or **"All"**
 
-> 📸 *Screenshot: Archive filter dropdown*
+![Archive filter dropdown](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/archive-filter-dropdown.png)
 
 ---
 

@@ -69,7 +69,7 @@ Each job card shows:
 
 Click any job card to open its detail page for editing or status updates.
 
-> 📸 *Screenshot: Today's jobs section with status groups*
+![Dispatch today's jobs](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/dispatch-todays-jobs.png)
 
 ---
 
@@ -93,7 +93,7 @@ For each unassigned job:
 2. Select a mechanic from the list
 3. The job is immediately assigned
 
-> 📸 *Screenshot: Unassigned queue with quick-assign dropdown*
+![Dispatch unassigned queue](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/dispatch-unassigned-queue.png)
 
 ---
 
@@ -124,7 +124,7 @@ Each mechanic shows:
 - Find mechanics with capacity
 - Balance job distribution
 
-> 📸 *Screenshot: Mechanic workload bars*
+![Mechanic workload bars](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/mechanic-workload-bars.png)
 
 ---
 
@@ -148,7 +148,7 @@ Use this section to:
 - Identify unassigned future jobs
 - Spot scheduling conflicts
 
-> 📸 *Screenshot: Upcoming jobs list*
+![Dispatch upcoming jobs](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/dispatch-upcoming-jobs.png)
 
 ---
 

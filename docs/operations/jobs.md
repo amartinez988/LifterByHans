@@ -67,7 +67,7 @@ Each job card displays:
 - **Date/Time** — Scheduled date and start time
 - **Priority** — Priority level indicator
 
-> 📸 *Screenshot: Job cards with status colors*
+![Job cards](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/job-cards.png)
 
 ---
 
@@ -81,7 +81,7 @@ Each job card displays:
 | **COMPLETED** | Green | Work is finished | Done |
 | **CANCELLED** | Gray | Job was cancelled | Not performed |
 
-> 📸 *Screenshot: Status progression diagram*
+![Job status diagram](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/job-status-diagram.png)
 
 ---
 
@@ -138,7 +138,7 @@ Each job receives an auto-generated code:
 
 Click any job from the list, schedule, or dispatch views.
 
-> 📸 *Screenshot: Job detail page*
+![Job detail](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/job-detail.png)
 
 ### Detail Page Information
 

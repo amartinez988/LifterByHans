@@ -53,7 +53,7 @@ Each card displays:
 - **Management Company** — Which company they work for
 - **Primary Badge** — Indicates main point of contact
 
-> 📸 *Screenshot: Contact cards with category badges*
+![Contact cards](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/contact-cards.png)
 
 ---
 
@@ -66,7 +66,7 @@ Each card displays:
 3. Fill in the contact form
 4. Click **"Create contact"**
 
-> 📸 *Screenshot: New contact form*
+![Contact form](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/contact-form.png)
 
 ### Contact Form Fields
 
@@ -130,7 +130,7 @@ You can have multiple primary contacts per company if needed (e.g., one for oper
 
 Click any contact from the list.
 
-> 📸 *Screenshot: Contact detail page*
+![Contact detail](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/contact-detail.png)
 
 ### Detail Page Information
 

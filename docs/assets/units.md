@@ -54,7 +54,7 @@ Each unit card displays:
 - **Contract status** (Under Contract badge if applicable)
 - **Active/Inactive status**
 
-> 📸 *Screenshot: Unit cards with all badge types*
+![Unit cards](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/unit-cards.png)
 
 ---
 
@@ -69,7 +69,7 @@ Units must be created from within a building.
 3. Fill in the unit form (see field descriptions below)
 4. Click **"Create unit"**
 
-> 📸 *Screenshot: New unit form - top section*
+![Unit form top](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/unit-form-top.png)
 
 ### Required Fields
 
@@ -102,7 +102,7 @@ Units must be created from within a building.
 | **Machine Room Location** | Where to find the machine room | "Roof level" |
 | **Notes** | Internal notes | "Callback issues - check leveling" |
 
-> 📸 *Screenshot: Unit form - all fields*
+![Unit form full](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/unit-form-full.png)
 
 ---
 
@@ -180,7 +180,7 @@ Chronological history showing:
 - **Maintenance** — Date, status, mechanic
 - **Emergency Calls** — Date, status, description
 
-> 📸 *Screenshot: Service timeline section*
+![Service timeline](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/unit-service-timeline.png)
 
 ---
 
@@ -198,7 +198,7 @@ A mobile-friendly page that anyone can access by scanning the QR code. It shows:
 - Recent service activity
 - **Issue report form** — Visitors can report problems
 
-> 📸 *Screenshot: Public unit page on mobile*
+![Public unit mobile](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/public-unit-mobile.png)
 
 ### Generating QR Codes
 
