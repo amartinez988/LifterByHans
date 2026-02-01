@@ -71,7 +71,7 @@ Uplio offers three plans to fit different business sizes:
 | **Units** | Unlimited units |
 | **Best For** | Large operations |
 
-> 📸 *Screenshot: Plan comparison cards*
+![Plan comparison cards](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/billing-plan-cards.png)
 
 ---
 

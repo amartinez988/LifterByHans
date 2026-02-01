@@ -252,7 +252,7 @@ The search box filters contacts by:
 2. Update the name or description
 3. Save changes
 
-> 📸 *Screenshot: Contact categories management*
+![Contact categories management](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/contact-categories.png)
 
 ---
 

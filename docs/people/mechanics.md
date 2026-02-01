@@ -53,7 +53,7 @@ Each card displays:
 - **Level** — Skill/certification level
 - **Status** — Active or Inactive badge
 
-> 📸 *Screenshot: Mechanic cards with status indicators*
+![Mechanic cards with status indicators](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/mechanic-cards.png)
 
 ---
 
@@ -66,7 +66,7 @@ Each card displays:
 3. Fill in the mechanic form
 4. Click **"Create mechanic"**
 
-> 📸 *Screenshot: New mechanic form*
+![New mechanic form](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/mechanic-form.png)
 
 ### Mechanic Form Fields
 
@@ -110,7 +110,7 @@ Levels are configurable lookup values. Examples:
 
 Click any mechanic from the list.
 
-> 📸 *Screenshot: Mechanic detail page*
+![Mechanic detail page](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/mechanic-detail.png)
 
 ### Detail Page Information
 

@@ -71,7 +71,7 @@ When you first log in, you'll be guided through creating your company workspace.
 2. Enter your **Company Name** (e.g., "ABC Elevator Services")
 3. Click **"Create workspace"**
 
-> 📸 *Screenshot: Onboarding form with company name field*
+![Onboarding form with company name field](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/onboarding-form.png)
 
 | Field | Description | Example |
 |-------|-------------|---------|

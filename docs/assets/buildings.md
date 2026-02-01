@@ -68,7 +68,7 @@ Buildings must be created from within a management company.
 4. Fill in the building form
 5. Click **"Create building"**
 
-> 📸 *Screenshot: New building form*
+![New building form](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/building-form.png)
 
 ### Building Form Fields
 

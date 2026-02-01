@@ -55,7 +55,7 @@ For each member:
 - Cannot have role changed
 - One owner per workspace
 
-> 📸 *Screenshot: Current members list*
+![Current members list](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/team-members-list.png)
 
 ---
 
@@ -68,7 +68,7 @@ For each member:
 3. Select a **role** (Admin or Member)
 4. Click **"Create invite"**
 
-> 📸 *Screenshot: Invite form*
+![Invite form](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/team-invite-form.png)
 
 ### What Happens Next
 
@@ -229,7 +229,7 @@ Each team member can configure their email notifications.
 | **Inspection Reminders** | Upcoming inspection expirations |
 | **Weekly Summary** | Weekly activity digest |
 
-> 📸 *Screenshot: Notification preferences*
+![Notification preferences](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/notification-preferences.png)
 
 ---
 

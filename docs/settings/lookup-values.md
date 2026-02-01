@@ -55,7 +55,7 @@ When creating or editing records, you can add new lookup values on the fly:
 4. Click **"Create"**
 5. The new value is automatically selected
 
-> 📸 *Screenshot: Inline lookup creation*
+![Inline lookup creation](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/lookup-inline-creation.png)
 
 ### Contact Categories Page
 

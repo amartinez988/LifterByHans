@@ -50,7 +50,7 @@ Each card displays:
 - **Contact** — Email (if provided)
 - **Status** — Active or Inactive badge
 
-> 📸 *Screenshot: Inspector cards*
+![Inspector cards](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/inspector-cards.png)
 
 ---
 
@@ -63,7 +63,7 @@ Each card displays:
 3. Fill in the inspector form
 4. Click **"Create inspector"**
 
-> 📸 *Screenshot: New inspector form*
+![New inspector form](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/inspector-form.png)
 
 ### Inspector Form Fields
 
@@ -84,7 +84,7 @@ Each card displays:
 
 Click any inspector from the list.
 
-> 📸 *Screenshot: Inspector detail page*
+![Inspector detail page](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/inspector-detail.png)
 
 ### Detail Page Information
 
