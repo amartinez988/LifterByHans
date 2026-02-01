@@ -9,7 +9,7 @@ Team management lets you invite colleagues to your Uplio workspace, manage their
 1. Click **"Team"** under the **People** section in the sidebar
 2. You'll see current members and pending invites
 
-![Team management](../images/team-management.png)
+![Team management](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/team-management.png)
 
 ---
 
@@ -329,4 +329,5 @@ Only Owners and Admins can access Team Management.
 ---
 
 *Your team is your strength. Invite the right people with the right access to make Uplio work for everyone.*
+
 

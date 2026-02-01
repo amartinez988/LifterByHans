@@ -9,7 +9,7 @@ Emergency Calls track urgent service situations like stuck elevators, entrapment
 1. Click **"Emergency Calls"** under the **Emergency** section in the sidebar
 2. You'll see a list of all emergency call records
 
-![Emergency calls list](images/emergency-calls-list.png)
+![Emergency calls list](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/emergency-calls-list.png)
 
 ---
 
@@ -75,7 +75,7 @@ Each card displays:
 3. Fill in the emergency form quickly
 4. Click **"Create emergency call"**
 
-![Emergency call form](images/emergency-call-form.png)
+![Emergency call form](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/emergency-call-form.png)
 
 ### Emergency Form Fields
 
@@ -331,4 +331,5 @@ Enable in Settings > Notification Preferences.
 ---
 
 *Emergency calls require immediate attention. Keep this section accurate for quick response and proper documentation.*
+
 

@@ -9,7 +9,7 @@ Inspectors are external personnel who conduct regulatory inspections on elevator
 1. Click **"Inspectors"** under the **People** section in the sidebar
 2. You'll see a list of all inspector records in your workspace
 
-![Inspectors list](../images/inspectors-list.png)
+![Inspectors list](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/inspectors-list.png)
 
 ---
 
@@ -236,4 +236,5 @@ If you serve multiple jurisdictions:
 ---
 
 *Inspector records help you track who certifies your equipment. Keep them current for accurate inspection documentation.*
+
 

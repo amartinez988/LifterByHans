@@ -9,7 +9,7 @@ The Dashboard is your central command center in Uplio. It provides an at-a-glanc
 1. Click **"Overview"** under the **Dashboard** section in the sidebar
 2. Or click your company name in the top-left corner
 
-![Dashboard overview](images/dashboard-overview.png)
+![Dashboard overview](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/dashboard-overview.png)
 
 ---
 
@@ -148,7 +148,7 @@ Click **"Compliance"** for a detailed breakdown:
 
 Each section lists affected units with links to take action.
 
-![Compliance page](images/compliance-page.png)
+![Compliance page](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/compliance-page.png)
 
 ### Alerts Page
 
@@ -164,7 +164,7 @@ Click **"Alerts"** to see all items requiring attention:
 
 Alerts are color-coded by severity and link directly to the relevant record.
 
-![Alerts page](images/alerts-page.png)
+![Alerts page](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/alerts-page.png)
 
 ---
 
@@ -211,4 +211,5 @@ From the dashboard, you can:
 ---
 
 *The dashboard is designed to give you everything you need at a glance. Check it daily to stay on top of your operations.*
+
 

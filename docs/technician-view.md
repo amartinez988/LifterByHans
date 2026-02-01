@@ -10,7 +10,7 @@ The Technician View is a mobile-optimized interface designed for field mechanics
 2. Or navigate directly to `/technician`
 3. The view automatically adapts to your screen size
 
-![Technician view](images/technician-view.png)
+![Technician view](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/technician-view.png)
 
 ---
 
@@ -300,4 +300,5 @@ All logged-in users can access Technician View.
 ---
 
 *The Technician View puts the essentials at your fingertips. Keep it handy throughout your workday.*
+
 

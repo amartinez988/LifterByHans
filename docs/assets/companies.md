@@ -21,7 +21,7 @@ Each management company can have multiple buildings, and each building can have 
 1. Click **"Companies"** under the **Assets** section in the sidebar
 2. You'll see a list of all management companies in your workspace
 
-![Companies list](../images/companies-list.png)
+![Companies list](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/companies-list.png)
 
 ---
 
@@ -55,7 +55,7 @@ Each company card displays:
 3. Fill in the company form
 4. Click **"Create company"**
 
-![Company form](../images/company-form.png)
+![Company form](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/company-form.png)
 
 ### Company Form Fields
 
@@ -79,7 +79,7 @@ Each company card displays:
 1. Click on any company in the list
 2. You'll see the company's full information and related records
 
-![Company detail](../images/company-detail.png)
+![Company detail](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/company-detail.png)
 
 ### Detail Page Sections
 
@@ -253,4 +253,5 @@ Type any text to instantly filter the list.
 ---
 
 *Management companies are the foundation of your asset hierarchy. Set them up first before adding buildings and units.*
+
 

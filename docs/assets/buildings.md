@@ -29,7 +29,7 @@ Buildings serve as the location container for your elevator units. They store ad
 2. Scroll to the buildings section
 3. View buildings specific to that company
 
-![Buildings list](../images/buildings-list.png)
+![Buildings list](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/buildings-list.png)
 
 ---
 
@@ -300,4 +300,5 @@ Click any level to navigate.
 ---
 
 *Buildings connect your management companies to the actual elevator equipment. Keep addresses accurate for smooth dispatching.*
+
 

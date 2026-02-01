@@ -19,7 +19,7 @@ Issue Reports capture problems reported by building occupants who scan your elev
 1. Click **"Issue Reports"** under the **Operations** section in the sidebar
 2. You'll see all reported issues with status indicators
 
-![Issue reports page](../images/issue-reports-page.png)
+![Issue reports page](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/issue-reports-page.png)
 
 ---
 
@@ -260,4 +260,5 @@ Issue Reports affect your dashboard:
 ---
 
 *Issue Reports give building occupants a voice. Monitor them closely to catch problems early and keep your customers happy.*
+
 

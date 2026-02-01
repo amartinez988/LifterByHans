@@ -9,7 +9,7 @@ Jobs are the central work scheduling feature in Uplio. Use jobs to plan, assign,
 1. Click **"Jobs"** under the **Operations** section in the sidebar
 2. You'll see a list of all scheduled jobs across your workspace
 
-![Jobs list](../images/jobs-list.png)
+![Jobs list](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/jobs-list.png)
 
 ---
 
@@ -94,7 +94,7 @@ Each job card displays:
 3. Fill in the job form
 4. Click **"Create job"**
 
-![Job form](../images/job-form.png)
+![Job form](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/job-form.png)
 
 ### Job Form Fields
 
@@ -371,4 +371,5 @@ Use notes for:
 ---
 
 *Jobs are your daily work orders. Keep them updated for accurate scheduling and dispatching.*
+
 

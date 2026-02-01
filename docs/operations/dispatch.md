@@ -9,7 +9,7 @@ The Dispatch page is your real-time operations center. It provides an at-a-glanc
 1. Click **"Dispatch"** under the **Operations** section in the sidebar
 2. You'll see the operations center focused on today
 
-![Dispatch center](../images/dispatch-center.png)
+![Dispatch center](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/dispatch-center.png)
 
 ---
 
@@ -283,4 +283,5 @@ All users can view Dispatch. Only Owners and Admins can:
 ---
 
 *Dispatch is your command center for daily operations. Keep it open throughout the day to stay on top of your field work.*
+
 

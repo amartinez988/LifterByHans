@@ -9,7 +9,7 @@ Inspections track regulatory inspection records for your elevator and escalator 
 1. Click **"Inspections"** under the **Operations** section in the sidebar
 2. You'll see a list of all inspection records
 
-![Inspections list](../images/inspections-list.png)
+![Inspections list](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/inspections-list.png)
 
 ---
 
@@ -325,4 +325,5 @@ Enable in Settings > Notification Preferences.
 ---
 
 *Inspection tracking keeps you compliant and your customers safe. Stay on top of expirations to avoid regulatory issues.*
+
 

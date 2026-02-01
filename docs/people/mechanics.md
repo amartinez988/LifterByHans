@@ -9,7 +9,7 @@ Mechanics are your field technicians — the people who perform maintenance, res
 1. Click **"Mechanics"** under the **People** section in the sidebar
 2. You'll see a list of all mechanics in your workspace
 
-![Mechanics list](../images/mechanics-list.png)
+![Mechanics list](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/mechanics-list.png)
 
 ---
 
@@ -313,4 +313,5 @@ If mechanics need app access:
 ---
 
 *Your mechanics are the backbone of your service. Keep their records accurate and up to date.*
+
 

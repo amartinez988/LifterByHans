@@ -9,7 +9,7 @@ Uplio offers subscription plans to match your business needs. The Billing page l
 1. Click **"Settings"** > **"Billing"** in the sidebar
 2. Only the workspace **Owner** can access billing
 
-![Billing page](../images/billing-page.png)
+![Billing page](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/billing-page.png)
 
 ---
 
@@ -305,4 +305,5 @@ Only the workspace Owner can access Billing.
 ---
 
 *Choose the right plan for your business and keep your subscription current for uninterrupted service.*
+
 

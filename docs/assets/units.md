@@ -29,7 +29,7 @@ Units are the core records in Uplio. All operational activities (maintenance, in
 2. View units listed within that building
 3. Click "Add unit" to create new units
 
-![Units list](../images/units-list.png)
+![Units list](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/units-list.png)
 
 ---
 
@@ -135,7 +135,7 @@ While creating or editing a unit:
 
 Click any unit from the list or building page.
 
-![Unit detail](../images/unit-detail.png)
+![Unit detail](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/unit-detail.png)
 
 ### Detail Page Sections
 
@@ -402,4 +402,5 @@ A unit can only be deleted if it has:
 ---
 
 *Units are the heart of Uplio. Keep them well-documented and up to date for smooth operations and happy customers.*
+
 

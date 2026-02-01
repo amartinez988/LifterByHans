@@ -9,7 +9,7 @@ Maintenance records track regular service visits, preventive maintenance, and ro
 1. Click **"Maintenance"** under the **Operations** section in the sidebar
 2. You'll see a list of all maintenance records across your workspace
 
-![Maintenance list](../images/maintenance-list.png)
+![Maintenance list](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/maintenance-list.png)
 
 ---
 
@@ -309,4 +309,5 @@ Include in your notes:
 ---
 
 *Maintenance records build your service history. Document thoroughly for compliance and customer transparency.*
+
 

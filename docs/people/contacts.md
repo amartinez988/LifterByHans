@@ -9,7 +9,7 @@ Contacts are the people associated with your management companies — property m
 1. Click **"Contacts"** under the **People** section in the sidebar
 2. You'll see a list of all contacts across management companies
 
-![Contacts list](../images/contacts-list.png)
+![Contacts list](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/contacts-list.png)
 
 ---
 
@@ -334,4 +334,5 @@ For emergencies:
 ---
 
 *Contacts are your link to customers. Keep their information current for smooth communications.*
+
 

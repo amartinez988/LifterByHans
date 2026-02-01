@@ -10,7 +10,7 @@ The Import Wizard allows you to bulk import data from CSV files. This is especia
 2. Click **"Open Import Wizard"** on the Import Data card
 3. Or navigate to `/app/settings/import`
 
-![Settings page](../images/settings-page.png)
+![Settings page](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/settings-page.png)
 
 ---
 
@@ -44,7 +44,7 @@ The Import Wizard has tabs for each data type:
 | **5. Contacts** | Contacts (linked to Companies) |
 | **6. Jobs** | Scheduled Jobs |
 
-![Import wizard](../images/import-wizard.png)
+![Import wizard](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/import-wizard.png)
 
 ---
 
@@ -387,4 +387,5 @@ Only Owners and Admins can access the Import Wizard.
 ---
 
 *The Import Wizard saves hours of manual data entry. Prepare your data carefully and import in order for best results.*
+
 
