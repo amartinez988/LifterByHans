@@ -1,21 +1,20 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { 
-  MapPin, 
   Clock, 
   CheckCircle2, 
-  Phone, 
-  Navigation,
   Wrench,
   AlertTriangle,
   Calendar,
   ChevronRight,
+  Navigation,
 } from "lucide-react";
 
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
 import { Button } from "@/components/ui/button";
 import { JobCard } from "./job-card";
+import { EmergencyCard } from "./emergency-card";
 
 export default async function TechnicianPage() {
   const session = await auth();
@@ -162,26 +161,7 @@ export default async function TechnicianPage() {
             </div>
             <div className="space-y-2">
               {openEmergencies.map((emergency) => (
-                <Link
-                  key={emergency.id}
-                  href={`/app/emergency-calls`}
-                  className="flex items-center justify-between bg-white rounded-lg p-3 shadow-sm"
-                >
-                  <div>
-                    <p className="font-medium text-slate-900">{emergency.unit.identifier}</p>
-                    <p className="text-sm text-slate-500">{emergency.unit.building.name}</p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <a
-                      href={`tel:${emergency.unit.building.localPhone || ""}`}
-                      className="p-2 bg-danger-100 rounded-lg"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Phone className="h-4 w-4 text-danger-600" />
-                    </a>
-                    <ChevronRight className="h-5 w-5 text-slate-400" />
-                  </div>
-                </Link>
+                <EmergencyCard key={emergency.id} emergency={emergency} />
               ))}
             </div>
           </div>

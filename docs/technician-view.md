@@ -41,7 +41,7 @@ The top of the page shows:
 | **Completed** | Jobs finished so far today |
 | **Emergencies** | Open emergency calls (highlighted in amber) |
 
-> 📸 *Screenshot: Header section with stats*
+![Technician header stats](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/technician-header-stats.png)
 
 ---
 
@@ -65,7 +65,7 @@ If there are open emergencies, they appear prominently at the top:
 2. Tap the **emergency card** to view full details in the app
 3. Coordinate response with dispatch
 
-> 📸 *Screenshot: Emergency alerts section*
+![Technician emergency alerts](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/technician-emergency-alerts.png)
 
 ---
 
@@ -106,7 +106,7 @@ Tap any job card to:
 3. Add notes
 4. See complete information
 
-> 📸 *Screenshot: Today's schedule with job cards*
+![Technician schedule](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/technician-schedule.png)
 
 ---
 
@@ -126,7 +126,7 @@ Each upcoming job shows:
 - **Job Type** — What kind of work
 - **Date** — When it's scheduled (e.g., "Thu, Jan 18")
 
-> 📸 *Screenshot: Upcoming jobs section*
+![Technician upcoming jobs](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/technician-upcoming-jobs.png)
 
 ---
 
@@ -141,7 +141,7 @@ The bottom of the screen has two quick action buttons:
 
 These are fixed at the bottom for easy access.
 
-> 📸 *Screenshot: Footer action buttons*
+![Technician footer actions](https://raw.githubusercontent.com/amartinez988/LifterByHans/master/docs/images/technician-footer-actions.png)
 
 ---
 
