@@ -9,7 +9,7 @@ Contacts are the people associated with your management companies — property m
 1. Click **"Contacts"** under the **People** section in the sidebar
 2. You'll see a list of all contacts across management companies
 
-> 📸 *Screenshot: Contacts list view*
+![Contacts list](../images/contacts-list.png)
 
 ---
 

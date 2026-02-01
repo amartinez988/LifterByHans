@@ -9,7 +9,7 @@ The Schedule provides a visual calendar view of all your scheduled jobs. Use it 
 1. Click **"Schedule"** under the **Operations** section in the sidebar
 2. You'll see a calendar view of scheduled jobs
 
-> 📸 *Screenshot: Schedule calendar in week view*
+![Schedule week view](../images/schedule-week-view.png)
 
 ---
 
@@ -22,7 +22,7 @@ The default view showing 7 days (Monday through Sunday):
 - Jobs appear as colored blocks within each day
 - Scroll to see more jobs if a day is busy
 
-> 📸 *Screenshot: Week view with jobs*
+![Schedule week view](../images/schedule-week-view.png)
 
 ### Month View
 
@@ -32,7 +32,7 @@ A traditional monthly calendar layout:
 - "+X more" indicator if more jobs exist
 - Previous/next month days shown in lighter color
 
-> 📸 *Screenshot: Month view with jobs*
+![Schedule month view](../images/schedule-month-view.png)
 
 ### Switching Views
 

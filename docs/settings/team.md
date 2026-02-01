@@ -9,7 +9,7 @@ Team management lets you invite colleagues to your Uplio workspace, manage their
 1. Click **"Team"** under the **People** section in the sidebar
 2. You'll see current members and pending invites
 
-> 📸 *Screenshot: Team management page*
+![Team management](../images/team-management.png)
 
 ---
 

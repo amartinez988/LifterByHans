@@ -9,7 +9,7 @@ Inspections track regulatory inspection records for your elevator and escalator 
 1. Click **"Inspections"** under the **Operations** section in the sidebar
 2. You'll see a list of all inspection records
 
-> 📸 *Screenshot: Inspections list view*
+![Inspections list](../images/inspections-list.png)
 
 ---
 

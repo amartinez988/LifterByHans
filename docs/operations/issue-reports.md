@@ -19,7 +19,7 @@ Issue Reports capture problems reported by building occupants who scan your elev
 1. Click **"Issue Reports"** under the **Operations** section in the sidebar
 2. You'll see all reported issues with status indicators
 
-> 📸 *Screenshot: Issue Reports page with statistics*
+![Issue reports page](../images/issue-reports-page.png)
 
 ---
 

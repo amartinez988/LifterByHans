@@ -9,7 +9,7 @@ Mechanics are your field technicians — the people who perform maintenance, res
 1. Click **"Mechanics"** under the **People** section in the sidebar
 2. You'll see a list of all mechanics in your workspace
 
-> 📸 *Screenshot: Mechanics list view*
+![Mechanics list](../images/mechanics-list.png)
 
 ---
 

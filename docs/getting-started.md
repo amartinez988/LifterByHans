@@ -11,7 +11,7 @@ This guide will walk you through creating your account, setting up your company 
 1. Navigate to the Uplio application URL
 2. Click **"Sign up"** on the login page
 
-> 📸 *Screenshot: Login page with "Sign up" link highlighted*
+![Login page](images/login-page.png)
 
 ### Step 2: Complete the Registration Form
 
@@ -30,7 +30,7 @@ Fill in the following information:
 4. Confirm your password
 5. Click **"Create account"**
 
-> 📸 *Screenshot: Sign-up form with all fields labeled*
+![Sign-up form](images/signup-form.png)
 
 ### Step 3: Verify Your Email
 
@@ -49,7 +49,7 @@ Fill in the following information:
 3. Enter your password
 4. Click **"Sign in"**
 
-> 📸 *Screenshot: Login form*
+![Login form](images/login-page.png)
 
 ### Forgot Your Password?
 
@@ -98,7 +98,7 @@ The left sidebar organizes all features into logical groups:
 | **Emergency** | Emergency Calls |
 | **Settings** | Workspace, Billing |
 
-> 📸 *Screenshot: Sidebar navigation expanded*
+![Sidebar navigation](images/sidebar-navigation.png)
 
 ### The Top Header
 

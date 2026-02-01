@@ -9,7 +9,7 @@ Inspectors are external personnel who conduct regulatory inspections on elevator
 1. Click **"Inspectors"** under the **People** section in the sidebar
 2. You'll see a list of all inspector records in your workspace
 
-> 📸 *Screenshot: Inspectors list view*
+![Inspectors list](../images/inspectors-list.png)
 
 ---
 

@@ -29,7 +29,7 @@ Buildings serve as the location container for your elevator units. They store ad
 2. Scroll to the buildings section
 3. View buildings specific to that company
 
-> 📸 *Screenshot: Buildings list view*
+![Buildings list](../images/buildings-list.png)
 
 ---
 

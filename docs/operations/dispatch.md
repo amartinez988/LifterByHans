@@ -9,7 +9,7 @@ The Dispatch page is your real-time operations center. It provides an at-a-glanc
 1. Click **"Dispatch"** under the **Operations** section in the sidebar
 2. You'll see the operations center focused on today
 
-> 📸 *Screenshot: Dispatch operations center overview*
+![Dispatch center](../images/dispatch-center.png)
 
 ---
 

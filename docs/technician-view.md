@@ -10,7 +10,7 @@ The Technician View is a mobile-optimized interface designed for field mechanics
 2. Or navigate directly to `/technician`
 3. The view automatically adapts to your screen size
 
-> 📸 *Screenshot: Technician View on mobile device*
+![Technician view](images/technician-view.png)
 
 ---
 

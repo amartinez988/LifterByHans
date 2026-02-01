@@ -29,7 +29,7 @@ Units are the core records in Uplio. All operational activities (maintenance, in
 2. View units listed within that building
 3. Click "Add unit" to create new units
 
-> 📸 *Screenshot: Units list view with filters*
+![Units list](../images/units-list.png)
 
 ---
 
@@ -135,7 +135,7 @@ While creating or editing a unit:
 
 Click any unit from the list or building page.
 
-> 📸 *Screenshot: Unit detail page overview*
+![Unit detail](../images/unit-detail.png)
 
 ### Detail Page Sections
 
