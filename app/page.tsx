@@ -357,15 +357,30 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-slate-200 bg-white px-6 py-8">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <Image src="/icon.svg" alt="Uplio" width={24} height={24} className="rounded" />
-            <span className="font-semibold bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">UPLIO</span>
+      <footer className="border-t border-slate-200 bg-white px-6 py-12">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <Image src="/icon.svg" alt="Uplio" width={24} height={24} className="rounded" />
+              <span className="font-semibold bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">UPLIO</span>
+            </div>
+            <div className="flex items-center gap-6 text-sm">
+              <Link href="/terms" className="text-slate-500 hover:text-brand-600 transition-colors">
+                Terms of Service
+              </Link>
+              <Link href="/privacy" className="text-slate-500 hover:text-brand-600 transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/contact" className="text-slate-500 hover:text-brand-600 transition-colors">
+                Contact
+              </Link>
+            </div>
           </div>
-          <p className="text-sm text-slate-500">
-            © {new Date().getFullYear()} UPLIO. Built for the vertical transport industry.
-          </p>
+          <div className="mt-6 pt-6 border-t border-slate-100 text-center">
+            <p className="text-sm text-slate-500">
+              © {new Date().getFullYear()} UPLIO. Built for the vertical transport industry.
+            </p>
+          </div>
         </div>
       </footer>
     </main>
