@@ -91,6 +91,12 @@ export default function LandingPage() {
           <nav className="flex items-center gap-3">
             <Link 
               className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition" 
+              href="/pricing"
+            >
+              Pricing
+            </Link>
+            <Link 
+              className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition" 
               href="/login"
             >
               Log in
@@ -365,6 +371,9 @@ export default function LandingPage() {
               <span className="font-semibold bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">UPLIO</span>
             </div>
             <div className="flex items-center gap-6 text-sm">
+              <Link href="/pricing" className="text-slate-500 hover:text-brand-600 transition-colors">
+                Pricing
+              </Link>
               <Link href="/terms" className="text-slate-500 hover:text-brand-600 transition-colors">
                 Terms of Service
               </Link>
